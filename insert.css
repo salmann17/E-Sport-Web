@@ -1,0 +1,28 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1b1b1b;
+    color: #fff;
+    margin: 0;
+    padding: 20px;
+}
+h1 {
+color: #00d4ff;
+font-size: 2em;
+margin-bottom: 20px;
+}
+.btn-add {
+    background-color: #00d4ff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.btn-add:hover {
+    background-color: #008cbf;
+}

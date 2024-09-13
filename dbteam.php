@@ -1,84 +1,54 @@
+<?php 
+    $mysqli = new mysqli("localhost", "root", "", "esport");
+    if($mysqli -> connect_errno){
+        echo "Failed to connect to MySQL: " . $mysqli-> connect_error;
+    }
+
+    if(isset($_GET['searchTeam'])){
+        $team = "%" . $_GET['searchTeam'] . "%";
+        $statement = $mysqli->prepare("select idteam, t.name as team_name, g.name as game_name from team as t
+                    inner join game as g on t.idgame = g.idgame where name LIKE ?");
+        $statement->bind_param('s', $team); 
+    }else {
+        $statement = $mysqli->prepare("select idteam, t.name as team_name, g.name as game_name from team as t
+                    inner join game as g on t.idgame = g.idgame");
+    }
+    $statement-> execute();
+
+    $result = $statement-> get_result();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Team</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #1b1b1b;
-            color: #fff;
-            margin: 0;
-            padding: 20px;
-        }
-        h1 {
-            color: #00d4ff;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        table, th, td {
-            border: 1px solid #00d4ff;
-        }
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-        th {
-            background-color: #2a2a2a;
-            color: #fff;
-        }
-        tr:nth-child(even) {
-            background-color: #2a2a2a;
-        }
-        tr:hover {
-            background-color: #00d4ff;
-            color: #000;
-        }
-        .btn-add {
-            background-color: #00d4ff;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        .btn-add:hover {
-            background-color: #008cbf;
-        }
-    </style>
+    <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
 
     <h1>Team Management</h1>
-    <a href="addteam.php" class="btn-add">Tambah Team Baru</a>
-
-    <table>
-        <tr>
+    <form action="" method="get">
+        <input type="text" name="searchTeam" placeholder="input team name">
+        <input type="submit" value="search" class="btn-add">
+    </form>
+    <a href="insertteam.php" class="btn-add">Tambah Team Baru</a>
+    <?php 
+        echo "<table><tr>
             <th>Nama Team</th>
-            <th>Tanggal Dibentuk</th>
-            <th>Jumlah Pemain</th>
-            <th>Game Utama</th>
-            <th>Aksi</th>
-        </tr>
-        <tr>
-            <td>Team Avengers</td>
-            <td>2024-09-01</td>
-            <td>5</td>
-            <td>Valorant</td>
-            <td><a href="#">Ubah</a> | <a href="#">Hapus</a></td>
-        </tr>
-        <tr>
-            <td>Team Justice</td>
-            <td>2024-09-03</td>
-            <td>7</td>
-            <td>DOTA 2</td>
-            <td><a href="#">Ubah</a> | <a href="#">Hapus</a></td>
-        </tr>
-    </table>
-
+            <th>Game</th>
+            <th>Aksi</th></tr>";
+        while($row = $result->fetch_assoc()){
+            echo "<tr>";
+            echo "<td>". $row['team_name'] ."</td>";
+            echo "<td>". $row['game_name'] ."</td>";
+            echo "<td><a href='editteam.php?idteam=".$row['idteam']."'>Ubah</a> | <a href='hapusteam.php?idteam=".$row['idteam']."'>Hapus</a></td>";
+        }
+        echo "</table>"
+    ?>
 </body>
 </html>
+<?php
+    $statement->close();
+    $mysqli->close();
+?>
