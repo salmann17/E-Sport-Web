@@ -13,6 +13,6 @@
 
 
     $mysqli->close();
-    header("location : dbteam.php");
+    header("Location: dbteam.php");
     exit();
 ?>

@@ -7,7 +7,7 @@
     if(isset($_GET['searchTeam'])){
         $team = "%" . $_GET['searchTeam'] . "%";
         $statement = $mysqli->prepare("select idteam, t.name as team_name, g.name as game_name from team as t
-                    inner join game as g on t.idgame = g.idgame where name LIKE ?");
+                    inner join game as g on t.idgame = g.idgame where t.name LIKE ?");
         $statement->bind_param('s', $team); 
     }else {
         $statement = $mysqli->prepare("select idteam, t.name as team_name, g.name as game_name from team as t
@@ -39,6 +39,7 @@
             <th>Game</th>
             <th>Aksi</th></tr>";
         while($row = $result->fetch_assoc()){
+            $idteam = $row['idteam'];
             echo "<tr>";
             echo "<td>". $row['team_name'] ."</td>";
             echo "<td>". $row['game_name'] ."</td>";
@@ -46,6 +47,7 @@
         }
         echo "</table>"
     ?>
+    <input type="hidden" value="<?php echo $idteam ;?>" name="idteam">
 </body>
 </html>
 <?php

@@ -1,6 +1,6 @@
 <?php 
-    if(isset($_POST['idteam'])){
-        $idteam = $_POST['idteam'];
+    if(isset($_GET['idteam'])){
+        $idteam = $_GET['idteam'];
     }
     $mysqli = new mysqli("localhost", "root", "", "esport");
     if($mysqli -> connect_errno){
@@ -39,11 +39,11 @@
 <body>
     <h1>Edit Team</h1>
 
-    <form action="insertteam_proses.php" method="POST">
+    <form action="editteam_proses.php" method="POST">
         <label for="name">Nama Team:</label>
         <input type="text" id="name" name="name" value="<?php echo $team_name; ?>"> <br><br>
 
-        <select name="idgames" id="idgames">
+        <select name="idgame" id="idgame">
             <?php 
                 while($gameRow = $allgame->fetch_assoc()){
                     $selected = in_array($gameRow['idgame'], $selectGame) ? "selected" : "";
@@ -55,7 +55,6 @@
         <input type="submit" value="Submit Team" class="btn-add">
         <input type="hidden" value="<?php echo $idteam ;?>" name="idteam">
     </form>
-
 </body>
 </html>
 <?php
