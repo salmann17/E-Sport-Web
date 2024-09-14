@@ -43,7 +43,7 @@
             echo "<tr>";
             echo "<td>". $row['team_name'] ."</td>";
             echo "<td>". $row['game_name'] ."</td>";
-            echo "<td><a href='team/editteam.php?idteam=".$row['idteam']."'>Ubah</a> | <a href='team/hapusteam.php?idteam=".$row['idteam']."'>Hapus</a></td>";
+            echo "<td><a href='team/editteam.php?idteam=".$row['idteam']."'>Ubah</a> | <a href='team/deleteteam.php?idteam=".$row['idteam']."'>Hapus</a></td>";
         }
         echo "</table>"
     ?>
