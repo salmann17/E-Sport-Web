@@ -18,5 +18,5 @@
     $result = $stt-> get_result();
     $stt->close();
     $mysqli->close();
-    header("location: dbteam.php");
+    header("location: ../dbteam.php");
 ?>

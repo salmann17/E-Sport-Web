@@ -23,7 +23,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Team</title>
-    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="css/dashboard.css">
 </head>
 <body>
 
@@ -32,7 +32,7 @@
         <input type="text" name="searchTeam" placeholder="input team name">
         <input type="submit" value="search" class="btn-add">
     </form>
-    <a href="insertteam.php" class="btn-add">Tambah Team Baru</a>
+    <a href="team/insertteam.php" class="btn-add">Tambah Team Baru</a>
     <?php 
         echo "<table><tr>
             <th>Nama Team</th>
@@ -43,7 +43,7 @@
             echo "<tr>";
             echo "<td>". $row['team_name'] ."</td>";
             echo "<td>". $row['game_name'] ."</td>";
-            echo "<td><a href='editteam.php?idteam=".$row['idteam']."'>Ubah</a> | <a href='hapusteam.php?idteam=".$row['idteam']."'>Hapus</a></td>";
+            echo "<td><a href='team/editteam.php?idteam=".$row['idteam']."'>Ubah</a> | <a href='team/hapusteam.php?idteam=".$row['idteam']."'>Hapus</a></td>";
         }
         echo "</table>"
     ?>

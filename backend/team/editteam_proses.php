@@ -14,6 +14,6 @@
 
 
     $mysqli->close();
-    header("Location: dbteam.php");
+    header("Location: ../dbteam.php");
     exit();
 ?>
