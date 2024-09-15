@@ -62,26 +62,38 @@
             <th>Date</th>
             <th>Deskripsi</th>
             <th>Aksi</th></tr>";
-        while($row = $result->fetch_assoc()){
-            $idevent = $row['idevent'];
-            echo "<tr>";
-            echo "<td>". $row['name'] ."</td>";
-            // echo "<td>". $row['team_name'] ."</td>";
-            echo "<td>";
-            $stt2 = $mysqli->prepare("select t.idteam, t.name as team_name, et.idevent from team as t
-                                    inner join event_teams as et on t.idteam = et.idteam where idevent=?");
-            $stt2->bind_param("i", $idevent);
-            $stt2->execute();
-            $res = $stt2-> get_result();
-            while($row2 = $res->fetch_assoc()){
-                echo $row2['team_name'] . ", ";
+            while($row = $result->fetch_assoc()){
+                $idevent = $row['idevent'];
+                echo "<tr>";
+                echo "<td>". $row['name'] ."</td>";
+                echo "<td>";
+                
+                $stt2 = $mysqli->prepare("select t.name as team_name from event e left join event_teams et on e.idevent = et.idevent left join team t on et.idteam = t.idteam where e.idevent = ?");
+                $stt2->bind_param("i", $idevent);
+                $stt2->execute();
+                $res = $stt2->get_result();
+            
+                $teamNames = [];
+                while($row2 = $res->fetch_assoc()){
+                    if (!empty($row2['team_name'])) {
+                        $teamNames[] = $row2['team_name'];
+                    }
+                }
+            
+                if (!empty($teamNames)) {
+                    echo implode(", ", $teamNames);
+                } else {
+                    echo "";
+                }
+            
+                echo "</td>";
+                echo "<td>". $row['date'] ."</td>";
+                echo "<td>". $row['description'] ."</td>";
+                echo "<td><a href='event/editevent.php?idevent=".$row['idevent']."'>Ubah</a> | <a href='event/deleteevent.php?idevent=".$row['idevent']."'>Hapus</a></td>";
+                echo "</tr>";
             }
-            echo "</td>";
-            echo "<td>". $row['date'] ."</td>";
-            echo "<td>". $row['description'] ."</td>";
-            echo "<td><a href='event/editevent.php?idevent=".$row['idevent']."'>Ubah</a> | <a href='event/deleteevent.php?idevent=".$row['idevent']."'>Hapus</a></td>";
-        }
-        echo "</table>"
+            echo "</table>";
+            
     ?>
     <div class="menu">
         <div class="menu-item">

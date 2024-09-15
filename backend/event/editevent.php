@@ -42,7 +42,8 @@
 
     <h1>Insert Event</h1>
 
-    <form action="insertevent_proses.php" method="POST">
+    <form action="editevent_proses.php" method="POST">
+        <label type="hidden" name="idteam" value="<? echo $idevent ?>">
         <label for="name">Nama Event:</label>
         <input type="text" id="name" name="name" value="<?php echo $event_name?>"> <br><br>
         <label for="">Team yang Mengikuti:</label> <br>
