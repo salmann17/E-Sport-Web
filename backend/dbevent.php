@@ -22,6 +22,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Event</title>
     <link rel="stylesheet" href="css/dashboard.css">
+    <style>
+        .menu {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 50px;
+        }
+        .menu-item {
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+            width: 150px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+        .menu-item:hover {
+            background-color: #00d4ff;
+        }
+        .menu-item a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 
@@ -59,6 +83,11 @@
         }
         echo "</table>"
     ?>
+    <div class="menu">
+        <div class="menu-item">
+            <a href="../DashboardAdmin.php">Back to Dashboard</a>
+        </div>
+    </div>
     <input type="hidden" value="<?php echo $idevent ;?>" name="idevent">
     <input type="hidden" value="<?php echo $idteam ;?>" name="idteam">
 </body>
