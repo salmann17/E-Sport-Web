@@ -42,7 +42,7 @@
         <select name="idteam" id="idteam">
         <?php 
                 while($teamRow = $allteam->fetch_assoc()){
-                    $selected = in_array($teameRow['idteam'], $selectTeam) ? "selected" : "";
+                    $selected = in_array($teamRow['idteam'], $selectTeam) ? "selected" : "";
                     echo "<option value='" . $teamRow['idteam'] . "' $selected>" . $teamRow['name'] . "</option>";
                 }
             ?>

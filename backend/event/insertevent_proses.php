@@ -9,7 +9,6 @@ $name = $_POST['name'];
 $date = $_POST['date'];
 $desc = $_POST['desc'];
 
-// Insert movie data
 $stmt = $mysqli->prepare("INSERT INTO event (name, date, description) VALUES (?, ?, ?);");
 $stmt->bind_param('sss', $name, $date, $desc);
 $stmt->execute();

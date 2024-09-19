@@ -13,7 +13,6 @@
     $stmt2->bind_param('i', $idevent);
     $stmt2->execute();
     $stmt2->close();
-    /* close statement and connection */
     
     $mysqli->close();
     header("Location: ../dbevent.php");
