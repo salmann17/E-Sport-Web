@@ -29,11 +29,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Team</title>
+    <title>Edit Achievement</title>
     <link rel="stylesheet" href="../css/insert.css">
 </head>
 <body>
-    <h1>Edit Team</h1>
+    <h1>Edit Achievement</h1>
 
     <form action="editacv_proses.php" method="POST">
         <label for="name">Nama Achievement:</label>

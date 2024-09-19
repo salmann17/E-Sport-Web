@@ -54,7 +54,7 @@
         <input type="text" name="searchEvent" placeholder="input team name">
         <input type="submit" value="search" class="btn-add">
     </form>
-    <a href="event/insertevent.php" class="btn-add">Tambah Game Baru</a>
+    <a href="event/insertevent.php" class="btn-add">Tambah Event Baru</a>
     <?php 
         echo "<table><tr>
             <th>Nama Event</th>

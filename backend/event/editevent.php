@@ -35,12 +35,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insert Achievement</title>
+    <title>Edit Event</title>
     <link rel="stylesheet" href="../css/insert.css">
 </head>
 <body>
 
-    <h1>Insert Event</h1>
+    <h1>Edit Event</h1>
 
     <form action="editevent_proses.php" method="POST">
         <input type="hidden" name="idevent" value="<?= $idevent; ?>">
