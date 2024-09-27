@@ -2,16 +2,10 @@
     if(isset($_GET['idacv'])){
         $idacv = $_GET['idacv'];
     }
-    $mysqli = new mysqli("localhost", "root", "", "esport");
-    if($mysqli -> connect_errno){
-        echo "Failed to connect to MySQL: " . $mysqli-> connect_error;
-    }
+    require_once("../models/achievement.php");
+    $acv = new Achv();
 
-    $stt = $mysqli->prepare("select a.idachievement ,a.idteam, a.name as acv_name, t.name as team_name, a.date, a.description from achievement as a
-                    inner join team as t on a.idteam = t.idteam where a.idachievement = ?");
-    $stt->bind_param("i", $idacv);
-    $stt->execute();
-    $result = $stt->get_result();
+    $result = $acv->getAchvbyId($idacv);
     $selectTeam = [];
     while($row = $result->fetch_assoc()){
         $idteam = $row['idteam'];
@@ -21,8 +15,10 @@
         $desc = $row['description'];
         $selectTeam[] = $row['idteam'];
     }
-    $stt->close();
-    $allteam = $mysqli->query("select * from team");
+
+    require_once("../models/team.php");
+    $team = new Team();
+    $allteam = $team->getTeamAchv();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,6 +27,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Achievement</title>
     <link rel="stylesheet" href="../css/insert.css">
+    <link rel="icon" href="../icon/logo.png" type="image/png">
 </head>
 <body>
     <h1>Edit Achievement</h1>
@@ -56,6 +53,3 @@
     </form>
 </body>
 </html>
-<?php
-    $mysqli->close();
-?>

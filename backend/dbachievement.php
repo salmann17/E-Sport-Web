@@ -1,21 +1,11 @@
 <?php 
-    $mysqli = new mysqli("localhost", "root", "", "esport");
-    if($mysqli -> connect_errno){
-        echo "Failed to connect to MySQL: " . $mysqli-> connect_error;
-    }
-
+    require_once("models/achievement.php");
+    $achv = new Achv();
     if(isset($_GET['searchAcv'])){
-        $acv= "%" . $_GET['searchAcv'] . "%";
-        $statement = $mysqli->prepare("select a.idachievement ,a.idteam, a.name as acv_name, t.name as team_name, a.date, a.description from achievement as a
-                    inner join team as t on a.idteam = t.idteam where a.name LIKE ?");
-        $statement->bind_param('s', $acv); 
-    }else {
-        $statement = $mysqli->prepare("select a.idachievement ,a.idteam, a.name as acv_name, t.name as team_name, a.date, a.description from achievement as a
-                    inner join team as t on a.idteam = t.idteam");
+        $result = $achv->getAchv($_GET['searchAcv']);
+    } else{
+        $result = $achv->getAchv();
     }
-    $statement-> execute();
-
-    $result = $statement-> get_result();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,6 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Achievement</title>
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="icon" href="icon/logo.png" type="image/png">
     <style>
         .menu {
             display: flex;
@@ -83,7 +74,4 @@
     <input type="hidden" value="<?php echo $idacv;?>" name="idacv">
 </body>
 </html>
-<?php
-    $statement->close();
-    $mysqli->close();
-?>
+

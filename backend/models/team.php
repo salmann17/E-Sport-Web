@@ -5,6 +5,12 @@
         {
             parent:: __construct();
         }
+        public function getTeamAchv(){
+            $statement = $this->mysqli->prepare("select * from team");
+            $statement-> execute();
+            $result = $statement-> get_result();
+            return $result;
+        }
         public function getTeam($cari=""){
             if(isset($cari)){
                 $team = "%" . $cari . "%";

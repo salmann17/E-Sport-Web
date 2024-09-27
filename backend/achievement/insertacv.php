@@ -1,9 +1,3 @@
-<?php 
-    $mysqli = new mysqli("localhost", "root", "", "esport");
-    if($mysqli -> connect_errno){
-        echo "Failed to connect to MySQL: " . $mysqli-> connect_error;
-    }
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insert Achievement</title>
     <link rel="stylesheet" href="../css/insert.css">
+    <link rel="icon" href="../icon/logo.png" type="image/png">
 </head>
 <body>
 
@@ -22,9 +17,9 @@
         <label for="name">Nama Team:</label>
         <select name="idteam" id="idteam">
             <?php 
-            $statement = $mysqli->prepare("select * from team");
-            $statement-> execute();
-            $result = $statement-> get_result();
+                require_once("../models/team.php");
+                $team = new Team();
+                $result = $team->getTeamAchv();
                 while($row = $result->fetch_assoc()){
                     echo "<option value='".$row['idteam']."'>".$row['name']."</option>";
 
@@ -39,7 +34,3 @@
     </form>
 </body>
 </html>
-<?php
-    $statement->close();
-    $mysqli->close();
-?>

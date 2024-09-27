@@ -22,6 +22,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Event</title>
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="icon" href="icon/logo.png" type="image/png">
     <style>
         .menu {
             display: flex;
