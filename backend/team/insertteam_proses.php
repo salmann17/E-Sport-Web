@@ -1,18 +1,11 @@
 <?php 
-    $mysqli = new mysqli("localhost", "root", "", "esport");
-    if($mysqli -> connect_errno){
-        echo "Failed to connect to MySQL: " . $mysqli-> connect_error;
-    }
+    require_once("../models/team.php");
+    $team = new Team();
 
     $nama = $_POST['name'];
     $idgame = $_POST['idgames'];
-    $stt = $mysqli->prepare("insert into team (name, idgame) values(?,?)");
-    $stt->bind_param("si", $nama, $idgame);
-    $stt->execute();
-    $stt->close();
-
-
-    $mysqli->close();
+    
+    $result = $team->addTeam($nama, $idgame);
     header("Location: ../dbteam.php");
     exit();
 ?>

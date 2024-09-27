@@ -1,21 +1,8 @@
 <?php 
-    $mysqli = new mysqli("localhost", "root", "", "esport");
-    if($mysqli -> connect_errno){
-        echo "Failed to connect to MySQL: " . $mysqli-> connect_error;
-    }
+    require_once("models/team.php");
+    $team = new Team();
+    $result = $team->getTeam();
 
-    if(isset($_GET['searchTeam'])){
-        $team = "%" . $_GET['searchTeam'] . "%";
-        $statement = $mysqli->prepare("select idteam, t.name as team_name, g.name as game_name from team as t
-                    inner join game as g on t.idgame = g.idgame where t.name LIKE ?");
-        $statement->bind_param('s', $team); 
-    }else {
-        $statement = $mysqli->prepare("select idteam, t.name as team_name, g.name as game_name from team as t
-                    inner join game as g on t.idgame = g.idgame");
-    }
-    $statement-> execute();
-
-    $result = $statement-> get_result();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -79,7 +66,3 @@
     </div>
 </body>
 </html>
-<?php
-    $statement->close();
-    $mysqli->close();
-?>

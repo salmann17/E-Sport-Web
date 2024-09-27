@@ -1,8 +1,7 @@
 <?php 
-    $mysqli = new mysqli("localhost", "root", "", "esport");
-    if($mysqli -> connect_errno){
-        echo "Failed to connect to MySQL: " . $mysqli-> connect_error;
-    }
+    require_once("../models/game.php");
+    $game = new Game();
+    $result = $game->getGameTeam();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,9 +21,6 @@
 
         <select name="idgames" id="idgames">
             <?php 
-            $statement = $mysqli->prepare("select * from game");
-            $statement-> execute();
-            $result = $statement-> get_result();
                 while($row = $result->fetch_assoc()){
                     echo "<option value='".$row['idgame']."'>".$row['name']."</option>";
 
@@ -37,7 +33,4 @@
 
 </body>
 </html>
-<?php
-    $statement->close();
-    $mysqli->close();
-?>
+
