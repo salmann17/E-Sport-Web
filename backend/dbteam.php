@@ -1,7 +1,11 @@
 <?php 
     require_once("models/team.php");
     $team = new Team();
-    $result = $team->getTeam();
+    if(isset($_GET['searchTeam'])){
+        $result = $team->getTeam($_GET['searchTeam']);
+    } else{
+        $result = $team->getTeam();
+    }
 
 ?>
 <!DOCTYPE html>

@@ -1,19 +1,11 @@
 <?php 
-    $mysqli = new mysqli("localhost", "root", "", "esport");
-    if($mysqli -> connect_errno){
-        echo "Failed to connect to MySQL: " . $mysqli-> connect_error;
-    }
-
+    require_once("models/game.php");
+    $game = new Game();
     if(isset($_GET['searchGame'])){
-        $game = "%" . $_GET['searchGame'] . "%";
-        $statement = $mysqli->prepare("select * from game where name LIKE ?");
-        $statement->bind_param('s', $game); 
-    }else {
-        $statement = $mysqli->prepare("select * from game");
+        $result = $game->getGame($_GET['searchGame']);
+    } else{
+        $result = $game->getGame();
     }
-    $statement-> execute();
-
-    $result = $statement-> get_result();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,7 +69,4 @@
     <input type="hidden" value="<?php echo $idgame ;?>" name="idgame">
 </body>
 </html>
-<?php
-    $statement->close();
-    $mysqli->close();
-?>
+

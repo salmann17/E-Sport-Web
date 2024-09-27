@@ -2,14 +2,10 @@
     if(isset($_GET['idgame'])){
         $idgame = $_GET['idgame'];
     }
-    $mysqli = new mysqli("localhost", "root", "", "esport");
-    if($mysqli -> connect_errno){
-        echo "Failed to connect to MySQL: " . $mysqli-> connect_error;
-    }
-    $stt = $mysqli->prepare("select * from game where idgame=?");
-    $stt->bind_param("i", $idgame);
-    $stt->execute();
-    $result = $stt->get_result();
+    require_once("../models/game.php");
+    $game = new Game();
+
+    $result = $game->getGameTeambyId($idgame);
     while($row = $result->fetch_assoc()){
         $name= $row['name'];
         $desc = $row['description'];
@@ -38,8 +34,4 @@
     </form>
 </body>
 </html>
-<?php
-    $stt->close();
-    $mysqli->close();
-?>
 
