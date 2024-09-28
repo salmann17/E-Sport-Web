@@ -2,12 +2,19 @@
     require_once("models/event.php");
     $event = new Event();
 
+    $limit = 5; 
+    $page = isset($_GET['page']) ? $_GET['page'] : 1; 
+    $offset = ($page - 1) * $limit; 
 
-    if(isset($_GET['searchEvent'])){
-        $result = $event->getEvent($_GET['searchEvent']);
-    }else {
-        $result = $event->getEvent();
+    if (isset($_GET['searchEvent'])) {
+        $searchEvent = $_GET['searchEvent'];
+        $result = $event->getEvent($searchEvent, $limit, $offset); 
+        $total_records = $event->getTotalEvents($searchEvent); 
+    } else {
+        $result = $event->getEvent("", $limit, $offset); 
+        $total_records = $event->getTotalEvents(); 
     }
+    $total_pages = ceil($total_records / $limit);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +23,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Event</title>
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/paging.css">
     <link rel="icon" href="icon/logo.png" type="image/png">
     <style>
         .menu {
@@ -87,6 +95,27 @@
             echo "</table>";
             
     ?>
+    <div class="pagination">
+        <?php 
+        if ($page > 1) {
+            $prev_page = $page - 1;
+            $search_param = isset($_GET['searchEvent']) ? $_GET['searchEvent'] : '';
+            echo "<a href='?page=$prev_page&searchEvent=$search_param'>Previous</a>";
+        }
+
+        for ($i = 1; $i <= $total_pages; $i++) {
+            $search_param = isset($_GET['searchEvent']) ? $_GET['searchEvent'] : '';
+            $active_class = $i == $page ? 'active' : '';
+            echo "<a href='?page=$i&searchEvent=$search_param' class='$active_class'>$i</a>";
+        }
+
+        if ($page < $total_pages) {
+            $next_page = $page + 1;
+            $search_param = isset($_GET['searchEvent']) ? $_GET['searchEvent'] : '';
+            echo "<a href='?page=$next_page&searchEvent=$search_param'>Next</a>";
+        }
+        ?>
+    </div>
     <div class="menu">
         <div class="menu-item">
             <a href="../DashboardAdmin.php">Back to Dashboard</a>

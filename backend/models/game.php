@@ -18,19 +18,33 @@
             $result = $statement-> get_result();
             return $result;
         }
-        public function getGame($cari=""){
-            if(isset($cari)){
+        public function getGame($cari = "", $limit = 5, $offset = 0) {
+            if (!empty($cari)) {
                 $game = "%" . $cari . "%";
-                $statement = $this->mysqli->prepare("select * from game where name LIKE ?");
-                $statement->bind_param('s', $game); 
-            }else {
-                $statement = $this->mysqli->prepare("select * from game");
+                $statement = $this->mysqli->prepare("select * from game where name LIKE ? LIMIT ? OFFSET ?");
+                $statement->bind_param('sii', $game, $limit, $offset); 
+            } else {
+                $statement = $this->mysqli->prepare("select * from game LIMIT ? OFFSET ?");
+                $statement->bind_param('ii', $limit, $offset);
             }
-            $statement-> execute();
-        
-            $result = $statement-> get_result();
+            $statement->execute();
+            $result = $statement->get_result();
             return $result;
         }
+        public function getTotalGames($cari = "") {
+            if (!empty($cari)) {
+                $game = "%" . $cari . "%";
+                $statement = $this->mysqli->prepare("select count(*) as total from game WHERE name LIKE ?");
+                $statement->bind_param('s', $game);
+            } else {
+                $statement = $this->mysqli->prepare("select count(*) as total from game");
+            }
+            $statement->execute();
+            $result = $statement->get_result();
+            $row = $result->fetch_assoc();
+            return $row['total'];
+        }
+        
         public function addGame($nama, $desc){
             $stt = $this->mysqli->prepare("insert into game (name, description) values(?,?)");
             $stt->bind_param("ss", $nama, $desc);

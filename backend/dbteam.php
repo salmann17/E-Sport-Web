@@ -1,12 +1,20 @@
 <?php 
     require_once("models/team.php");
     $team = new Team();
-    if(isset($_GET['searchTeam'])){
-        $result = $team->getTeam($_GET['searchTeam']);
-    } else{
-        $result = $team->getTeam();
-    }
 
+    $limit = 5; 
+    $page = isset($_GET['page']) ? $_GET['page'] : 1; 
+    $offset = ($page - 1) * $limit;
+
+    if(isset($_GET['searchTeam'])){
+        $searchTeam = $_GET['searchTeam'];
+        $result = $team->getTeam($searchTeam, $limit, $offset);
+        $total_records = $team->getTotalTeams($searchTeam);
+    } else{
+        $result = $team->getTeam("", $limit, $offset);
+        $total_records = $team->getTotalTeams();
+    }
+    $total_pages = ceil($total_records / $limit);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +24,7 @@
     <title>Dashboard Team</title>
     <link rel="icon" href="icon/logo.png" type="image/png">
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/paging.css">
     <style>
         .menu {
             display: flex;
@@ -63,6 +72,27 @@
         }
         echo "</table>"
     ?>
+    <div class="pagination">
+    <?php 
+    if ($page > 1) {
+        $prev_page = $page - 1;
+        $search_param = isset($_GET['searchTeam']) ? $_GET['searchTeam'] : '';
+        echo "<a href='?page=$prev_page&searchTeam=$search_param'>Previous</a>";
+    }
+
+    for ($i = 1; $i <= $total_pages; $i++) {
+        $search_param = isset($_GET['searchTeam']) ? $_GET['searchTeam'] : '';
+        $active_class = $i == $page ? 'active' : '';
+        echo "<a href='?page=$i&searchTeam=$search_param' class='$active_class'>$i</a>";
+    }
+
+    if ($page < $total_pages) {
+        $next_page = $page + 1;
+        $search_param = isset($_GET['searchTeam']) ? $_GET['searchTeam'] : '';
+        echo "<a href='?page=$next_page&searchTeam=$search_param'>Next</a>";
+    }
+    ?>
+</div>
     <input type="hidden" value="<?php echo $idteam ;?>" name="idteam">
     <div class="menu">
         <div class="menu-item">

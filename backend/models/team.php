@@ -11,20 +11,38 @@
             $result = $statement-> get_result();
             return $result;
         }
-        public function getTeam($cari=""){
-            if(isset($cari)){
+        public function getTeam($cari = "", $limit = 5, $offset = 0) {
+            if (!empty($cari)) {
                 $team = "%" . $cari . "%";
-                $stt = $this->mysqli->prepare("select idteam, t.name as team_name, g.name as game_name from team as t
-                            inner join game as g on t.idgame = g.idgame where t.name LIKE ?");
-                $stt->bind_param('s', $team); 
-            }else {
-                $stt = $this->mysqli->prepare("select idteam, t.name as team_name, g.name as game_name from team as t
-                            inner join game as g on t.idgame = g.idgame");
+                $stt = $this->mysqli->prepare("select idteam, t.name as team_name, g.name as game_name 
+                                                from team as t
+                                                inner join game as g on t.idgame = g.idgame 
+                                                where t.name LIKE ? 
+                                                LIMIT ? OFFSET ?");
+                $stt->bind_param('sii', $team, $limit, $offset);
+            } else {
+                $stt = $this->mysqli->prepare("select idteam, t.name as team_name, g.name as game_name 
+                                                from team as t
+                                                inner join game as g on t.idgame = g.idgame 
+                                                LIMIT ? OFFSET ?");
+                $stt->bind_param('ii', $limit, $offset);
             }
-            $stt-> execute();
-        
-            $result = $stt-> get_result();
+            $stt->execute();
+            $result = $stt->get_result();
             return $result;
+        }
+        public function getTotalTeams($cari = "") {
+            if (!empty($cari)) {
+                $team = "%" . $cari . "%";
+                $stt = $this->mysqli->prepare("select count(*) as total from team AS t WHERE t.name LIKE ?");
+                $stt->bind_param('s', $team);
+            } else {
+                $stt = $this->mysqli->prepare("select count(*) as total from team");
+            }
+            $stt->execute();
+            $result = $stt->get_result();
+            $row = $result->fetch_assoc();
+            return $row['total'];
         }
         public function getTeambyId($idteam){
             $stt = $this->mysqli->prepare("select * from team where idteam=?");
