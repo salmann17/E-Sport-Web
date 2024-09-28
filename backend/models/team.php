@@ -5,7 +5,7 @@
         {
             parent:: __construct();
         }
-        public function getTeamAchv(){
+        public function getAllTeam(){
             $statement = $this->mysqli->prepare("select * from team");
             $statement-> execute();
             $result = $statement-> get_result();

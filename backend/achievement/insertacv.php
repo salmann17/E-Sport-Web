@@ -19,7 +19,7 @@
             <?php 
                 require_once("../models/team.php");
                 $team = new Team();
-                $result = $team->getTeamAchv();
+                $result = $team->getAllTeam();
                 while($row = $result->fetch_assoc()){
                     echo "<option value='".$row['idteam']."'>".$row['name']."</option>";
 

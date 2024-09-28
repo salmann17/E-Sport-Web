@@ -1,34 +1,26 @@
 <?php 
-    $mysqli = new mysqli("localhost", "root", "", "esport");
-    if($mysqli -> connect_errno){
-        echo "Failed to connect to MySQL: " . $mysqli-> connect_error;
-    }
+    require_once("../models/event.php");
+    $event = new Event();
+
     if($_GET['idevent']){
         $idevent = $_GET['idevent'];
+        $result = $event->getEventbyId($idevent);
     }
-    $stt = $mysqli->prepare("select * from event where idevent=?");
-    $stt->bind_param("i", $idevent);
-    $stt->execute();
-    $result = $stt->get_result();
     while($row = $result->fetch_assoc()){
         $event_name= $row['name'];
         $desc = $row['description'];
         $date = $row['date'];
     }
-    $stt->close();
 
-    $stt2 = $mysqli->prepare("select t.idteam, t.name as team_name, et.idevent from team as t
-                                inner join event_teams as et on t.idteam = et.idteam where idevent=?");
-    $stt2->bind_param("i", $idevent);
-    $stt2->execute();
-    $res = $stt2->get_result();
+    $res = $event->getEventTeambyId($idevent);
     $selectTeam = [];
     while($row2 = $res->fetch_assoc()){
         $selectTeam[] = $row2['idteam'];
     }
-    $stt2->close();
-
-    $allteam = $mysqli -> query("select * from team");
+    
+    require_once("../models/team.php");
+    $team = new Team();
+    $allteam = $team->getAllTeam();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,6 +54,4 @@
     </form>
 </body>
 </html>
-<?php
-    $mysqli->close();
-?>
+

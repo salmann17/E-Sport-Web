@@ -1,8 +1,6 @@
 <?php 
-    $mysqli = new mysqli("localhost", "root", "", "esport");
-    if($mysqli -> connect_errno){
-        echo "Failed to connect to MySQL: " . $mysqli-> connect_error;
-    }
+    require_once("../models/team.php");
+    $eventTeam = new Team();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,14 +20,10 @@
         <input type="text" id="name" name="name" required> <br><br>
         <label for="">Team yang Mengikuti:</label> <br>
             <?php 
-                $statement = $mysqli -> prepare("select * from team");
-                $statement-> execute();
-            
-                $result = $statement-> get_result();
+                $result = $eventTeam->getAllTeam();
                 while($row = $result->fetch_assoc()) {
                     echo '<input type="checkbox" name="team[]" value="'. $row['idteam']. '">'. $row['name'] . "<br>" ;
                 }
-                $statement->close();
             ?> <br><br>
         <label for="date">Date: </label>
         <input type="date" name="date" id="date"><br><br>
@@ -39,6 +33,4 @@
     </form>
 </body>
 </html>
-<?php
-    $mysqli->close();
-?>
+

@@ -18,7 +18,7 @@
 
     require_once("../models/team.php");
     $team = new Team();
-    $allteam = $team->getTeamAchv();
+    $allteam = $team->getAllTeam();
 ?>
 <!DOCTYPE html>
 <html lang="en">

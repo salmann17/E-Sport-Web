@@ -1,19 +1,13 @@
 <?php 
-    $mysqli = new mysqli("localhost", "root", "", "esport");
-    if($mysqli -> connect_errno){
-        echo "Failed to connect to MySQL: " . $mysqli-> connect_error;
-    }
+    require_once("models/event.php");
+    $event = new Event();
+
 
     if(isset($_GET['searchEvent'])){
-        $game = "%" . $_GET['searchEvent'] . "%";
-        $statement = $mysqli->prepare("select * from event where name LIKE ?");
-        $statement->bind_param('s', $game); 
+        $result = $event->getEvent($_GET['searchEvent']);
     }else {
-        $statement = $mysqli->prepare("select * from event");
+        $result = $event->getEvent();
     }
-    $statement-> execute();
-
-    $result = $statement-> get_result();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -68,11 +62,8 @@
                 echo "<tr>";
                 echo "<td>". $row['name'] ."</td>";
                 echo "<td>";
-                
-                $stt2 = $mysqli->prepare("select t.name as team_name from event e left join event_teams et on e.idevent = et.idevent left join team t on et.idteam = t.idteam where e.idevent = ?");
-                $stt2->bind_param("i", $idevent);
-                $stt2->execute();
-                $res = $stt2->get_result();
+
+                $res = $event->getEventTeam($idevent);
             
                 $teamNames = [];
                 while($row2 = $res->fetch_assoc()){
@@ -105,7 +96,4 @@
     <input type="hidden" value="<?php echo $idteam ;?>" name="idteam">
 </body>
 </html>
-<?php
-    $statement->close();
-    $mysqli->close();
-?>
+
