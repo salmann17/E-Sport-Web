@@ -52,16 +52,16 @@
         <h1>E-Sport Admin Dashboard</h1>
         <div class="menu">
             <div class="menu-item">
-                <a href="backend/dbteam.php">Team</a>
+                <a href="backendAdmin/dbteam.php">Team</a>
             </div>
             <div class="menu-item">
-                <a href="backend/dbgame.php">Game</a>
+                <a href="backendAdmin/dbgame.php">Game</a>
             </div>
             <div class="menu-item">
-                <a href="backend/dbachievement.php">Achievement</a>
+                <a href="backendAdmin/dbachievement.php">Achievement</a>
             </div>
             <div class="menu-item">
-                <a href="backend/dbevent.php">Event</a>
+                <a href="backendAdmin/dbevent.php">Event</a>
             </div>
         </div>
     </div>
