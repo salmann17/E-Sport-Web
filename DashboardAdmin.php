@@ -1,15 +1,3 @@
-<?php
-    session_start();
-    if(!isset($_SESSION['userid'])) {
-        $domain = $_SERVER['HTTP_HOST'];
-        $path = $_SERVER['SCRIPT_NAME'];
-        $queryString = $_SERVER['QUERY_STRING'];
-        $url = "http://" . $domain . $path . "?" . $queryString;
-
-        header("location: member/dblogin.php?url_asal=".$url);
-    }
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,7 +67,7 @@
 </head>
 <body>
     <div class="dashboard">
-        <h1>Selamat Datang, <?php echo $_SESSION['nama']?></h1>
+        <h1>Dahboard Admin</h1>
         <!-- <h1>E-Sport Admin Dashboard</h1> -->
         <div class="menu">
             <div class="menu-item">
@@ -95,7 +83,7 @@
                 <a href="backendAdmin/dbevent.php">Event</a>
             </div>
         </div>
-        <a href="backendAdmin/member/dblogout.php" class="logout-btn">Log Out</a>
+        <a href="backendMember/member/dblogout.php" class="logout-btn">Log Out</a>
     </div>
 </body>
 </html>
