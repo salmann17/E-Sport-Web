@@ -1,5 +1,5 @@
 <?php
-$url_asal = isset($_GET['url_asal']) ? $_GET['url_asal'] : "../../DashboardAdmin.php";
+$url_asal = isset($_GET['url_asal']) ? $_GET['url_asal'] : "dblogin.php";
 
 if (isset($_SESSION['userid'])) {
     header("location: " . $url_asal);
@@ -13,7 +13,6 @@ if (isset($_SESSION['userid'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="../css/dashboard.css"> <!-- Link ke file CSS eksternal -->
 </head>
 
 <body>

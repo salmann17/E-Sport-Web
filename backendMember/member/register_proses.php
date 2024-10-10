@@ -1,5 +1,5 @@
 <?php
-    require_once("../models/member.php");
+    require_once("../../backendAdmin/models/member.php");
     $member = new Member();
 
     $fname = $_POST['fname'];
