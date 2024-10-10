@@ -1,5 +1,5 @@
 <?php
-$url_asal = isset($_GET['url_asal']) ? $_GET['url_asal'] : "dblogin.php";
+$url_asal = isset($_GET['url_asal']) ? $_GET['url_asal'] : "../../DashboardMember.php";
 
 if (isset($_SESSION['userid'])) {
     header("location: " . $url_asal);

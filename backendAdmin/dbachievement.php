@@ -1,13 +1,4 @@
 <?php 
-    session_start();
-    if(!isset($_SESSION['userid'])) {
-        $domain = $_SERVER['HTTP_HOST'];
-        $path = $_SERVER['SCRIPT_NAME'];
-        $queryString = $_SERVER['QUERY_STRING'];
-        $url = "http://" . $domain . $path . "?" . $queryString;
-
-        header("location: member/dblogin.php?url_asal=".$url);
-    }
     require_once("models/achievement.php");
     $achv = new Achv();
 
@@ -65,21 +56,15 @@
     <form action="" method="get">
         <input type="text" name="searchAcv" placeholder="input achievement name">
         <input type="submit" value="search" class="btn-add">
+        <a href='achievement/insertacv.php' class='btn-add'>Tambah Achievement Baru</a>
     </form>
-    <?php
-        if ($_SESSION['role'] === 'Admin') {
-            echo "<a href='achievement/insertacv.php' class='btn-add'>Tambah Achievement Baru</a>";
-        }
-    ?>
     <?php 
         echo "<table><tr>
             <th>Nama Achievement</th>
             <th>Nama Team</th>
             <th>Date</th>
-            <th>Daescription</th>";
-            if ($_SESSION['role'] === 'Admin') {
-                echo "<th>Aksi</th>";
-            }
+            <th>Daescription</th>
+            <th>Aksi</th>";
         while($row = $result->fetch_assoc()){
             $idacv = $row['idachievement'];
             echo "<tr>";
@@ -87,10 +72,8 @@
             echo "<td>". $row['team_name'] ."</td>";
             echo "<td>". $row['date'] ."</td>";
             echo "<td>". $row['description'] ."</td>";
-            if ($_SESSION['role'] === 'Admin') {
-                echo "<td><a href='achievement/editacv.php?idacv=" . $row['idachievement'] . "'>Ubah</a> | 
+            echo "<td><a href='achievement/editacv.php?idacv=" . $row['idachievement'] . "'>Ubah</a> | 
                       <a href='achievement/deleteacv.php?idacv=" . $row['idachievement'] . "'>Hapus</a></td>";
-            }
         }
         echo "</table>"
     ?>

@@ -1,13 +1,4 @@
 <?php 
-    session_start();
-    if(!isset($_SESSION['userid'])) {
-        $domain = $_SERVER['HTTP_HOST'];
-        $path = $_SERVER['SCRIPT_NAME'];
-        $queryString = $_SERVER['QUERY_STRING'];
-        $url = "http://" . $domain . $path . "?" . $queryString;
-
-        header("location: member/dblogin.php?url_asal=".$url);
-    }
     require_once("models/game.php");
     $game = new Game();
 
@@ -65,25 +56,19 @@
     <form action="" method="get">
         <input type="text" name="searchGame" placeholder="input team name">
         <input type="submit" value="search" class="btn-add">
+        <a href='game/insertgame.php' class='btn-add'>Tambah Game Baru</a>
     </form>
     <?php
-    if ($_SESSION['role'] === 'Admin') {
-        echo "<a href='game/insertgame.php' class='btn-add'>Tambah Game Baru</a>";
-    }
         echo "<table><tr>
             <th>Nama Game</th>
-            <th>Deskripsi</th>";
-            if ($_SESSION['role'] === 'Admin') {
-                echo "<th>Aksi</th>";
-            }
+            <th>Deskripsi</th>
+            <th>Aksi</th>";
         while($row = $result->fetch_assoc()){
             $idgame = $row['idgame'];
             echo "<tr>";
             echo "<td>". $row['name'] ."</td>";
             echo "<td>". $row['description'] ."</td>";
-            if ($_SESSION['role'] === 'Admin') {
-                echo "<td><a href='game/editgame.php?idgame=".$row['idgame']."'>Ubah</a> | <a href='game/deletegame.php?idgame=".$row['idgame']."'>Hapus</a></td>";
-            }
+            echo "<td><a href='game/editgame.php?idgame=".$row['idgame']."'>Ubah</a> | <a href='game/deletegame.php?idgame=".$row['idgame']."'>Hapus</a></td>";
         }
         echo "</table>"
     ?>
