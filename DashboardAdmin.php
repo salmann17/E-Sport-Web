@@ -48,7 +48,7 @@
         }
         .logout-btn {
             position: absolute;
-            top: 20px;
+            top: 800px;
             right: 20px;
             background-color: #ff0000;
             color: #fff;
@@ -68,7 +68,6 @@
 <body>
     <div class="dashboard">
         <h1>Dahboard Admin</h1>
-        <!-- <h1>E-Sport Admin Dashboard</h1> -->
         <div class="menu">
             <div class="menu-item">
                 <a href="backendAdmin/dbteam.php">Team</a>
@@ -81,6 +80,9 @@
             </div>
             <div class="menu-item">
                 <a href="backendAdmin/dbevent.php">Event</a>
+            </div>
+            <div class="menu-item">
+                <a href="backendAdmin/dbjoinproposal.php">Join Proposal</a>
             </div>
         </div>
         <a href="backendMember/member/dblogout.php" class="logout-btn">Log Out</a>

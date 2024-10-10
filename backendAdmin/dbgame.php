@@ -55,7 +55,7 @@
     <h1>Game Management</h1>
     <form action="" method="get">
         <input type="text" name="searchGame" placeholder="input team name">
-        <input type="submit" value="search" class="btn-add">
+        <input type="submit" value="search" class="btn-add"> <br><br>
         <a href='game/insertgame.php' class='btn-add'>Tambah Game Baru</a>
     </form>
     <?php

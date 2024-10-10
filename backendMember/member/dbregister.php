@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link rel="stylesheet" href="../css/register.css"> 
-    <link rel="icon" href="icon/logo.png" type="image/png">
+    <link rel="icon" href="../icon/logo.png" type="image/png">
 </head>
 <body>
 

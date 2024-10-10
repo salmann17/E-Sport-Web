@@ -55,7 +55,7 @@
     <h1>Achievement Management</h1>
     <form action="" method="get">
         <input type="text" name="searchAcv" placeholder="input achievement name">
-        <input type="submit" value="search" class="btn-add">
+        <input type="submit" value="search" class="btn-add"><br><br>
         <a href='achievement/insertacv.php' class='btn-add'>Tambah Achievement Baru</a>
     </form>
     <?php 

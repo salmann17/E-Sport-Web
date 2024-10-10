@@ -55,7 +55,7 @@
     <h1>Event Management</h1>
     <form action="" method="get">
         <input type="text" name="searchEvent" placeholder="input team name">
-        <input type="submit" value="search" class="btn-add">
+        <input type="submit" value="search" class="btn-add"> <br><br>
         <a href='event/insertevent.php' class='btn-add'>Tambah Event Baru</a>
     </form>
     <?php

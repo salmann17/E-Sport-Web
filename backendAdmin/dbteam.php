@@ -60,22 +60,21 @@ $total_pages = ceil($total_records / $limit);
     <h1>Team Management</h1>
     <form action="" method="get">
         <input type="text" name="searchTeam" placeholder="input team name">
-        <input type="submit" value="search" class="btn-add">
+        <input type="submit" value="search" class="btn-add"> <br><br>
         <a href='team/insertteam.php' class='btn-add'>Tambah Team Baru</a>
     </form>
     <?php
     echo "<table><tr>
             <th>Nama Team</th>
             <th>Game</th>
-            <th>Aksi</th>
-            <th>Events</th>
-            <th>Achievements</th>";
+            <th>Event</th>
+            <th>Achievements</th>
+            <th>Aksi</th>";
     while ($row = $result->fetch_assoc()) {
         $idteam = $row['idteam'];
         echo "<tr>";
         echo "<td>" . $row['team_name'] . "</td>";
         echo "<td>" . $row['game_name'] . "</td>";
-        echo "<td><a href='team/editteam.php?idteam=" . $row['idteam'] . "'>Ubah</a> | <a href='team/deleteteam.php?idteam=" . $row['idteam'] . "'>Hapus</a></td>";
         echo "<td>";
         $res = $team->getEventName($idteam);
 
@@ -107,6 +106,7 @@ $total_pages = ceil($total_records / $limit);
             echo "-";
         }
         echo "</td>";
+        echo "<td><a href='team/editteam.php?idteam=" . $row['idteam'] . "'>Ubah</a> | <a href='team/deleteteam.php?idteam=" . $row['idteam'] . "'>Hapus</a></td>";
 
     }
     echo "</table>"
