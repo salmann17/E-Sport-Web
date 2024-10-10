@@ -45,6 +45,7 @@
             $result = $stt->get_result();
             return $result;
         }
+        
         public function getEventTeambyId($idevent){
             $stt = $this->mysqli->prepare("select t.idteam, t.name as team_name, et.idevent from team as t
                                 inner join event_teams as et on t.idteam = et.idteam where idevent=?");

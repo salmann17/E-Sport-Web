@@ -6,7 +6,7 @@
         $queryString = $_SERVER['QUERY_STRING'];
         $url = "http://" . $domain . $path . "?" . $queryString;
 
-        header("location: dblogin.php?url_asal=".$url);
+        header("location: member/dblogin.php?url_asal=".$url);
     }
     require_once("models/event.php");
     $event = new Event();
@@ -70,8 +70,6 @@
     if ($_SESSION['role'] === 'Admin') {
         echo "<a href='event/insertevent.php' class='btn-add'>Tambah Event Baru</a>";
     }
-    ?>
-    <?php 
         echo "<table><tr>
             <th>Nama Event</th>
             <th>Team yang Mengikuti</th>
