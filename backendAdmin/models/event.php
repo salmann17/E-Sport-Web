@@ -54,6 +54,14 @@
             $result = $stt->get_result();
             return $result;
         }
+        public function getTeamEventbyId($idteam){
+            $stt = $this->mysqli->prepare("select e.idevent, e.name as event_name, et.idevent from event as e
+                                inner join event_teams as et on e.idevent = et.idevent where et.idteam=?");
+            $stt->bind_param("i", $idteam);
+            $stt->execute();
+            $result = $stt->get_result();
+            return $result;
+        }
         public function addEvent($name, $date, $desc){
             $stt = $this->mysqli->prepare("insert into event (name, date, description) values (?, ?, ?);");
             $stt->bind_param('sss', $name, $date, $desc);
@@ -65,6 +73,13 @@
             foreach ($team as $idteam) {
                 $statement = $this->mysqli->prepare("insert into event_teams (idevent, idteam) values(?, ?)");
                 $statement->bind_param('ii', $last_id, $idteam);
+                $statement->execute();
+            }
+        }
+        public function addTeamWithEvent($event, $last_id){
+            foreach ($event as $idevent) {
+                $statement = $this->mysqli->prepare("insert into event_teams (idevent, idteam) values(?, ?)");
+                $statement->bind_param('ii', $idevent, $last_id);
                 $statement->execute();
             }
         }
@@ -84,6 +99,17 @@
             }
             return $current_teams;
         }
+        public function getCurrentEvent($idteam) {
+            $current_event = [];
+            $query_event = $this->mysqli->prepare("select idevent from event_teams WHERE idteam = ?");
+            $query_event->bind_param("i", $idteam);
+            $query_event->execute();
+            $result = $query_event->get_result();
+            while ($row = $result->fetch_assoc()) {
+                $current_event[] = $row['idevent'];
+            }
+            return $current_event;
+        }
         public function addTeams($idevent, $new_teams, $current_teams) {
             foreach ($new_teams as $idteam) {
                 if (!in_array($idteam, $current_teams)) {
@@ -96,6 +122,24 @@
         public function deleteTeams($idevent, $new_teams, $current_teams) {
             foreach ($current_teams as $idteam) {
                 if (!in_array($idteam, $new_teams)) {
+                    $delete_team = $this->mysqli->prepare("delete from event_teams WHERE idevent = ? AND idteam = ?");
+                    $delete_team->bind_param("ii", $idevent, $idteam);
+                    $delete_team->execute();
+                }
+            }
+        }
+        public function addEvents($idteam, $new_event, $current_event) {
+            foreach ($new_event as $idevent) {
+                if (!in_array($idevent, $current_event)) {
+                    $insert_team = $this->mysqli->prepare("insert into event_teams (idevent, idteam) values (?, ?)");
+                    $insert_team->bind_param("ii", $idevent, $idteam);
+                    $insert_team->execute();
+                }
+            }
+        }
+        public function deleteEvents($idteam, $new_event, $current_event) {
+            foreach ($current_event as $idevent) {
+                if (!in_array($idevent, $new_event)) {
                     $delete_team = $this->mysqli->prepare("delete from event_teams WHERE idevent = ? AND idteam = ?");
                     $delete_team->bind_param("ii", $idevent, $idteam);
                     $delete_team->execute();

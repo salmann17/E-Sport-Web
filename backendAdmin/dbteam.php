@@ -43,6 +43,7 @@ $total_pages = ceil($total_records / $limit);
             <th>Game</th>
             <th>Event</th>
             <th>Achievements</th>
+            <th>Team Detail</th>
             <th>Aksi</th>";
     while ($row = $result->fetch_assoc()) {
         $idteam = $row['idteam'];
@@ -80,6 +81,7 @@ $total_pages = ceil($total_records / $limit);
             echo "-";
         }
         echo "</td>";
+        echo "<td><a href='team/editteamdetail.php?idteam=" . $row['idteam'] . "'>Ubah</a></td>";
         echo "<td><a href='team/editteam.php?idteam=" . $row['idteam'] . "'>Ubah</a> | <a href='team/deleteteam.php?idteam=" . $row['idteam'] . "'>Hapus</a></td>";
 
     }

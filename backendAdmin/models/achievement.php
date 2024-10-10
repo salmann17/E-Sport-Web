@@ -66,9 +66,38 @@
             $stt->bind_param("i", $idacv);
             $stt->execute();
         }
+        public function deleteAllAcv($idteam){
+            $stt = $this->mysqli->prepare("delete from achievement where idteam = ?");
+            $stt->bind_param("i", $idteam);
+            $stt->execute();
+        }
+        public function deleteAchievementbyTeam($idteam, $new_achv, $current_achv) {
+            foreach ($current_achv as $idachievement) {
+                if (!in_array($idachievement, $new_achv)) {
+                    $delete_achv = $this->mysqli->prepare("delete from achievement WHERE idteam = ? and idachievement=?");
+                    $delete_achv->bind_param("ii", $idteam, $idachievement);
+                    $delete_achv->execute();
+                }
+            }
+        }
         public function getAllAcv(){
             $stt = $this->mysqli->prepare("select * from achievement");
             $stt-> execute();
+            $result = $stt-> get_result();
+            return $result;
+        }
+        public function getCurAcv($idteam){
+            $stt = $this->mysqli->prepare("select * from achievement where idteam=?");
+            $stt->bind_param("i",$idteam);
+            $stt-> execute();
+            $result = $stt-> get_result();
+            return $result;
+        }
+        public function getAchvbyTeamId($idteam){
+            $stt = $this->mysqli->prepare("select a.idachievement ,a.idteam, a.name as acv_name, t.name as team_name, a.date, a.description from achievement as a
+                    inner join team as t on a.idteam = t.idteam where a.idteam = ?");
+            $stt->bind_param("i", $idteam);
+            $stt->execute();
             $result = $stt-> get_result();
             return $result;
         }
