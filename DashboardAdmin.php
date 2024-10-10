@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="backend/icon/logo.png" type="image/png">
+    <link rel="icon" href="backendMember/icon/logo.png" type="image/png">
+    <link rel="stylesheet" href="backendadmin/css/dashboard.css">
     <title>E-Sport Admin Dashboard</title>
     <style>
         body {
@@ -18,53 +20,9 @@
             height: 100vh;
             position: relative;
         }
-        .dashboard {
-            text-align: center;
-        }
-        h1 {
-            color: #00d4ff;
-        }
-        .menu {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 50px;
-        }
-        .menu-item {
-            background-color: #2a2a2a;
-            padding: 20px;
-            border-radius: 10px;
-            width: 150px;
-            text-align: center;
-            transition: background-color 0.3s ease;
-        }
-        .menu-item:hover {
-            background-color: #00d4ff;
-        }
-        .menu-item a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: bold;
-        }
-        .logout-btn {
-            position: absolute;
-            top: 800px;
-            right: 20px;
-            background-color: #ff0000;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
-            transition: background-color 0.3s ease;
-        }
-        .logout-btn:hover {
-            background-color: #d40000;
-        }
     </style>
 </head>
+
 <body>
     <div class="dashboard">
         <h1>Dahboard Admin</h1>
@@ -82,10 +40,11 @@
                 <a href="backendAdmin/dbevent.php">Event</a>
             </div>
             <div class="menu-item">
-                <a href="backendAdmin/dbjoinproposal.php">Join Proposal</a>
+                <a href="backendAdmin/dbjoinproposal.php">Proposal</a>
             </div>
         </div>
         <a href="backendMember/member/dblogout.php" class="logout-btn">Log Out</a>
     </div>
 </body>
+
 </html>

@@ -25,30 +25,6 @@
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/paging.css">
     <link rel="icon" href="icon/logo.png" type="image/png">
-    <style>
-        .menu {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 50px;
-        }
-        .menu-item {
-            background-color: #2a2a2a;
-            padding: 20px;
-            border-radius: 10px;
-            width: 150px;
-            text-align: center;
-            transition: background-color 0.3s ease;
-        }
-        .menu-item:hover {
-            background-color: #00d4ff;
-        }
-        .menu-item a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: bold;
-        }
-    </style>
 </head>
 <body>
 
