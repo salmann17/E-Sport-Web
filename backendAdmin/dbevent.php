@@ -6,7 +6,7 @@
         $queryString = $_SERVER['QUERY_STRING'];
         $url = "http://" . $domain . $path . "?" . $queryString;
 
-        header("location: login.php?url_asal=".$url);
+        header("location: dblogin.php?url_asal=".$url);
     }
     require_once("models/event.php");
     $event = new Event();

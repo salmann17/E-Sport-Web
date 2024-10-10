@@ -1,4 +1,13 @@
 <?php 
+    session_start();
+    if(!isset($_SESSION['userid'])) {
+        $domain = $_SERVER['HTTP_HOST'];
+        $path = $_SERVER['SCRIPT_NAME'];
+        $queryString = $_SERVER['QUERY_STRING'];
+        $url = "http://" . $domain . $path . "?" . $queryString;
+
+        header("location: member/dblogin.php?url_asal=".$url);
+    }
     require_once("models/team.php");
     $team = new Team();
 
@@ -57,18 +66,61 @@
         <input type="text" name="searchTeam" placeholder="input team name">
         <input type="submit" value="search" class="btn-add">
     </form>
-    <a href="team/insertteam.php" class="btn-add">Tambah Team Baru</a>
-    <?php 
+    <?php
+    if ($_SESSION['role'] === 'Admin') {
+        echo "<a href='team/insertteam.php' class='btn-add'>Tambah Team Baru</a>";
+    }
         echo "<table><tr>
             <th>Nama Team</th>
-            <th>Game</th>
-            <th>Aksi</th></tr>";
+            <th>Game</th>";
+            if ($_SESSION['role'] === 'Admin') {
+                echo "<th>Aksi</th>";
+            }
+            else{
+                echo "<th>Events</th>";
+                echo "<th>Achievements</th>";
+            }
         while($row = $result->fetch_assoc()){
             $idteam = $row['idteam'];
             echo "<tr>";
             echo "<td>". $row['team_name'] ."</td>";
             echo "<td>". $row['game_name'] ."</td>";
-            echo "<td><a href='team/editteam.php?idteam=".$row['idteam']."'>Ubah</a> | <a href='team/deleteteam.php?idteam=".$row['idteam']."'>Hapus</a></td>";
+            if ($_SESSION['role'] === 'Admin') {
+                echo "<td><a href='team/editteam.php?idteam=".$row['idteam']."'>Ubah</a> | <a href='team/deleteteam.php?idteam=".$row['idteam']."'>Hapus</a></td>";
+            }
+            else{
+                echo "<td>";
+                $res = $team->getEventName($idteam);
+            
+                $eventname = [];
+                while($row2 = $res->fetch_assoc()){
+                    if (!empty($row2['event_name'])) {
+                        $eventname[] = $row2['event_name'];
+                    }
+                }
+                if (!empty($eventname)) {
+                    echo implode(", ", $eventname);
+                } else {
+                    echo "";
+                }
+                echo "</td>";
+
+                echo "<td>";
+                $res2 = $team->getAchievName($idteam);
+            
+                $achievename = [];
+                while($row3 = $res2->fetch_assoc()){
+                    if (!empty($row3['achiev_name'])) {
+                        $achievename[] = $row3['achiev_name'];
+                    }
+                }
+                if (!empty($achievename)) {
+                    echo implode(", ", $achievename);
+                } else {
+                    echo "-";
+                }
+                echo "</td>";
+            }
         }
         echo "</table>"
     ?>

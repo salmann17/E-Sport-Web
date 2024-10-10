@@ -1,4 +1,4 @@
-<?php 
+<?php
     require_once("parent.php");
     class Team extends ParentClass{
         public function __construct()
@@ -69,6 +69,20 @@
             $stt = $this->mysqli->prepare("delete from team where idteam = ?");
             $stt->bind_param("i", $idteam);
             $stt->execute();
+        }
+        public function getEventName($idteam){
+            $stt = $this->mysqli->prepare("select e.name as event_name from event e left join event_teams et on e.idevent = et.idevent left join team t on et.idteam = t.idteam where t.idteam = ?");
+            $stt->bind_param("i", $idteam);
+            $stt->execute();
+            $result = $stt->get_result();
+            return $result;
+        }
+        public function getAchievName($idteam){
+            $stt = $this->mysqli->prepare("select a.name as achiev_name from achievement a where a.idteam = ?");
+            $stt->bind_param("i", $idteam);
+            $stt->execute();
+            $result = $stt->get_result();
+            return $result;
         }
     }
 ?>
