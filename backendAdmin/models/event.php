@@ -112,5 +112,11 @@
             $stmt2->bind_param('i', $idevent);
             $stmt2->execute();
         }
+        public function getAllEvent(){
+            $stt = $this->mysqli->prepare("select * from event");
+            $stt-> execute();
+            $result = $stt-> get_result();
+            return $result;
+        }
     }
 ?>

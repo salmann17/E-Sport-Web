@@ -66,6 +66,12 @@
             $stt->bind_param("i", $idacv);
             $stt->execute();
         }
+        public function getAllAcv(){
+            $stt = $this->mysqli->prepare("select * from achievement");
+            $stt-> execute();
+            $result = $stt-> get_result();
+            return $result;
+        }
     }
 
 ?>
