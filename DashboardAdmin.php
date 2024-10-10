@@ -16,6 +16,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            position: relative; /* Tambahkan relative untuk positioning tombol logout */
         }
         .dashboard {
             text-align: center;
@@ -45,6 +46,23 @@
             font-size: 18px;
             font-weight: bold;
         }
+        .logout-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #ff0000;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+            transition: background-color 0.3s ease;
+        }
+        .logout-btn:hover {
+            background-color: #d40000;
+        }
     </style>
 </head>
 <body>
@@ -64,6 +82,7 @@
                 <a href="backendAdmin/dbevent.php">Event</a>
             </div>
         </div>
+        <a href="backendAdmin/member/dblogin.php" class="logout-btn">Log Out</a>
     </div>
 </body>
 </html>

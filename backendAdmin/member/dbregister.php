@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Week 5 - Daftar</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="../css/dashboard.css"> <!-- Link ke file CSS eksternal -->
 </head>
-
 <body>
-    <form method="POST" action="register_proses.php">
-        <input type="text" name="fname" placeholder="Username"><br>
-        <input type="text" name="lname" placeholder="Username"><br>
-        <input type="text" name="username" placeholder="Username"><br>
-        <input type="password" name="password" placeholder="Password"><br>
-        <input type="submit" name="submit" value="Login">
-    </form>
-</body>
 
+    <div class="form-container">
+        <h1>Register</h1>
+        <form action="register_proses.php" method="POST">
+            <input type="text" name="fname" placeholder="First Name" required><br>
+            <input type="text" name="lname" placeholder="Last Name" required><br>
+            <input type="text" name="username" placeholder="Username" required><br>
+            <input type="password" name="password" placeholder="Password" required><br>
+            <input type="submit" value="Register">
+        </form>
+    </div>
+
+</body>
 </html>

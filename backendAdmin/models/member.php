@@ -15,35 +15,36 @@ class Member extends ParentClass
         return $result;
     }
 
-    public function Login($username, $password)
+    public function getMember($username, $password)
     {
-        $statement = $this->mysqli->prepare("select * from member where username=?");
-        $statement->bind_param("s", $username);
+        $statement = $this->mysqli->prepare("select * from member where username=? and password=md5(?)");
+        $statement->bind_param("ss", $username, $password);
         $statement->execute();
 
         $result = $statement->get_result();
+        return $result->fetch_assoc();
+    }
 
-        if ($row = $result->fetch_assoc()) {
+    public function Login($username, $password)
+    {
+        $statement = $this->mysqli->prepare("select * from member where username=? and password=md5(?)");
+        $statement->bind_param("ss", $username, $password);
+        $statement->execute();
 
-            if (password_verify($password, $row['password'])) {
-                if ($row['profile'] == 'Admin') {
-                    header("location: DashboardAdmin.php");
-                }
-            } 
-
+        $result = $statement->get_result();
+        if( $result->num_rows > 0){
+            return true;
         }
-        return $result;
+        else{
+            return false;
+        }
     }
 
     public function Register($fnama, $lname, $username, $password)
     {
-        $hash_password = password_hash($password, PASSWORD_DEFAULT);
-
-        $statement = $this->mysqli->prepare("INSERT INTO member (fname, lname, username, password, profile) VALUES (?,?,?,?,'Admin')");
-        $statement->bind_param("ssss", $fnama,$lname,$username,$hash_password);
+        $statement = $this->mysqli->prepare("INSERT INTO member (fname, lname, username, password, profile) VALUES (?,?,?,md5(?),'Member')");
+        $statement->bind_param("ssss", $fnama,$lname,$username,$password);
         $statement->execute();
-        $result = $statement->get_result();
-        return $result;
     }
 }
 ?>

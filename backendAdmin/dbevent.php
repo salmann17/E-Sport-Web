@@ -1,4 +1,13 @@
 <?php 
+    session_start();
+    if(!isset($_SESSION['userid'])) {
+        $domain = $_SERVER['HTTP_HOST'];
+        $path = $_SERVER['SCRIPT_NAME'];
+        $queryString = $_SERVER['QUERY_STRING'];
+        $url = "http://" . $domain . $path . "?" . $queryString;
+
+        header("location: login.php?url_asal=".$url);
+    }
     require_once("models/event.php");
     $event = new Event();
 
@@ -57,14 +66,20 @@
         <input type="text" name="searchEvent" placeholder="input team name">
         <input type="submit" value="search" class="btn-add">
     </form>
-    <a href="event/insertevent.php" class="btn-add">Tambah Event Baru</a>
+    <?php
+    if ($_SESSION['role'] === 'Admin') {
+        echo "<a href='event/insertevent.php' class='btn-add'>Tambah Event Baru</a>";
+    }
+    ?>
     <?php 
         echo "<table><tr>
             <th>Nama Event</th>
             <th>Team yang Mengikuti</th>
             <th>Date</th>
-            <th>Deskripsi</th>
-            <th>Aksi</th></tr>";
+            <th>Deskripsi</th>";
+            if ($_SESSION['role'] === 'Admin') {
+                echo "<th>Aksi</th>";
+            }
             while($row = $result->fetch_assoc()){
                 $idevent = $row['idevent'];
                 echo "<tr>";
@@ -89,7 +104,9 @@
                 echo "</td>";
                 echo "<td>". $row['date'] ."</td>";
                 echo "<td>". $row['description'] ."</td>";
-                echo "<td><a href='event/editevent.php?idevent=".$row['idevent']."'>Ubah</a> | <a href='event/deleteevent.php?idevent=".$row['idevent']."'>Hapus</a></td>";
+                if ($_SESSION['role'] === 'Admin') {
+                    echo "<td><a href='event/editevent.php?idevent=".$row['idevent']."'>Ubah</a> | <a href='event/deleteevent.php?idevent=".$row['idevent']."'>Hapus</a></td>";
+                }
                 echo "</tr>";
             }
             echo "</table>";

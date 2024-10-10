@@ -1,27 +1,33 @@
+<?php
+$url_asal = isset($_GET['url_asal']) ? $_GET['url_asal'] : "../../DashboardAdmin.php";
+
+if (isset($_SESSION['userid'])) {
+    header("location: " . $url_asal);
+}
+?>
+
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/dashboard.css"> <!-- Link ke file CSS eksternal -->
 </head>
+
 <body>
-    <div class="login-container">
-        <h2>Login</h2>
+
+    <div class="form-container">
+        <h1>Login</h1>
         <form action="login_proses.php" method="POST">
-            <div class="input-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div class="input-group">
-                <button type="submit">Login</button>
-            </div>
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="submit" value="Login">
         </form>
+        <a href="dbregister.php" class="btn-register">Don't have an account? Register</a>
     </div>
+
 </body>
+
 </html>

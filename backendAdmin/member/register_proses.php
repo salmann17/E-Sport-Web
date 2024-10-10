@@ -8,6 +8,6 @@
     $password = $_POST['password'];
 
     $result = $member->Register($fname, $lname, $username, $password);
-    header("Location: ../dbteam.php");
+    header("Location: dblogin.php");
     exit();
 ?>
