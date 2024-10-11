@@ -38,7 +38,7 @@
             ?>
         </select><br><br>
         
-        <label for="name">Pilih Achievement :</label>
+        <!-- <label for="name">Pilih Achievement :</label>
         <select name="idacv" id="idacv">
             <?php 
                 while($row2 = $result2->fetch_assoc()){
@@ -56,7 +56,7 @@
 
                 }
             ?>
-        </select><br><br>
+        </select><br><br> -->
         <input type="submit" value="Submit Team" class="btn-add">
     </form>
 
