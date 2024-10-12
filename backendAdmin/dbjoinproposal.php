@@ -39,6 +39,8 @@ $total_pages = ceil($total_records / $limit);
     <?php
     echo "<table><tr>
             <th>Nama Member</th>
+            <th>Mengajukan Diri di Team</th>
+            <th>Divisi Game yang Dipilih</th>
             <th>Deskripsi</th>
             <th>Aksi</th>";
     while ($row = $result->fetch_assoc()) {
@@ -46,13 +48,9 @@ $total_pages = ceil($total_records / $limit);
         echo "<tr>";
 
         $idmember = $row['idmember'];
-        require_once("models/member.php");
-        $member = new Member();
-        $result2 = $member->getMemberbyId($idmember);
-        while($row2 = $result2->fetch_assoc()){
-            echo "<td>" . $row2['fname'] . " ". $row2['lname'] . "</td>";
-        }
-
+        echo "<td>" . $row['membername'] . "</td>";
+        echo "<td>" . $row['teamname'] . "</td>";
+        echo "<td>" . $row['gamename'] . "</td>";
         echo "<td>" . $row['description'] . "</td>";
         echo "<td><a href='joinproposal/process.php?action=approved&idproposal=" . $row['idjoin_proposal'] . "&idmember=" . $row['idmember'] . "&idteam=" . $row['idteam'] . "&desc=" . urlencode($row['description']) . "'>Approved</a> | 
         <a href='joinproposal/process.php?action=rejected&idproposal=" . $row['idjoin_proposal'] . "&idmember=" . $row['idmember'] . "&idteam=" . $row['idteam'] . "'>Rejected</a></td>";
