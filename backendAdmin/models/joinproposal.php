@@ -12,7 +12,7 @@
                                                 inner join member as m on jp.idmember = m.idmember 
                                                 inner join team as t on jp.idteam = t.idteam
                                                 inner join game as g on t.idgame = g.idgame
-                                                where membername LIKE ? && status='waiting' LIMIT ? OFFSET ?");
+                                                where concat(m.fname, ' ', m.lname) LIKE ? and jp.status='waiting' LIMIT ? OFFSET ?");
                 $stt->bind_param('sii', $proposal, $limit, $offset);
             } else {
                 $stt = $this->mysqli->prepare("select concat(m.fname, ' ', m.lname) as membername, jp.idjoin_proposal,jp.idmember, jp.idteam, t.name as teamname, jp.description, g.name as gamename from join_proposal as jp
@@ -34,7 +34,7 @@
                                                 inner join member as m on jp.idmember = m.idmember 
                                                 inner join team as t on jp.idteam = t.idteam
                                                 inner join game as g on t.idgame = g.idgame
-                                                where membername LIKE ? status='waiting'");
+                                                where  concat(m.fname, ' ', m.lname) LIKE ? and jp.status='waiting'");
                 $stt->bind_param('s', $proposal);
             } else {
                 $stt = $this->mysqli->prepare("select count(*) as total from join_proposal as jp
