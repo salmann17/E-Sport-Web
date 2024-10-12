@@ -43,7 +43,7 @@ $total_pages = ceil($total_records / $limit);
             <img src="icon/logo.png" alt="esport-logo">
         </div>
         <div class="title">
-            <h1>E-Sport<?php echo $idmember; ?></h1>
+            <h1>E-Sport</h1>
         </div>
         <ul class="nav-links">
             <li><a href="../DashboardMember.php">Home</a></li>

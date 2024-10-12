@@ -1,0 +1,17 @@
+.container-img{
+    display: flex;
+    width: max-content;
+    gap: 1rem;
+}
+img{
+    height: 350px;
+    width: 245px;
+}
+.horizontal-scroll{
+    width: 100%;
+    overflow-x: scroll;
+    scrollbar-color: transparent transparent;
+}
+.horizontal-scroll::-webkit-scrollbar{
+    display: none;
+}
