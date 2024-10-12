@@ -19,16 +19,10 @@
             <h1>E-Sport</h1>
         </div>
         <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">Team Information</a></li>
-            <li><a href="#services">Join Team</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="DashboardMember.php">Home</a></li>
+            <li><a href="backendMember/dbteaminformation.php">Team Information</a></li>
+            <li><a href="backendMember/dbjointeam.php">Join Team</a></li>
         </ul>
-        <div class="menu-icon">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </div>
     </nav>
 </body>
 
