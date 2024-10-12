@@ -1,28 +1,28 @@
-<?php 
-    session_start();
-    if (isset($_GET['idmember'])) {
-        $idmember = $_GET['idmember']; 
-    } else {
-        header("Location: dblogin.php");
-        exit();
-    }
-    
-    require_once("../backendAdmin/models/teammembers.php");
-    $teamMembers = new TeamMembers();
+<?php
+session_start();
+if (isset($_GET['idmember'])) {
+    $idmember = $_GET['idmember'];
+} else {
+    header("Location: dblogin.php");
+    exit();
+}
 
-    $limit = 5; 
-    $page = isset($_GET['page']) ? $_GET['page'] : 1; 
-    $offset = ($page - 1) * $limit; 
+require_once("../backendAdmin/models/teammembers.php");
+$teamMembers = new TeamMembers();
 
-    if (isset($_GET['searchteam'])) {
-        $searchteam = $_GET['searchteam'];
-        $result = $teamMembers->getTeamMembers($searchteam, $limit, $offset); 
-        $total_records = $teamMembers->getTotalTeamMembers($searchteam); 
-    } else {
-        $result = $teamMembers->getTeamMembers("", $limit, $offset); 
-        $total_records = $teamMembers->getTotalTeamMembers(); 
-    }
-    $total_pages = ceil($total_records / $limit);
+$limit = 5;
+$page = isset($_GET['page']) ? $_GET['page'] : 1;
+$offset = ($page - 1) * $limit;
+
+if (isset($_GET['searchteam'])) {
+    $searchteam = $_GET['searchteam'];
+    $result = $teamMembers->getTeamMembers($searchteam, $limit, $offset);
+    $total_records = $teamMembers->getTotalTeamMembers($searchteam);
+} else {
+    $result = $teamMembers->getTeamMembers("", $limit, $offset);
+    $total_records = $teamMembers->getTotalTeamMembers();
+}
+$total_pages = ceil($total_records / $limit);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,18 +52,19 @@
         </ul>
     </nav>
 
-    <h1>Join Team</h1>
-    <form action="" method="get">
-        <input type="text" name="searchTeam" placeholder="input team name">
-        <input type="submit" value="search" class="btn-add"> <br><br>
-    </form>
-    <?php
+    <div class="container">
+        <h1>Join Team</h1>
+        <form action="" method="get">
+            <input type="text" name="searchTeam" placeholder="input team name">
+            <input type="submit" value="search" class="btn-add"> <br><br>
+        </form>
+        <?php
         echo "<table><tr>
             <th>Team</th>
             <th>Game</th>
             <th>Member</th>
             <th>Aksi</th>";
-        while($row = $result->fetch_assoc()){
+        while ($row = $result->fetch_assoc()) {
             $idteam = $row['idteam'];
             if (!isset($teams[$idteam])) {
                 $teams[$idteam] = [
@@ -74,15 +75,17 @@
             }
             $teams[$idteam]['members'][] = $row['username'];
             echo "<tr>";
-            echo "<td>". $row['teamname'] ."</td>";
-            echo "<td>". $row['gamename'] ."</td>";
-            echo "<td>". implode(", ", $teams['members']) ."</td>";
-            echo "<a href='member/joinproposal_proses.php?action=joinproposal=" ."idmember=" . $row['idmember'] . "'>Join Team</a></td>";
+            echo "<td>" . $row['teamname'] . "</td>";
+            echo "<td>" . $row['gamename'] . "</td>";
+            echo "<td>" . implode(", ", $teams[$idteam]['members']) . "</td>";
+            echo "<td><a href='member/joinproposal_proses.php?action=joinproposal=" . "idmember=" . $row['idmember'] . "'>Join Team</a></td>";
         }
         echo "</table>"
-    ?>
+        ?>
+    </div>
+
     <div class="pagination">
-        <?php 
+        <?php
         if ($page > 1) {
             $prev_page = $page - 1;
             $search_param = isset($_GET['searchTeam']) ? $_GET['searchTeam'] : '';
