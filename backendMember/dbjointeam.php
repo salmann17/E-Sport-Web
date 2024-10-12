@@ -89,19 +89,19 @@ $total_pages = ceil($total_records / $limit);
         if ($page > 1) {
             $prev_page = $page - 1;
             $search_param = isset($_GET['searchTeam']) ? $_GET['searchTeam'] : '';
-            echo "<a href='?page=$prev_page&searchTeam=$search_param'>Previous</a>";
+            echo "<a href='dbjointeam.php?page=$prev_page&idmember=$idmember&searchTeam=$search_param'>Previous</a>";
         }
 
         for ($i = 1; $i <= $total_pages; $i++) {
             $search_param = isset($_GET['searchTeam']) ? $_GET['searchTeam'] : '';
             $active_class = $i == $page ? 'active' : '';
-            echo "<a href='?page=$i&searchTeam=$search_param' class='$active_class'>$i</a>";
+            echo "<a href='dbjointeam.php?page=$i&idmember=$idmember&searchTeam=$search_param' class='$active_class'>$i</a>";
         }
 
         if ($page < $total_pages) {
             $next_page = $page + 1;
             $search_param = isset($_GET['searchTeam']) ? $_GET['searchTeam'] : '';
-            echo "<a href='?page=$next_page&searchTeam=$search_param'>Next</a>";
+            echo "<a href='dbjointeam.php?page=$next_page&idmember=$idmember&searchTeam=$search_param'>Next</a>";
         }
         ?>
     </div>

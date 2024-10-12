@@ -12,7 +12,7 @@
     border-radius: 5px;
 }
 .pagination a.active {
-    background-color: #7D7BFF f;
+    background-color: #7D7BFF;
 }
 .pagination a:hover {
     background-color: #A99CFF;
