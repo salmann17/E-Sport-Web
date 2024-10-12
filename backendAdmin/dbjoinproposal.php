@@ -40,8 +40,8 @@ $total_pages = ceil($total_records / $limit);
     echo "<table><tr>
             <th>Nama Member</th>
             <th>Mengajukan Diri di Team</th>
-            <th>Divisi Game yang Dipilih</th>
             <th>Deskripsi</th>
+            <th>Divisi Game yang Dipilih</th>
             <th>Aksi</th>";
     while ($row = $result->fetch_assoc()) {
         $idproposal = $row['idjoin_proposal'];
@@ -50,8 +50,8 @@ $total_pages = ceil($total_records / $limit);
         $idmember = $row['idmember'];
         echo "<td>" . $row['membername'] . "</td>";
         echo "<td>" . $row['teamname'] . "</td>";
-        echo "<td>" . $row['gamename'] . "</td>";
         echo "<td>" . $row['description'] . "</td>";
+        echo "<td>" . $row['gamename'] . "</td>";
         echo "<td><a href='joinproposal/process.php?action=approved&idproposal=" . $row['idjoin_proposal'] . "&idmember=" . $row['idmember'] . "&idteam=" . $row['idteam'] . "&desc=" . urlencode($row['description']) . "'>Approved</a> | 
         <a href='joinproposal/process.php?action=rejected&idproposal=" . $row['idjoin_proposal'] . "&idmember=" . $row['idmember'] . "&idteam=" . $row['idteam'] . "'>Rejected</a></td>";
 
