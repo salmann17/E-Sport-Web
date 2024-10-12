@@ -36,7 +36,7 @@
         </div>
         <ul class="nav-links">
             <li><a href="DashboardMember.php">Home</a></li>
-            <li><a href="backendMember/dbteaminformation.php">Team Information</a></li>
+            <li><a href="backendMember/dbevent.php">Event</a></li>
             <li><a href="backendMember/dbjointeam.php?idmember=<?php echo $idmember; ?>">Join Team</a></li>
         </ul>
     </nav>

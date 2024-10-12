@@ -4,12 +4,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%; 
-    position: fixed; 
-    top: 0; 
+    width: 100%;
+    position: fixed;
+    top: 0;
     left: 0;
-    z-index: 1000; 
-    background: linear-gradient(135deg, #1d2b64, #f8cdda); 
+    z-index: 1000;
+    background: linear-gradient(150deg, #1d2b64, #f8cdda);
     padding: 15px 20px;
 }
 
@@ -47,7 +47,7 @@
     color: white; 
     font-family: 'Audiowide', cursive; 
     font-size: 24px; 
-    margin-left: -500px; 
+    margin-left: -450px; 
     margin-top: 11px;
 }
 
@@ -65,3 +65,4 @@
         width: 60px;
     }
 }
+

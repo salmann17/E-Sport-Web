@@ -1,27 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
 
 body {
-    height: 100vh;
     background: linear-gradient(135deg, #1d2b64, #f8cdda);
     background-size: 400% 400%;
     animation: gradientAnimation 15s ease infinite;
     color: #fff;
-    padding: 20px; 
-    margin: 0;
     font-family: 'Audiowide', cursive;
 }
 .container {
     max-width: 1000px;
     margin: 100px auto;
     background: transparent; 
-    padding: 20px;
+    padding: 15px;
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
 }
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 20px;
 }
 
 table th, table td {
@@ -87,6 +83,13 @@ form input[type="text"] {
     margin-right: 10px; 
     width: 250px;
     font-family: 'Audiowide', cursive;
+}
+[type="text"]{
+    font-family: 'Audiowide', cursive;
+    width: 200px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #7D7BFF;
 }
 @keyframes gradientAnimation {
     0% { background-position: 0% 50%; }

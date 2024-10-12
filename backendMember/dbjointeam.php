@@ -7,8 +7,8 @@ if (isset($_GET['idmember'])) {
     exit();
 }
 
-require_once("../backendAdmin/models/teammembers.php");
-$teamMembers = new TeamMembers();
+require_once("../backendAdmin/models/team.php");
+$team = new Team();
 
 $limit = 5;
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
@@ -16,11 +16,11 @@ $offset = ($page - 1) * $limit;
 
 if (isset($_GET['searchteam'])) {
     $searchteam = $_GET['searchteam'];
-    $result = $teamMembers->getTeamMembers($searchteam, $limit, $offset);
-    $total_records = $teamMembers->getTotalTeamMembers($searchteam);
+    $result = $team->getTeam($searchteam, $limit, $offset);
+    $total_records = $team->getTotalTeams($searchteam);
 } else {
-    $result = $teamMembers->getTeamMembers("", $limit, $offset);
-    $total_records = $teamMembers->getTotalTeamMembers();
+    $result = $team->getTeam("", $limit, $offset);
+    $total_records = $team->getTotalTeams();
 }
 $total_pages = ceil($total_records / $limit);
 ?>
@@ -47,7 +47,7 @@ $total_pages = ceil($total_records / $limit);
         </div>
         <ul class="nav-links">
             <li><a href="../DashboardMember.php">Home</a></li>
-            <li><a href="dbteaminformation.php">Team Information</a></li>
+            <li><a href="dbevent.php">Event</a></li>
             <li><a href="dbjointeam.php">Join Team</a></li>
         </ul>
     </nav>
@@ -62,23 +62,34 @@ $total_pages = ceil($total_records / $limit);
         echo "<table><tr>
             <th>Team</th>
             <th>Game</th>
-            <th>Member</th>
-            <th>Aksi</th>";
+            <th>Input Description</th>
+            <th>Aksi</th>
+            <th>Status</th>";
         while ($row = $result->fetch_assoc()) {
             $idteam = $row['idteam'];
-            if (!isset($teams[$idteam])) {
-                $teams[$idteam] = [
-                    'teamname' => $row['teamname'],
-                    'gamename' => $row['gamename'],
-                    'members' => []
-                ];
-            }
-            $teams[$idteam]['members'][] = $row['username'];
+
             echo "<tr>";
-            echo "<td>" . $row['teamname'] . "</td>";
-            echo "<td>" . $row['gamename'] . "</td>";
-            echo "<td>" . implode(", ", $teams[$idteam]['members']) . "</td>";
-            echo "<td><a href='member/joinproposal_proses.php?action=joinproposal=" . "idmember=" . $row['idmember'] . "'>Join Team</a></td>";
+            echo "<td>" . $row['team_name'] . "</td>";
+            echo "<td>" . $row['game_name'] . "</td>";
+            echo "<form action='member/joinproposal_proses.php' method='get'>";
+            echo "<input type='hidden' name='action' value='joinproposal'>";
+            echo "<input type='hidden' name='idmember' value='" . $idmember . "'>";
+            echo "<input type='hidden' name='idteam' value='" . $idteam . "'>";
+            echo "<td><input type='text' name='desc' placeholder='send your description'></td>";
+            echo "<td><input type='submit' class='btn-add' value='Join Team'></td>";
+            echo "</form>"; 
+
+            require_once("../backendAdmin/models/joinproposal.php");
+            $proposal = new Proposal();
+            $result2 = $proposal->checkProposal($idmember, $idteam);
+            $status = '';
+            if ($result2->num_rows > 0) {
+                while ($row2 = $result2->fetch_assoc()) {
+                    $status = $row2['status'];  
+                }
+            }
+            echo "<td>" . ($status != '' ? $status : ' ') . "</td>";
+            echo "</tr>";
         }
         echo "</table>"
         ?>

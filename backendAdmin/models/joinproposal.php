@@ -49,5 +49,17 @@
             $stt->bind_param('i', $idmember);
             $stt->execute();
         }
+        public function addProposal($idmember, $idteam, $desc, $status){
+            $stt = $this->mysqli->prepare("insert into join_proposal(idmember, idteam, description, status) values(?,?,?,?)");
+            $stt->bind_param("iiss", $idmember, $idteam, $desc, $status);
+            $stt->execute();
+        }
+        public function checkProposal($idmember, $idteam){
+            $stt = $this->mysqli->prepare("select * from join_proposal where idmember = ? and idteam = ?");
+            $stt->bind_param("ii", $idmember, $idteam);
+            $stt->execute();
+            $result = $stt->get_result();
+            return $result;
+        }
     }
 ?>
