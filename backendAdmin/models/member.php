@@ -30,13 +30,14 @@ class Member extends ParentClass
         $statement = $this->mysqli->prepare("select * from member where username=? and password=md5(?)");
         $statement->bind_param("ss", $username, $password);
         $statement->execute();
-
         $result = $statement->get_result();
-        if( $result->num_rows > 0){
-            return true;
-        }
-        else{
-            return false;
+    
+        if($result->num_rows > 0){
+            $user = $result->fetch_assoc(); 
+            $idmember = $user['idmember'];  
+            return ['status' => true, 'idmember' => $idmember]; 
+        } else {
+            return ['status' => false, 'idmember' => null]; 
         }
     }
 

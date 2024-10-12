@@ -6,20 +6,27 @@ $member = new Member();
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-if ($member->Login($username, $password)) {
-    $userku = $member->getMember($username, $password);
-    $_SESSION['userid'] = $userku['idmember'];
+$loginResult = $member->Login($username, $password); 
+
+if ($loginResult['status']) { 
+    $idmember = $loginResult['idmember']; 
+    $userku = $member->getMember($username, $password); 
+
+    $_SESSION['userid'] = $idmember;
     $_SESSION['role'] = $userku['profile'];
     $_SESSION['nama'] = $userku['fname'];
+
     if ($_SESSION['role'] == "admin") {
         $url_asal = isset($_POST['url_asal']) ? $_POST['url_asal'] : "../../DashboardAdmin.php";
     }
     else{
+        echo '<input type="hidden" value="'. $idmember .'" name="idmember">';
         $url_asal = isset($_POST['url_asal']) ? $_POST['url_asal'] : "../../DashboardMember.php";
     }
+
     header("location: " . $url_asal);
 } else {
-    header("location: dblogin.php?error=1");
+    header("location: dblogin.php?error=1"); 
 }
 exit();
 ?>

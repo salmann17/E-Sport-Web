@@ -1,3 +1,19 @@
+<?php 
+    session_start();
+
+    if (!isset($_SESSION['userid'])) {
+        header("Location: dblogin.php");
+        exit();
+    }
+    $idmember = $_SESSION['userid'];
+
+    require_once("backendAdmin/models/member.php");
+    $member = new Member();
+    $result = $member->getMemberbyId($idmember);
+    while($row = $result->fetch_assoc()){
+        $username = $row['username'];
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,12 +32,12 @@
             <img src="backendMember/icon/logo.png" alt="esport-logo">
         </div>
         <div class="title">
-            <h1>E-Sport</h1>
+            <h1>E-Sport <?php echo $idmember; ?></h1>
         </div>
         <ul class="nav-links">
             <li><a href="DashboardMember.php">Home</a></li>
             <li><a href="backendMember/dbteaminformation.php">Team Information</a></li>
-            <li><a href="backendMember/dbjointeam.php">Join Team</a></li>
+            <li><a href="backendMember/dbjointeam.php?idmember=<?php echo $idmember; ?>">Join Team</a></li>
         </ul>
     </nav>
 </body>
