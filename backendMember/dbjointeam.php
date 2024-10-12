@@ -14,8 +14,8 @@ $limit = 5;
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
 $offset = ($page - 1) * $limit;
 
-if (isset($_GET['searchteam'])) {
-    $searchteam = $_GET['searchteam'];
+if (isset($_GET['searchTeam'])) {
+    $searchteam = $_GET['searchTeam'];
     $result = $team->getTeam($searchteam, $limit, $offset);
     $total_records = $team->getTotalTeams($searchteam);
 } else {
@@ -58,6 +58,7 @@ $total_pages = ceil($total_records / $limit);
         <form action="" method="get">
             <input type="text" name="searchTeam" placeholder="input team name">
             <input type="submit" value="search" class="btn-add"> <br><br>
+            <input type="hidden" name="idmember" value="<?php echo $idmember ?>">
         </form>
         <?php
         echo "<table><tr>
