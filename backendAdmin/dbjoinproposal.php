@@ -1,71 +1,81 @@
-<?php 
-    require_once("models/game.php");
-    $game = new Game();
+<?php
+require_once("models/joinproposal.php");
+$proposal = new Proposal();
 
-    $limit = 5; 
-    $page = isset($_GET['page']) ? $_GET['page'] : 1; 
-    $offset = ($page - 1) * $limit; 
+$limit = 5;
+$page = isset($_GET['page']) ? $_GET['page'] : 1;
+$offset = ($page - 1) * $limit;
 
-    if (isset($_GET['searchProposal'])) {
-        $searchGame = $_GET['searchProposal'];
-        $result = $game->getGame($searchGame, $limit, $offset); 
-        $total_records = $game->getTotalGames($searchGame); 
-    } else {
-        $result = $game->getGame("", $limit, $offset); 
-        $total_records = $game->getTotalGames(); 
-    }
-    $total_pages = ceil($total_records / $limit);
+if (isset($_GET['searchProposal'])) {
+    $searchProposal = $_GET['searchProposal'];
+    $result = $proposal->getProposal($searchProposal, $limit, $offset);
+    $total_records = $proposal->getTotalProposal($searchProposal);
+} else {
+    $result = $proposal->getProposal("", $limit, $offset);
+    $total_records = $proposal->getTotalProposal();
+}
+$total_pages = ceil($total_records / $limit);
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Game</title>
+    <title>Dashboard Proposal</title>
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/paging.css">
     <link rel="icon" href="icon/logo.png" type="image/png">
+    <script src="jquery-3.5.1.min.js"></script>
 </head>
+
 <body>
 
     <h1>Proposal Management</h1>
     <form action="" method="get">
-        <input type="text" name="searchProposal" placeholder="input team name">
+        <input type="text" name="searchProposal" placeholder="input proposal name">
         <input type="submit" value="search" class="btn-add"> <br><br>
-        <a href='game/insertgame.php' class='btn-add'>Tambah Game Baru</a>
     </form>
     <?php
-        echo "<table><tr>
+    echo "<table><tr>
             <th>Nama Member</th>
             <th>Deskripsi</th>
             <th>Aksi</th>";
-        while($row = $result->fetch_assoc()){
-            $idgame = $row['idgame'];
-            echo "<tr>";
-            echo "<td>". $row['name'] ."</td>";
-            echo "<td>". $row['description'] ."</td>";
-            echo "<td><a href='game/editgame.php?idgame=".$row['idgame']."'>Ubah</a> | <a href='game/deletegame.php?idgame=".$row['idgame']."'>Hapus</a></td>";
+    while ($row = $result->fetch_assoc()) {
+        $idproposal = $row['idjoin_proposal'];
+        echo "<tr>";
+
+        $idmember = $row['idmember'];
+        require_once("models/member.php");
+        $member = new Member();
+        $result2 = $member->getMemberbyId($idmember);
+        while($row2 = $result2->fetch_assoc()){
+            echo "<td>" . $row2['fname'] . " ". $row2['lname'] . "</td>";
         }
-        echo "</table>"
+
+        echo "<td>" . $row['description'] . "</td>";
+        echo "<td><a href='game/editgame.php?idproposal=" . $row['idjoin_proposal'] . "'>Approved</a> | <a href='game/deletegame.php?idproposal=" . $row['idjoin_proposal'] . "'>Rejected</a></td>";
+    }
+    echo "</table>"
     ?>
     <div class="pagination">
-        <?php 
+        <?php
         if ($page > 1) {
             $prev_page = $page - 1;
-            $search_param = isset($_GET['searchGame']) ? $_GET['searchGame'] : '';
-            echo "<a href='?page=$prev_page&searchGame=$search_param'>Previous</a>";
+            $search_param = isset($_GET['searchProposal']) ? $_GET['searchProposal'] : '';
+            echo "<a href='?page=$prev_page&searchProposal=$search_param'>Previous</a>";
         }
 
         for ($i = 1; $i <= $total_pages; $i++) {
-            $search_param = isset($_GET['searchGame']) ? $_GET['searchGame'] : '';
+            $search_param = isset($_GET['searchProposal']) ? $_GET['searchProposal'] : '';
             $active_class = $i == $page ? 'active' : '';
-            echo "<a href='?page=$i&searchGame=$search_param' class='$active_class'>$i</a>";
+            echo "<a href='?page=$i&searchProposal=$search_param' class='$active_class'>$i</a>";
         }
 
         if ($page < $total_pages) {
             $next_page = $page + 1;
-            $search_param = isset($_GET['searchGame']) ? $_GET['searchGame'] : '';
-            echo "<a href='?page=$next_page&searchGame=$search_param'>Next</a>";
+            $search_param = isset($_GET['searchProposal']) ? $_GET['searchProposal'] : '';
+            echo "<a href='?page=$next_page&searchProposal=$search_param'>Next</a>";
         }
         ?>
     </div>
@@ -74,6 +84,6 @@
             <a href="../DashboardAdmin.php">Back to Dashboard</a>
         </div>
     </div>
-    <input type="hidden" value="<?php echo $idgame ;?>" name="idgame">
 </body>
+
 </html>

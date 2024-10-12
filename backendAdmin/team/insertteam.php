@@ -37,26 +37,6 @@
                 }
             ?>
         </select><br><br>
-        
-        <!-- <label for="name">Pilih Achievement :</label>
-        <select name="idacv" id="idacv">
-            <?php 
-                while($row2 = $result2->fetch_assoc()){
-                    echo "<option value='".$row2['idachievement']."'>".$row2['name']."</option>";
-
-                }
-            ?>
-        </select><br><br>
-
-        <label for="name">Pilih Event :</label>
-        <select name="idacv" id="idacv">
-            <?php 
-                while($row3 = $result3->fetch_assoc()){
-                    echo "<option value='".$row3['idevent']."'>".$row3['name']."</option>";
-
-                }
-            ?>
-        </select><br><br> -->
         <input type="submit" value="Submit Team" class="btn-add">
     </form>
 
