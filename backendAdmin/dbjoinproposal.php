@@ -55,7 +55,7 @@ $total_pages = ceil($total_records / $limit);
 
         echo "<td>" . $row['description'] . "</td>";
         echo "<td><a href='joinproposal/process.php?action=approved&idproposal=" . $row['idjoin_proposal'] . "&idmember=" . $row['idmember'] . "&idteam=" . $row['idteam'] . "&desc=" . urlencode($row['description']) . "'>Approved</a> | 
-        <a href='joinproposal/process.php?action=rejected&idproposal=" . $row['idjoin_proposal'] . "&idmember=" . $row['idmember'] . "'>Rejected</a></td>";
+        <a href='joinproposal/process.php?action=rejected&idproposal=" . $row['idjoin_proposal'] . "&idmember=" . $row['idmember'] . "&idteam=" . $row['idteam'] . "'>Rejected</a></td>";
 
     }
     echo "</table>"

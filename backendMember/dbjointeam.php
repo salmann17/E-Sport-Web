@@ -68,7 +68,6 @@ $total_pages = ceil($total_records / $limit);
             <th>Status</th>";
         while ($row = $result->fetch_assoc()) {
             $idteam = $row['idteam'];
-
             echo "<tr>";
             echo "<td>" . $row['team_name'] . "</td>";
             echo "<td>" . $row['game_name'] . "</td>";

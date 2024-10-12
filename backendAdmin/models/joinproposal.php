@@ -39,14 +39,14 @@
             $row = $result->fetch_assoc();
             return $row['total'];
         }   
-        public function proposalApproved($idmember){
-            $stt = $this->mysqli->prepare("update join_proposal set status='approved' where idmember=?");
-            $stt->bind_param('i', $idmember);
+        public function proposalApproved($idmember, $idteam){
+            $stt = $this->mysqli->prepare("update join_proposal set status='approved' where idmember=? and idteam=?");
+            $stt->bind_param('ii', $idmember, $idteam);
             $stt->execute();
         }
-        public function proposalRejected($idmember){
-            $stt = $this->mysqli->prepare("update join_proposal set status='rejected' where idmember=?");
-            $stt->bind_param('i', $idmember);
+        public function proposalRejected($idmember, $idteam){
+            $stt = $this->mysqli->prepare("update join_proposal set status='rejected' where idmember=? nd idteam=?");
+            $stt->bind_param('ii', $idmember, $idteam);
             $stt->execute();
         }
         public function addProposal($idmember, $idteam, $desc, $status){
