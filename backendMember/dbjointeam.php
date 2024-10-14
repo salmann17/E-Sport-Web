@@ -1,10 +1,17 @@
 <?php
 session_start();
+
+if (!isset($_SESSION['userid'])) {
+    $domain = $_SERVER['HTTP_HOST'];
+	$path = $_SERVER['SCRIPT_NAME'];
+	$queryString = $_SERVER['QUERY_STRING'];
+	$url = "http://" . $domain . $path . "?" . $queryString;
+
+	header("location: dblogin.php?url_asal=".$url);
+    exit();
+}
 if (isset($_GET['idmember'])) {
     $idmember = $_GET['idmember'];
-} else {
-    header("Location: dblogin.php");
-    exit();
 }
 
 require_once("../backendAdmin/models/team.php");
@@ -49,6 +56,7 @@ $total_pages = ceil($total_records / $limit);
             <li><a href="../DashboardMember.php">Home</a></li>
             <li><a href="dbevent.php">Event</a></li>
             <li><a href="dbjointeam.php">Join Team</a></li>
+            <li><a href="member/dblogout.php">My Team</a></li>
             <li><a href="member/dblogout.php">Logout</a></li>
         </ul>
     </nav>

@@ -54,7 +54,7 @@
             $stt->execute();
         }
         public function proposalRejected($idmember, $idteam){
-            $stt = $this->mysqli->prepare("update join_proposal set status='rejected' where idmember=? nd idteam=?");
+            $stt = $this->mysqli->prepare("update join_proposal set status='rejected' where idmember=? and idteam=?");
             $stt->bind_param('ii', $idmember, $idteam);
             $stt->execute();
         }

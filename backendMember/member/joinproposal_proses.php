@@ -14,7 +14,9 @@
             if($row['status'] == 'approved'){
                 echo "<script>alert('you are already registered'); window.location.href='../dbjointeam.php?idmember=". $idmember ."';</script>";
             } elseif($row['status'] == 'rejected'){
-                echo "<script>alert('you have been rejected from this team'); window.location.href='../dbjointeam.php?idmember=". $idmember ."';</script>";
+                $status = "waiting";
+                $joinProposal->addProposal($idmember, $idteam, $desc, $status);
+                echo "<script>alert('you have been rejected, but we will submit it again'); window.location.href='../dbjointeam.php?idmember=". $idmember ."';</script>";
             } elseif($row['status'] == 'waiting'){
                 echo "<script>alert('your proposal has been sent, please wait until admin process your proposal'); window.location.href='../dbjointeam.php?idmember=". $idmember ."';</script>";
             }

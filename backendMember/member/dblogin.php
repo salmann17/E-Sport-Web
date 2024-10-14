@@ -1,8 +1,9 @@
-<?php
-$url_asal = isset($_GET['url_asal']) ? $_GET['url_asal'] : "../../DashboardMember.php";
+<?php  
+session_start();
+$url_asal = isset($_GET['url_asal']) ? $_GET['url_asal'] : "week1.php";
 
-if (isset($_SESSION['userid'])) {
-    header("location: " . $url_asal);
+if(isset($_SESSION['userid'])) {
+	header("location: ".$url_asal);
 }
 ?>
 

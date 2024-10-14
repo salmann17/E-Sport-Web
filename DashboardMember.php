@@ -2,7 +2,12 @@
 session_start();
 
 if (!isset($_SESSION['userid'])) {
-    header("Location: dblogin.php");
+    $domain = $_SERVER['HTTP_HOST'];
+	$path = $_SERVER['SCRIPT_NAME'];
+	$queryString = $_SERVER['QUERY_STRING'];
+	$url = "http://" . $domain . $path . "?" . $queryString;
+
+	header("location: dblogin.php?url_asal=".$url);
     exit();
 }
 $idmember = $_SESSION['userid'];
@@ -11,7 +16,7 @@ require_once("backendAdmin/models/member.php");
 $member = new Member();
 $result = $member->getMemberbyId($idmember);
 while ($row = $result->fetch_assoc()) {
-    $username = $row['username'];
+    $username = $row['fname'];
 }
 ?>
 <!DOCTYPE html>
@@ -39,6 +44,7 @@ while ($row = $result->fetch_assoc()) {
             <li><a href="DashboardMember.php">Home</a></li>
             <li><a href="backendMember/dbevent.php">Event</a></li>
             <li><a href="backendMember/dbjointeam.php?idmember=<?php echo $idmember; ?>">Join Team</a></li>
+            <li><a href="backendMember/dbevent.php">My Team</a></li>
             <li><a href="backendMember/member/dblogout.php">Logout</a></li>
         </ul>
     </nav>
