@@ -12,9 +12,13 @@ if (!isset($_SESSION['userid'])) {
 }
 
 $isFromEditDetailTeam = isset($_GET['source']) && $_GET['source'] === 'editdetailteam';
-if (isset($_GET['source'])&isset($_GET['idacv'])) {
+if (isset($_GET['source'])) {
     $source = $_GET['source'];
+    
+}
+if(isset($_GET['idacv'])){
     $idacv = $_GET['idacv'];
+    
 }
 else{
     header("location: ..\dbachievement.php");
