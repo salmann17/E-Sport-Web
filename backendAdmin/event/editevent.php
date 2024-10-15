@@ -1,10 +1,24 @@
 <?php 
+    session_start();
+    
+    if (!isset($_SESSION['userid'])) {
+        $domain = $_SERVER['HTTP_HOST'];
+        $path = $_SERVER['SCRIPT_NAME'];
+        $queryString = $_SERVER['QUERY_STRING'];
+        $url = "http://" . $domain . $path . "?" . $queryString;
+    
+        header("location: ..\..\backendMember\member\dblogin.php?url_asal=".$url);
+        exit();
+    }
     require_once("../models/event.php");
     $event = new Event();
 
     if($_GET['idevent']){
         $idevent = $_GET['idevent'];
         $result = $event->getEventbyId($idevent);
+    }
+    else{
+        header("location: ..\dbevent.php");
     }
     while($row = $result->fetch_assoc()){
         $event_name= $row['name'];

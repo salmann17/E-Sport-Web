@@ -1,12 +1,13 @@
 <?php
 session_start();
 require_once("../../backendAdmin/models/member.php");
+
 $member = new Member();
 
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-$loginResult = $member->Login($username, $password); 
+$loginResult = $member->Login($username, $password);
 
 if ($loginResult['status']) { 
     $idmember = $loginResult['idmember']; 
@@ -16,17 +17,20 @@ if ($loginResult['status']) {
     $_SESSION['role'] = $userku['profile'];
     $_SESSION['nama'] = $userku['fname'];
 
-    if ($_SESSION['role'] == "admin") {
-        $url_asal = isset($_POST['url_asal']) ? $_POST['url_asal'] : "../../DashboardAdmin.php";
-    }
-    else{
-        echo '<input type="hidden" value="'. $idmember .'" name="idmember">';
-        $url_asal = isset($_POST['url_asal']) ? $_POST['url_asal'] : "../../DashboardMember.php";
+    $url_asal = isset($_POST['url_asal']) ? $_POST['url_asal'] : '';
+
+    if (empty($url_asal)) {
+        if ($_SESSION['role'] == "admin") {
+            $url_asal = "../../DashboardAdmin.php";
+        } elseif ($_SESSION['role'] == "member") {
+            $url_asal = "../../DashboardMember.php";
+        }
     }
 
     header("location: " . $url_asal);
+    exit();
 } else {
-    header("location: dblogin.php?error=1"); 
+    $url_asal = isset($_POST['url_asal']) ? $_POST['url_asal'] : '';
+    header("location: dblogin.php?error=1&url_asal=" . $url_asal); 
+    exit();
 }
-exit();
-?>

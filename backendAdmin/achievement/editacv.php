@@ -1,10 +1,23 @@
 <?php
-$isFromEditDetailTeam = isset($_GET['source']) && $_GET['source'] === 'editdetailteam';
-if (isset($_GET['source'])) {
-    $source = $_GET['source'];
+session_start();
+    
+if (!isset($_SESSION['userid'])) {
+    $domain = $_SERVER['HTTP_HOST'];
+    $path = $_SERVER['SCRIPT_NAME'];
+    $queryString = $_SERVER['QUERY_STRING'];
+    $url = "http://" . $domain . $path . "?" . $queryString;
+
+    header("location: ..\..\backendMember\member\dblogin.php?url_asal=".$url);
+    exit();
 }
-if (isset($_GET['idacv'])) {
+
+$isFromEditDetailTeam = isset($_GET['source']) && $_GET['source'] === 'editdetailteam';
+if (isset($_GET['source'])&isset($_GET['idacv'])) {
+    $source = $_GET['source'];
     $idacv = $_GET['idacv'];
+}
+else{
+    header("location: ..\dbachievement.php");
 }
 require_once("../models/achievement.php");
 $acv = new Achv();

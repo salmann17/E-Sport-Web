@@ -1,4 +1,16 @@
 <?php
+
+    session_start();
+        
+    if (!isset($_SESSION['userid'])) {
+        $domain = $_SERVER['HTTP_HOST'];
+        $path = $_SERVER['SCRIPT_NAME'];
+        $queryString = $_SERVER['QUERY_STRING'];
+        $url = "http://" . $domain . $path . "?" . $queryString;
+
+        header("location: ..\..\backendMember\member\dblogin.php?url_asal=".$url);
+        exit();
+    }
     require_once("../models/joinproposal.php");
     require_once("../models/teammembers.php");  
 
@@ -22,5 +34,8 @@
             $joinProposal->proposalRejected($idmember, $idteam);
             echo "<script>alert('Member has been rejected'); window.location.href='../dbjoinproposal.php';</script>";
         }
+    }
+    else{
+        header("location: ..\dbjoinproposal.php");
     }
 ?>
