@@ -26,7 +26,6 @@
             return $result;
         }
         
-        // Fungsi untuk mendapatkan total data
         public function getTotalAchv($cari = "") {
             if (!empty($cari)) {
                 $acv = "%" . $cari . "%";

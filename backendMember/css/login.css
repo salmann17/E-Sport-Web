@@ -24,7 +24,6 @@ body {
     color: #333;
 }
 
-/* Mengatur style input dan tombol */
 .form-container input[type="text"],
 .form-container input[type="password"] {
     width: 100%;
