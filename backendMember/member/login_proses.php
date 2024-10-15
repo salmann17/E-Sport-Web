@@ -27,6 +27,13 @@ if ($loginResult['status']) {
         }
     }
 
+    if (($_SESSION['role'] == "member" && strpos($url_asal, "backendAdmin") !== false)) {
+        $url_asal = "../../DashboardMember.php";
+    } 
+    elseif ($_SESSION['role'] == "admin" && strpos($url_asal, "backendMember") !== false) {
+        $url_asal = "../../DashboardAdmin.php";
+    }
+
     header("location: " . $url_asal);
     exit();
 } else {
