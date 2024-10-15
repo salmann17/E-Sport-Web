@@ -37,9 +37,6 @@ while ($row = $result->fetch_assoc()) {
         <div class="logo">
             <img src="backendMember/icon/logo.png" alt="esport-logo">
         </div>
-        <div class="title">
-            <h1>E-Sport</h1>
-        </div>
         <ul class="nav-links">
             <li><a href="DashboardMember.php">Home</a></li>
             <li><a href="backendMember/dbevent.php">Event</a></li>
