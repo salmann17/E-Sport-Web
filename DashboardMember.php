@@ -82,6 +82,7 @@ while ($row = $result->fetch_assoc()) {
             </div>
         </div>
     </main>
+
     <div class="welcome-container">
     <h1>Selamat Datang, <?php echo $username; ?> </h1>
         <p>Selamat datang di tempat berkumpulnya para gamer sejati! Website ini kami rancang sebagai pusat bagi para gamer yang penuh gairah dan ambisi, seperti Anda, yang ingin menjadi bagian dari tim e-sport elit kami. Apakah Anda seorang pemain berpengalaman yang sudah banyak makan asam garam di dunia kompetisi, atau seorang pendatang baru dengan potensi besar, di sini Anda akan menemukan tempat untuk berkembang. Kami menawarkan berbagai divisi tim dalam berbagai genre game, yang semuanya memberikan kesempatan bagi Anda untuk mengasah keterampilan, berkompetisi dalam turnamen besar, dan terhubung dengan komunitas gamer yang luas dan bersemangat.</p>

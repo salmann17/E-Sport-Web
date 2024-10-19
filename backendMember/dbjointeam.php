@@ -17,7 +17,7 @@ else{
 require_once("../backendAdmin/models/team.php");
 $team = new Team();
 
-$limit = 5;
+$limit = 6;
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
 $offset = ($page - 1) * $limit;
 
@@ -41,6 +41,7 @@ $total_pages = ceil($total_records / $limit);
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/dbmember.css">
     <link rel="stylesheet" href="css/paging.css">
+    <link rel="stylesheet" href="css/card.css">
     <link rel="icon" href="icon/logo.png" type="image/png">
 </head>
 
@@ -65,40 +66,37 @@ $total_pages = ceil($total_records / $limit);
             <input type="submit" value="search" class="btn-add"> <br><br>
             <input type="hidden" name="idmember" value="<?php echo $idmember ?>">
         </form>
-        <?php
-        echo "<table><tr>
-            <th>Team</th>
-            <th>Game</th>
-            <th>Input Description</th>
-            <th>Aksi</th>
-            <th>Status</th>";
-        while ($row = $result->fetch_assoc()) {
-            $idteam = $row['idteam'];
-            echo "<tr>";
-            echo "<td>" . $row['team_name'] . "</td>";
-            echo "<td>" . $row['game_name'] . "</td>";
-            echo "<form action='member/joinproposal_proses.php' method='get'>";
-            echo "<input type='hidden' name='action' value='joinproposal'>";
-            echo "<input type='hidden' name='idmember' value='" . $idmember . "'>";
-            echo "<input type='hidden' name='idteam' value='" . $idteam . "'>";
-            echo "<td><input type='text' name='desc' placeholder='send your description'></td>";
-            echo "<td><input type='submit' class='btn-add' value='Join Team'></td>";
-            echo "</form>"; 
 
-            require_once("../backendAdmin/models/joinproposal.php");
-            $proposal = new Proposal();
-            $result2 = $proposal->checkProposal($idmember, $idteam);
-            $status = '';
-            if ($result2->num_rows > 0) {
-                while ($row2 = $result2->fetch_assoc()) {
-                    $status = $row2['status'];  
+        <div class="card-grid">
+            <?php
+            while ($row = $result->fetch_assoc()) {
+                $idteam = $row['idteam'];
+                echo "<div class='card'>";
+                echo "<img src='icon/images/".$idteam.".jpg' class='card-image'>";
+                echo "<h3 class='team-name'>" . $row['team_name'] . "</h3>";
+                echo "<p class='game-name'>Game: " . $row['game_name'] . "</p>";
+                echo "<form action='member/joinproposal_proses.php' method='get'>";
+                echo "<input type='hidden' name='action' value='joinproposal'>";
+                echo "<input type='hidden' name='idmember' value='" . $idmember . "'>";
+                echo "<input type='hidden' name='idteam' value='" . $idteam . "'>";
+                echo "<input type='text' name='desc' placeholder='send your description' class='text-input'>";
+                echo "<button type='submit' class='btn-add'>Join Team</button>";
+                echo "</form>";
+
+                require_once("../backendAdmin/models/joinproposal.php");
+                $proposal = new Proposal();
+                $result2 = $proposal->checkProposal($idmember, $idteam);
+                $status = '';
+                if ($result2->num_rows > 0) {
+                    while ($row2 = $result2->fetch_assoc()) {
+                        $status = $row2['status'];  
+                    }
                 }
+                echo "<p class='status' data-status='" . strtolower($status) . "'>" . ($status != '' ? "Status: " . $status : '') . "</p>";
+                echo "</div>";
             }
-            echo "<td>" . ($status != '' ? $status : ' ') . "</td>";
-            echo "</tr>";
-        }
-        echo "</table>"
-        ?>
+            ?>
+        </div>
     </div>
 
     <div class="pagination">
