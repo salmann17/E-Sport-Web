@@ -62,7 +62,13 @@ while ($row = $result->fetch_assoc()) {
                 $idgame = $row['idgame'];
             
                 echo '<figure class="item">';
-                echo '<img src="backendMember/icon/images/'.$idteam.'.jpg">';
+                $image = 'backendMember/icon/images/' . $idteam . '.jpg';
+                if(file_exists($image)){
+                    echo '<img src="'.$image.'">';
+                } else{
+                    echo '<img src="backendMember/icon/images/index.png">';
+                }
+            
 
                 $result2 = $game->getGameTeambyId($idgame);
                 while($row2 = $result2->fetch_assoc()){

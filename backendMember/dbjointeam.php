@@ -72,7 +72,12 @@ $total_pages = ceil($total_records / $limit);
             while ($row = $result->fetch_assoc()) {
                 $idteam = $row['idteam'];
                 echo "<div class='card'>";
-                echo "<img src='icon/images/".$idteam.".jpg' class='card-image'>";
+                $image = 'icon/images/' . $idteam . '.jpg';
+                if(file_exists($image)){
+                    echo '<img src="'.$image.'" class="card-image">';
+                } else{
+                    echo '<img src="icon/images/index.png" class="card-image">';
+                }
                 echo "<h3 class='team-name'>" . $row['team_name'] . "</h3>";
                 echo "<p class='game-name'>Game: " . $row['game_name'] . "</p>";
                 echo "<form action='member/joinproposal_proses.php' method='get'>";
