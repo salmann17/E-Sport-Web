@@ -3,25 +3,24 @@
 body {
     background: linear-gradient(135deg, #1d2b64, #f8cdda);
     background-size: 400% 400%;
-
     animation: gradientAnimation 15s ease infinite;
     color: #fff;
     font-family: 'Audiowide', cursive;
 }
 body::-webkit-scrollbar {
-    display: none; /* Menyembunyikan scrollbar */
+    display: none; 
 }
 .main-content {
     position: absolute;
-    top: 650px; /* Sesuaikan untuk menempatkan <main> di bawah tombol */
+    top: 650px; 
     left: 50%;
     transform: translateX(-50%);
-    width: 98%; /* Sesuaikan lebar agar muat dengan baik di layar */ /* Latar belakang semi transparan untuk kontras */
+    width: 98%; 
     color: #fff;
     padding: 10px;
     border-radius: 10px;
     overflow-y: auto;
-    max-height: 100vh; /* Batasi tinggi <main> agar tidak melampaui video */
+    max-height: 100vh;
     z-index: 3;
 }
 .background-video {
@@ -55,9 +54,9 @@ body::-webkit-scrollbar {
     text-align: center;
     font-size: 2.5rem;
     font-family: 'Audiowide', cursive;
-    margin-bottom: 10px; /* Beri jarak agar tidak terlalu dekat dengan gambar */
+    margin-bottom: 10px; 
     color: #fff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Bayangan untuk kontras */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
 }
 .container {
     max-width: 1000px;
@@ -69,11 +68,11 @@ body::-webkit-scrollbar {
 }
 .background-2 {
     position: absolute;
-    top: 650px; /* Mulai dari atas untuk menutupi video sepenuhnya */
+    top: 650px; 
     left: 0;
     width: 100%;
-    height: 100vh; /* Pastikan tinggi section sama dengan tinggi video */
-    background-image: url('../icon/background/map-contact.png'); /* Ganti dengan path gambar Anda */
+    height: 100vh; 
+    background-image: url('../icon/background/map-contact.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -86,6 +85,99 @@ body::-webkit-scrollbar {
     color: #fff;
     text-align: center;
 }
+.background-3 {
+    position: absolute;
+    top: 900px; 
+    left: 0;
+    width: 100%;
+    height: 100vh; 
+    background-image: url('../icon/background/trendiang-bg.png'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0; 
+}
+
+.background-3 .content {
+    padding: 20px;
+    border-radius: 8px;
+    color: #fff;
+    text-align: center;
+}
+.footer {
+    background-color: transparent;
+    padding: 40px 20px;
+    height: 40px;
+    color: #fff;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    z-index: 2;
+    margin-top: 600px; 
+    font-family: 'Audiowide', cursive;
+}
+
+.footer-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.footer-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.footer-logo-image {
+    width: 100px; 
+    margin-bottom: 10px;
+}
+
+.footer-title {
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+.footer-subtitle {
+    font-size: 1rem;
+    margin: 0;
+    color: #777;
+}
+
+.footer-description {
+    margin: 20px 0;
+    font-size: 0.9rem;
+    color: #ccc;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.footer-info {
+    margin-top: 20px;
+}
+
+.footer-info p {
+    font-size: 0.9rem;
+    margin: 10px 0;
+    color: #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-info i {
+    margin-right: 10px;
+    color: #f39c12; 
+}
+
+.footer-copyright {
+    margin-top: 10px;
+    font-size: 0.8rem;
+    color: #777;
+    border-top: 1px solid #333;
+    padding-top: 10px;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;

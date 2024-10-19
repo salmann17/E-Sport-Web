@@ -56,6 +56,9 @@ while ($row = $result->fetch_assoc()) {
         <div class="background-2">
             <div class="content"> </div>
         </div>
+        <div class="background-3">
+            <div class="content"> </div>
+        </div>
     </section>
 
     <script>
@@ -117,14 +120,26 @@ while ($row = $result->fetch_assoc()) {
         ?>
     </main>
 
-    <!-- <div class="welcome-container">
-        <h1>Selamat Datang, <?php echo $username; ?> </h1>
-        <p>Selamat datang di tempat berkumpulnya para gamer sejati! Website ini kami rancang sebagai pusat bagi para gamer yang penuh gairah dan ambisi, seperti Anda, yang ingin menjadi bagian dari tim e-sport elit kami. Apakah Anda seorang pemain berpengalaman yang sudah banyak makan asam garam di dunia kompetisi, atau seorang pendatang baru dengan potensi besar, di sini Anda akan menemukan tempat untuk berkembang. Kami menawarkan berbagai divisi tim dalam berbagai genre game, yang semuanya memberikan kesempatan bagi Anda untuk mengasah keterampilan, berkompetisi dalam turnamen besar, dan terhubung dengan komunitas gamer yang luas dan bersemangat.</p>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="backendMember/icon/logo.png" alt="Logo" class="footer-logo-image">
+                <h3 class="footer-title">E-SPORT</h3>
+                <p class="footer-subtitle">WEBSITE</p>
+            </div>
+            <p class="footer-description">
+                Lets Join Us and Explore The World of Game!
+            </p>
+            <div class="footer-info">
+                <p><i class="fas fa-map-marker-alt"></i> Address : Tenggilis Mejoyo, Rungkut, Surabaya</p>
+                <p><i class="fas fa-phone-alt"></i> Phone : +62821635472824</p>
+                <p><i class="fas fa-envelope"></i> Email : esport@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>by Salman & Ferdy</p>
+        </div>
+    </footer>
 
-        <p>Di platform ini, Anda tidak hanya sekadar bermain, tapi juga bisa bertumbuh dan berkolaborasi dengan pemain-pemain terbaik di dunia. Kami memahami bahwa e-sport bukan sekadar hobi, tapi sebuah profesi yang membutuhkan kerja keras, dedikasi, dan strategi yang matang. Oleh karena itu, kami menyediakan berbagai fasilitas dan wadah untuk membantu Anda mencapai potensi maksimal, mulai dari sesi latihan bersama, turnamen eksklusif, hingga strategi tim yang dirancang oleh pelatih profesional. Kami percaya bahwa setiap pemain memiliki kesempatan untuk bersinar dan berkontribusi dalam kemenangan tim.</p>
-
-        <p>Tak hanya itu, di sini kami juga menekankan pentingnya sportivitas dan semangat tim. Bersama-sama, kita membangun lingkungan yang mendukung, di mana setiap gamer saling menginspirasi untuk menjadi lebih baik. Dengan dukungan komunitas yang solid, Anda akan mendapatkan pengalaman bermain yang lebih menyenangkan dan menantang. Jadi, jangan ragu untuk bergabung, ambil kesempatan, dan wujudkan mimpi menjadi atlet e-sport profesional. Bersama kita, bukan hanya game yang kita menangkan, tapi juga persahabatan dan pengalaman yang tak ternilai. Mari bersama-sama kita mendominasi medan pertempuran digital dan tunjukkan kepada dunia siapa yang terbaik!</p>
-    </div> -->
 </body>
-
 </html>
