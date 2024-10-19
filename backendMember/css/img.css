@@ -1,12 +1,40 @@
 .container-img{
     display: flex;
     width: max-content;
-    gap: 1rem;
+    gap: 0rem;
+    padding-top: 80px;
+}
+.item{
+    margin-left: -20px;
+    width: 245px;
+    aspect-ratio: 11/16;
+    position: relative;
+    overflow: hidden;
+    perspective: 1000px; 
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+}
+.item figcaption{
+    position: absolute;
+    bottom: -5rem;
+    background-color: rgba(29, 43, 100, 0.85); 
+    padding: 1rem 0;
+    width: 100%;
+    text-align: center;
+    transition: all 200ms;
+    border-radius: 0 0 10px 10px;
+}
+.item:hover figcaption{
+    bottom: 0;
 }
 img {
     height: 350px;
     width: 245px;
+    height: 100%; 
+    width: 100%;
     display: block;
+    border-radius: 10px;
+    object-fit: cover;
 }
 .horizontal-scroll{
     width: 100%;

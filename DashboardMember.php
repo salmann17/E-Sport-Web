@@ -46,19 +46,30 @@ while ($row = $result->fetch_assoc()) {
         </ul>
     </nav>
     <main>
-        <h2>Team List</h2>
         <?php 
             echo '<div class="horizontal-scroll">';
             echo '<div class="container-img">';
 
             require_once("backendAdmin/models/team.php");
+            require_once("backendAdmin/models/game.php");
             $team = new Team();
+            $game = new Game();
+
             $result = $team->getAllTeam();
             while ($row = $result->fetch_assoc()) {
                 $idteam = $row['idteam'];
-                echo '<div class="item">';
+                $name = $row['name'];
+                $idgame = $row['idgame'];
+            
+                echo '<figure class="item">';
                 echo '<img src="backendMember/icon/images/'.$idteam.'.jpg">';
-                echo '</div>';
+
+                $result2 = $game->getGameTeambyId($idgame);
+                while($row2 = $result2->fetch_assoc()){
+                    $gameName = $row2['name'];
+                }
+                echo '<figcaption><strong>'.$name.'</strong><br>'.$gameName .'</figcaption>';
+                echo '</figure>';
             }
 
             echo '</div>';
