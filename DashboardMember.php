@@ -47,40 +47,23 @@ while ($row = $result->fetch_assoc()) {
     </nav>
     <main>
         <h2>Team List</h2>
-        <div class="horizontal-scroll">
-            <div class="container-img">
-                <div class="item">
-                    <img src="backendMember/icon/images/1.jpg" alt="">
-                </div>
-                <div class="item">
-                    <img src="backendMember/icon/images/2.jpg" alt="">
-                </div>
-                <div class="item">
-                    <img src="backendMember/icon/images/3.jpg" alt="">
-                </div>
-                <div class="item">
-                    <img src="backendMember/icon/images/4.jpg" alt="">
-                </div>
-                <div class="item">
-                    <img src="backendMember/icon/images/5.jpg" alt="">
-                </div>
-                <div class="item">
-                    <img src="backendMember/icon/images/6.jpg" alt="">
-                </div>
-                <div class="item">
-                    <img src="backendMember/icon/images/7.jpg" alt="">
-                </div>
-                <div class="item">
-                    <img src="backendMember/icon/images/8.jpg" alt="">
-                </div>
-                <div class="item">
-                    <img src="backendMember/icon/images/9.jpg" alt="">
-                </div>
-                <div class="item">
-                    <img src="backendMember/icon/images/10.jpg" alt="">
-                </div>
-            </div>
-        </div>
+        <?php 
+            echo '<div class="horizontal-scroll">';
+            echo '<div class="container-img">';
+
+            require_once("backendAdmin/models/team.php");
+            $team = new Team();
+            $result = $team->getAllTeam();
+            while ($row = $result->fetch_assoc()) {
+                $idteam = $row['idteam'];
+                echo '<div class="item">';
+                echo '<img src="backendMember/icon/images/'.$idteam.'.jpg">';
+                echo '</div>';
+            }
+
+            echo '</div>';
+            echo '</div>';
+        ?>
     </main>
 
     <div class="welcome-container">

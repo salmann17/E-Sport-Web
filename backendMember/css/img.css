@@ -3,9 +3,10 @@
     width: max-content;
     gap: 1rem;
 }
-img{
+img {
     height: 350px;
     width: 245px;
+    display: block;
 }
 .horizontal-scroll{
     width: 100%;

@@ -14,9 +14,9 @@
 }
 
 .card {
-    background: #fff;
+    background: linear-gradient(135deg, rgba(29, 43, 100, 1), rgba(248, 205, 218, 1));
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
     text-align: center;
     color: #333;
@@ -24,8 +24,10 @@
 }
 
 .card:hover {
+    background: linear-gradient(90deg, rgba(182, 182, 182, 0.1) 1px, transparent 1px), linear-gradient(rgba(230, 223, 223, 0.1) 1px, transparent 1px), #8c8c8c;
+    background-size: 20px 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     transform: translateY(-5px);
-    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 .card-image {
@@ -56,20 +58,6 @@
     border-radius: 5px;
 }
 
-.join-button {
-    background-color: #007BFF;
-    color: #fff;
-    padding: 10px 15px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 14px;
-}
-
-.join-button:hover {
-    background-color: #0056b3;
-}
-
 .status {
     font-size: 14px;
     margin-top: 10px;
@@ -77,17 +65,14 @@
 }
 .status[data-status="rejected"] {
     color: red;
-    font-weight: bold;
 }
 
 .status[data-status="approved"] {
     color: green;
-    font-weight: bold;
 }
 
 .status[data-status="waiting"] {
     color: orange;
-    font-weight: bold;
 }
 .status[data-status=""] {
     color: rgb(0, 0, 0);
