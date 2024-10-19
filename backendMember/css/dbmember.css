@@ -92,12 +92,13 @@ form input[type="text"] {
     border: 1px solid #7D7BFF;
 }
 .welcome-container {
+    background: linear-gradient(90deg, rgba(182, 182, 182, 0.1) 1px, transparent 1px), linear-gradient(rgba(230, 223, 223, 0.1) 1px, transparent 1px), #8c8c8c;
+    background-size: 20px 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
     max-width: 2000px;
     padding: 40px;
-    background: rgba(0, 0, 0, 0.6);
     border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     justify-content: center ;
 }
 

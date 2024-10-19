@@ -67,7 +67,7 @@ while ($row = $result->fetch_assoc()) {
     </main>
 
     <div class="welcome-container">
-    <h1>Selamat Datang, <?php echo $username; ?> </h1>
+        <h1>Selamat Datang, <?php echo $username; ?> </h1>
         <p>Selamat datang di tempat berkumpulnya para gamer sejati! Website ini kami rancang sebagai pusat bagi para gamer yang penuh gairah dan ambisi, seperti Anda, yang ingin menjadi bagian dari tim e-sport elit kami. Apakah Anda seorang pemain berpengalaman yang sudah banyak makan asam garam di dunia kompetisi, atau seorang pendatang baru dengan potensi besar, di sini Anda akan menemukan tempat untuk berkembang. Kami menawarkan berbagai divisi tim dalam berbagai genre game, yang semuanya memberikan kesempatan bagi Anda untuk mengasah keterampilan, berkompetisi dalam turnamen besar, dan terhubung dengan komunitas gamer yang luas dan bersemangat.</p>
 
         <p>Di platform ini, Anda tidak hanya sekadar bermain, tapi juga bisa bertumbuh dan berkolaborasi dengan pemain-pemain terbaik di dunia. Kami memahami bahwa e-sport bukan sekadar hobi, tapi sebuah profesi yang membutuhkan kerja keras, dedikasi, dan strategi yang matang. Oleh karena itu, kami menyediakan berbagai fasilitas dan wadah untuk membantu Anda mencapai potensi maksimal, mulai dari sesi latihan bersama, turnamen eksklusif, hingga strategi tim yang dirancang oleh pelatih profesional. Kami percaya bahwa setiap pemain memiliki kesempatan untuk bersinar dan berkontribusi dalam kemenangan tim.</p>
