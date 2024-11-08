@@ -48,7 +48,7 @@ while ($row = $result->fetch_assoc()) {
             <li><a href="DashboardMember.php">Home</a></li>
             <li><a href="backendMember/dbevent.php">Event</a></li>
             <li><a href="backendMember/dbjointeam.php?idmember=<?php echo $idmember; ?>">Join Team</a></li>
-            <li><a href="backendMember/dbevent.php">My Team</a></li>
+            <li><a href="backendMember/dbmyteam.php?idmember=<?php echo $idmember; ?>">My Team</a></li>
             <li><a href="backendMember/member/dblogout.php">Logout</a></li>
         </ul>
     </nav>
