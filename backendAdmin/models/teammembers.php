@@ -51,18 +51,32 @@
             $row = $result->fetch_assoc();
             return $row['total'];
         }   
-        public function displayAllTeam($idmember){
-            $stt = $this->mysqli->prepare("select m.username, tm.idteam, t.name as team_name, t.idgame, g.name as game_name,
-                                            g.description as game_desc from team_members as tm
-                                            inner join member as m on tm.idmember = m.idmember
-                                            inner join team as t on tm.idteam = t.idteam
-                                            inner join game as g on t.idgame = g.idgame
-                                            where tm.idmember  = ? ;");
-            $stt->bind_param("i", $idmember);
+        public function displayAllTeam($idmember, $limit, $offset) {
+            $stt = $this->mysqli->prepare("select m.username, tm.idteam, t.name AS team_name, t.idgame, g.name AS game_name,
+                                            g.description AS game_desc FROM team_members AS tm
+                                            inner join member AS m ON tm.idmember = m.idmember
+                                            inner join team AS t ON tm.idteam = t.idteam
+                                            inner join game AS g ON t.idgame = g.idgame
+                                            where tm.idmember = ?
+                                            limit ? offset ?;");
+            $stt->bind_param("iii", $idmember, $limit, $offset);
             $stt->execute();
             $result = $stt->get_result();
             return $result;
         }
+        public function countAllTeam($idmember) {
+            $stt = $this->mysqli->prepare("select count(*) as total from team_members as tm
+                                            inner join member as m on tm.idmember = m.idmember
+                                            inner join team as t on tm.idteam = t.idteam
+                                            inner join game as g on t.idgame = g.idgame
+                                            where tm.idmember = ?;");
+            $stt->bind_param("i", $idmember);
+            $stt->execute();
+            $result = $stt->get_result();
+            $row = $result->fetch_assoc();
+            return $row['total'];
+        }
+        
         public function displayAllMembers($idteam){
             $stt = $this->mysqli->prepare("select distinct m.username from join_proposal as jp
                                             inner join member as m on jp.idmember = m.idmember
