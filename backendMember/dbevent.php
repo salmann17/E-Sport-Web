@@ -11,4 +11,9 @@ if (!isset($_SESSION['userid'])) {
     exit();
 }
 
+if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+    header("Location: ../DashboardAdmin.php");
+    exit();
+}
+
 ?>

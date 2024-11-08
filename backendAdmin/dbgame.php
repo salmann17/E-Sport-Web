@@ -10,6 +10,11 @@
         header("location: ..\backendMember\member\dblogin.php?url_asal=".$url);
         exit();
     }
+
+    if (isset($_SESSION['role']) && $_SESSION['role'] === 'member') {
+        header("Location: ../DashboardMember.php");
+        exit();
+    }
     require_once("models/game.php");
     $game = new Game();
 

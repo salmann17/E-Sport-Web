@@ -7,9 +7,15 @@ if (!isset($_SESSION['userid'])) {
     $queryString = $_SERVER['QUERY_STRING'];
     $url = "http://" . $domain . $path . "?" . $queryString;
 
-    header("location: ../backendAdmin/member/dblogin.php?url_asal=" . $url);
+    header("location: backendMember\member\dblogin.php?url_asal=".$url);
     exit();
 }
+
+if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+    header("Location: DashboardAdmin.php");
+    exit();
+}
+
 $idmember = $_SESSION['userid'];
 
 require_once("backendAdmin/models/member.php");

@@ -10,6 +10,12 @@ if (!isset($_SESSION['userid'])) {
     header("location: ..\backendMember\member\dblogin.php?url_asal=".$url);
     exit();
 }
+
+if (isset($_SESSION['role']) && $_SESSION['role'] === 'member') {
+    header("Location: ../DashboardMember.php");
+    exit();
+}
+
 require_once("models/team.php");
 $team = new Team();
 

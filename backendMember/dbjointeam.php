@@ -10,9 +10,14 @@ if (!isset($_SESSION['userid'])) {
 	header("location: member/dblogin.php?url_asal=".$url);
     exit();
 }
-else{
-    $idmember = $_SESSION['userid'];
+
+if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+    header("Location: ../DashboardAdmin.php");
+    exit();
 }
+
+$idmember = $_SESSION['userid'];
+
 
 require_once("../backendAdmin/models/team.php");
 $team = new Team();
