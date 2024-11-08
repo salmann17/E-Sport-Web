@@ -7,7 +7,7 @@ if (!isset($_SESSION['userid'])) {
     $queryString = $_SERVER['QUERY_STRING'];
     $url = "http://" . $domain . $path . "?" . $queryString;
 
-    header("location: dblogin.php?url_asal=" . $url);
+    header("location: ../backendAdmin/member/dblogin.php?url_asal=" . $url);
     exit();
 }
 $idmember = $_SESSION['userid'];
