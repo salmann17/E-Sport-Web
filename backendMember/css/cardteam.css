@@ -17,11 +17,28 @@
     max-width: 400px;
     padding: 20px;
     position: relative; 
-    top: 70px; 
-    left: -700px;
+    top: 40px; 
+    left: -35vw;
     z-index: 1; 
 }
+@media screen and (max-width: 1200px) {
+    .container {
+        left: -25vw; 
+    }
+}
 
+@media screen and (max-width: 992px) {
+    .container {
+        left: -20vw; 
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        left: 0; 
+        top: 20px; 
+    }
+}
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
