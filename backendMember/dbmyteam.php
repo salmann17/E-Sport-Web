@@ -41,71 +41,48 @@ $total_pages = ceil($total_records / $limit);
         <div class="container">
             <div class="card-grid">
                 <?php
-                while($row = $result->fetch_assoc()){
-                    $idteam = $row['idteam'];
-                    $teamName = $row['team_name'];
-                    $gameName = $row['game_name'];
-                    $gameDesc = $row['game_desc'];
-                    if(!empty($idteam)){
-                        echo '<div class="card">';
-                        echo '<div class="card-image"> ';
-                        $image = 'icon/images/' . $idteam . '.jpg';
-                        if(file_exists($image)){
-                            echo '<img src="'.$image.'" class="card-image"> </div>';
-                        } else{
-                            echo '<img src="icon/images/index.png" class="card-image"> </div>';
+                if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()){
+                        $idteam = $row['idteam'];
+                        $teamName = $row['team_name'];
+                        $gameName = $row['game_name'];
+                        $gameDesc = $row['game_desc'];
+                
+                        if(!empty($idteam)){
+                            echo '<div class="card">';
+                            echo '<div class="card-image"> ';
+                            $image = 'icon/images/' . $idteam . '.jpg';
+                            if(file_exists($image)){
+                                echo '<img src="'.$image.'" class="card-image"> </div>';
+                            } else{
+                                echo '<img src="icon/images/index.png" class="card-image"> </div>';
+                            }
+                            echo '<h3 class="team-name">'.$teamName.'</h3>';
+                            echo '<p class="game-name">Team ini termasuk ke dalam divisi game '.$gameName.'. '.$gameDesc.'</p>';
+                            echo '<br>';
+                            echo '<b>TEAM MEMBERS</b>';
+                
+                            echo '<ul class="card-list">';
+                            $result2 = $teamMembers->displayAllMembers($idteam);
+                            while($row2 = $result2->fetch_assoc()) {
+                                $username = $row2['username'];
+                                echo '<li>'.$username.'</li>';
+                            }
+                            echo '</ul>';
+                
+                            echo '<div class="card-links">';
+                            echo '<a href="#" class="card-link" id="acv">Achievement</a>';
+                            echo '<a href="#" class="card-link id="evnt"">Event</a>';
+                            echo '</div>';
+                            echo '</div>';
                         }
-                        echo '<h3 class="team-name">'.$teamName.'</h3>';
-                        echo '<p class="game-name">Team ini termasuk ke dalam divisi game '.$gameName.'. '.$gameDesc.'</p>';
-                        echo '<br>';
-                        echo '<b>TEAM MEMBERS</b>';
-
-                        echo '<ul class="card-list">';
-                        $result2 = $teamMembers->displayAllMembers($idteam);
-                        while($row = $result2->fetch_assoc()) {
-                            $username = $row['username'];
-                            echo '<li>'.$username.'</li>';
-                        }
-                        echo '</ul>';
-
-                        echo '<div class="card-links">';
-                        echo '<a href="#" class="card-link">Achievement</a>';
-                        echo '<a href="#" class="card-link">Event</a>';
-                        echo '</div>';
-                        echo '</div>';
-                    } else {
-                        echo '<div class="card">';
-                        echo '<div class="card-image"> ';
-                        echo '<img src="icon/images/0.png" class="card-image"> </div>';
-                        echo '<a class="btn-join" href="backendMember/dbjointeam.php?idmember=<?php echo $idmember; ?>">Join Team</a>';
-                        echo '</div>';
                     }
-                    // echo '<div class="card">';
-                    // echo '<div class="card-image"> ';
-                    // $image = 'icon/images/' . $idteam . '.jpg';
-                    // if(file_exists($image)){
-                    //     echo '<img src="'.$image.'" class="card-image"> </div>';
-                    // } else{
-                    //     echo '<img src="icon/images/index.png" class="card-image"> </div>';
-                    // }
-                    // echo '<h3 class="team-name">'.$teamName.'</h3>';
-                    // echo '<p class="game-name">Team ini termasuk ke dalam divisi game '.$gameName.'. '.$gameDesc.'</p>';
-                    // echo '<br>';
-                    // echo '<b>TEAM MEMBERS</b>';
-
-                    // echo '<ul class="card-list">';
-                    // $result2 = $teamMembers->displayAllMembers($idteam);
-                    // while($row = $result2->fetch_assoc()) {
-                    //     $username = $row['username'];
-                    //     echo '<li>'.$username.'</li>';
-                    // }
-                    // echo '</ul>';
-
-                    // echo '<div class="card-links">';
-                    // echo '<a href="#" class="card-link">Achievement</a>';
-                    // echo '<a href="#" class="card-link">Event</a>';
-                    // echo '</div>';
-                    // echo '</div>';
+                } else {
+                    echo '<div class="card">';
+                    echo '<div class="card-image"> ';
+                    echo '<img src="icon/images/0.png" class="card-image"> </div>';
+                    echo '<a class="btn-jointeam" href="dbjointeam.php?idmember='.$idmember.'">Join Team</a>';
+                    echo '</div>';
                 }
                 ?>
                 
