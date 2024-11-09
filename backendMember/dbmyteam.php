@@ -21,7 +21,9 @@ $total_pages = ceil($total_records / $limit);
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/dbmember.css">
     <link rel="stylesheet" href="css/cardteam.css">
+    <link rel="stylesheet" href="css/jquery.css">
     <link rel="icon" href="icon/logo.png" type="image/png">
+    <script src="../backendAdmin/jquery-3.5.1.min.js"></script>
 </head>
 
 <body>
@@ -72,7 +74,7 @@ $total_pages = ceil($total_records / $limit);
                 
                             echo '<div class="card-links">';
                             echo '<a href="#" class="card-link" id="acv">Achievement</a>';
-                            echo '<a href="#" class="card-link id="evnt"">Event</a>';
+                            echo '<a href="#" class="card-link" id="evnt">Event</a>';
                             echo '</div>';
                             echo '</div>';
                         }
@@ -107,6 +109,49 @@ $total_pages = ceil($total_records / $limit);
             </div>
         </div>
     </div>
+    <div id="event-list" class="event-list">
+            
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+        $('body').on('click', '#acv', function(event) {
+            event.preventDefault();
+            var achievementHtml = `
+                    <strong class="judul">ACHIEVEMENT TEAM</strong>
+                    <div class="event-card">
+                        <div class="event-details">
+                            <strong>ethereum.org @ Devcon SEA Impact Forum</strong>
+                            <p>November 12, 2024 at 9:30 AM</p>
+                            <p class="white">November 12, 2024 at 9:30 AM</p>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-details">
+                            <strong>QA session - ethereum.org portal</strong>
+                            <p>November 28, 2024 at 12:30 AM</p>
+                            <p class="white">November 12, 2024 at 9:30 AM</p>
+                        </div>
+                    </div>
+                `;
+            $('#event-list').html(achievementHtml);
+        });
+
+        $('body').on('click', '#evnt', function(event) {
+            event.preventDefault();
+            var eventHtml = `
+                    <strong class="judul">EVENT TEAM</strong>
+                    <div class="event-card">
+                        <div class="event-details">
+                            <strong>ethereum.org Community Call - November/December 2024</strong>
+                            <p>December 05, 2024 at 11:00 PM</p>
+                            <p class="white">November 12, 2024 at 9:30 AM</p>
+                        </div>
+                    </div>
+                `;
+            $('#event-list').html(eventHtml);
+        });
+    });
+    </script>
 </body>
 
 </html>
