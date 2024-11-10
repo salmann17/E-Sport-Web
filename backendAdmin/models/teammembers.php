@@ -87,12 +87,12 @@
             return $result;
         }
         public function displayDetailTeam($idteam){
-            $stt = $this->mysqli->prepare("select acv.name as acv_name, acv.date as acv_date, acv.description as acv_desc,
-                                            e.name, e.date as event_date, e.description as event_desc from
+            $stt = $this->mysqli->prepare("select distinct acv.name as acv_name, acv.date as acv_date, acv.description as acv_desc,
+                                            e.name as event_name, e.date as event_date, e.description as event_desc from
                                             event_teams as et
                                             inner join event as e on et.idevent = e.idevent
                                             inner join achievement as acv on et.idteam = acv.idteam
-                                            where et.idteam = 1;");
+                                            where et.idteam = ?;");
             $stt->bind_param("i", $idteam);
             $stt->execute();
             $result = $stt->get_result();
