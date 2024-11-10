@@ -3,7 +3,7 @@
 #event-list {
     backdrop-filter: blur(10px); 
     padding: 20px;
-    margin-top: 20vw;
+    margin-top: 15vw;
     display: block;
     z-index: 1000;
     position: relative;

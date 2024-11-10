@@ -73,8 +73,8 @@ $total_pages = ceil($total_records / $limit);
                             echo '</ul>';
                 
                             echo '<div class="card-links">';
-                            echo '<a href="dbmyteam.php?idmember='.$idmember.'&idteam='. $idteam .'" class="card-link" id="acv">Achievement</a>';
-                            echo '<a href="dbmyteam.php?idmember='.$idmember.'&idteam='. $idteam .'" class="card-link" id="evnt">Event</a>';
+                            echo '<a href="dbmyteam.php?idmember='.$idmember.'&idteam='. $idteam .'" class="card-link" id="acv" >Achievement</a>';
+                            echo '<a href="dbmyteam.php?idmember='.$idmember.'&idteam='. $idteam .'" class="card-link" id="evnt" >Event</a>';
                             echo '</div>';
                             echo '</div>';
                         }
