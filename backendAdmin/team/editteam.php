@@ -1,6 +1,6 @@
 <?php 
     session_start();
-    
+
     if (!isset($_SESSION['userid'])) {
         $domain = $_SERVER['HTTP_HOST'];
         $path = $_SERVER['SCRIPT_NAME'];
@@ -21,20 +21,20 @@
     $team = new Team();
     $game = new Game();
 
-
     $result = $team->getTeambyId($idteam);
     while($row = $result->fetch_assoc()){
         $idgame = $row['idgame'];
         $team_name = $row['name'];
     }
 
-    
     $result2 = $game->getGameTeambyId($idgame);
     $selectGame = [];
     while($row2 = $result2->fetch_assoc()){
         $selectGame[] = $row2['idgame'];
     }
     $allgame = $game->getGameTeam();
+
+    $team_image_path = $team->getTeamImage($idteam);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,10 +48,11 @@
 <body>
     <h1>Edit Team</h1>
 
-    <form action="editteam_proses.php" method="POST">
+    <form action="editteam_proses.php" method="POST" enctype="multipart/form-data">
         <label for="name">Nama Team:</label>
         <input type="text" id="name" name="name" value="<?php echo $team_name; ?>"> <br><br>
 
+        <label for="idgame">Game:</label>
         <select name="idgame" id="idgame">
             <?php 
                 while($gameRow = $allgame->fetch_assoc()){
@@ -59,10 +60,42 @@
                     echo "<option value='" . $gameRow['idgame'] . "' $selected>" . $gameRow['name'] . "</option>";
                 }
             ?>
-        </select>
+        </select> <br><br>
+
+        <?php if ($team_image_path): ?>
+            <label>Gambar Team Saat Ini:</label><br>
+            <img id="currentImage" src="<?php echo $team_image_path . '?' . time(); ?>" alt="Gambar Tim" width="200px"> <br><br>
+        <?php endif; ?>
+
+        <label for="team_image">Upload Gambar Baru (JPG):</label>
+        <input type="file" id="team_image" name="team_image" accept=".jpg"> <br><br>
+
+        <label>Preview Gambar Baru:</label><br>
+        <img id="imagePreview" src="" alt="Preview Gambar" width="200px" style="display: none;"> <br><br>
 
         <input type="submit" value="Submit Team" class="btn-add">
         <input type="hidden" value="<?php echo $idteam ;?>" name="idteam">
     </form>
+
+    <script>
+        const currentImage = document.getElementById('currentImage');
+        const teamImageInput = document.getElementById('team_image');
+        const imagePreview = document.getElementById('imagePreview');
+
+        teamImageInput.addEventListener('change', function(event) {
+            if (event.target.files && event.target.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = 'block';
+                };
+                
+                reader.readAsDataURL(event.target.files[0]);
+            } else {
+                imagePreview.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>

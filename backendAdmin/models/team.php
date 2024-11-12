@@ -84,6 +84,14 @@
             $result = $stt->get_result();
             return $result;
         }
+        public function getTeamImage($idteam) {
+            $imagePath = "../../backendMember/icon/images/" . $idteam . ".jpg";
+            if (file_exists($imagePath)) {
+                return $imagePath;
+            } else {
+                return "../../backendMember/icon/images/index.png";
+            }
+        }
         
     }
 ?>
