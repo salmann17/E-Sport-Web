@@ -86,25 +86,40 @@
             $result = $stt->get_result();
             return $result;
         }
-        public function displayAcvTeam($idteam){
+        public function displayAcvTeam($idteam, $limit, $offset){
             $stt = $this->mysqli->prepare("select acv.name as acv_name, acv.date as acv_date, acv.description as acv_desc
                                             from achievement as acv
                                             inner join team as t on t.idteam = acv.idteam
-                                            where t.idteam = ?;");
-            $stt->bind_param("i", $idteam);
+                                            where t.idteam = ? LIMIT ? OFFSET ?;");
+            $stt->bind_param("iii", $idteam, $limit, $offset);
             $stt->execute();
             $result = $stt->get_result();
             return $result;
         }
-        public function displayEventTeam($idteam){
+        public function displayEventTeam($idteam, $limit, $offset){
             $stt = $this->mysqli->prepare("select e.name as event_name, e.date as event_date, e.description as event_desc from
                                             event_teams as et
                                             inner join event as e on et.idevent = e.idevent
-                                            where et.idteam = ?;");
-            $stt->bind_param("i", $idteam);
+                                            where et.idteam = ? LIMIT ? OFFSET ?;");
+            $stt->bind_param("iii", $idteam, $limit, $offset);
             $stt->execute();
             $result = $stt->get_result();
             return $result;
         }
+        public function countAchievements($idteam) {
+            $stt = $this->mysqli->prepare("select count(*) as count from achievement where idteam = ?");
+            $stt->bind_param("i", $idteam);
+            $stt->execute();
+            $result = $stt->get_result();
+            return $result->fetch_assoc()['count'];
+        }
+        public function countEvents($idteam) {
+            $stt = $this->mysqli->prepare("select count(*) as count from event_teams where idteam = ?");
+            $stt->bind_param("i", $idteam);
+            $stt->execute();
+            $result = $stt->get_result();
+            return $result->fetch_assoc()['count'];
+        }
+                
     }
 ?>

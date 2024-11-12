@@ -110,40 +110,60 @@ $total_pages = ceil($total_records / $limit);
             </div>
         </div>
     </div>
-    <div id="event-list" class="event-list">
-            
+
+    <div class="container-ajax">
+        <div id="event-list" class="event-list"></div>
+        <div id="achievement-list" class="achievement-list"></div>
     </div>
+
     <script type="text/javascript">
         $(document).ready(function() {
             $('body').on('click', '#acv', function(event) {
                 event.preventDefault();
-
                 const url = new URL($(this).attr('href'), window.location.origin);
                 const idteam = url.searchParams.get('idteam');
+                $('#event-list').empty();
+                loadAchievement(idteam, 1); 
+            });
 
+            $('body').on('click', '#evnt', function(event) {
+                event.preventDefault();
+                const url = new URL($(this).attr('href'), window.location.origin);
+                const idteam = url.searchParams.get('idteam');
+                $('#achievement-list').empty();
+                loadEvent(idteam, 1); 
+            });
+
+            $('body').on('click', '.page-link', function(event) {
+                event.preventDefault();
+                const page = $(this).data('page');
+                const idteam = $(this).data('idteam');
+                if ($(this).closest('#event-list').length > 0) {
+                    loadEvent(idteam, page); 
+                } else {
+                    loadAchievement(idteam, page); 
+                }
+            });
+
+            function loadAchievement(idteam, page) {
                 $.ajax({
-                    url: 'member/getDataAcv.php',  
+                    url: 'member/getDataAcv.php',
                     type: 'GET',
-                    data: { idteam: idteam },
+                    data: { idteam: idteam, page: page },
                     success: function(response) {
-                        $('#event-list').html(response); 
+                        $('#achievement-list').html(response); 
                     },
                     error: function() {
                         alert('Gagal mengambil data achievement.');
                     }
                 });
-            });
+            }
 
-            $('body').on('click', '#evnt', function(event) {
-                event.preventDefault();
-
-                const url = new URL($(this).attr('href'), window.location.origin);
-                const idteam = url.searchParams.get('idteam');
-
+            function loadEvent(idteam, page) {
                 $.ajax({
-                    url: 'member/getDataEvent.php',  
+                    url: 'member/getDataEvent.php',
                     type: 'GET',
-                    data: { idteam: idteam },
+                    data: { idteam: idteam, page: page },
                     success: function(response) {
                         $('#event-list').html(response); 
                     },
@@ -151,9 +171,8 @@ $total_pages = ceil($total_records / $limit);
                         alert('Gagal mengambil data event.');
                     }
                 });
-            });
+            }
         });
-
     </script>
 </body>
 

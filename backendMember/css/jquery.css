@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
 
-#event-list {
+#event-list, #achievement-list {
     backdrop-filter: blur(10px); 
     padding: 20px;
     margin-top: 15vw;
@@ -15,16 +15,36 @@
     text-align: right; 
     margin-left: 45vw;
 }
+#achievement-list {
+    backdrop-filter: blur(10px); 
+    padding: 20px;
+    margin-top: 0vw;
+    display: block;
+    z-index: 1000;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+    color: #ffffff; 
+    font-family: 'Audiowide', cursive; 
+    max-width: 600px; 
+    text-align: right; 
+    margin-left: 45vw;
+}
+
 
 .event-card {
     display: flex;
     align-items: center;
-    justify-content: flex-start; 
+    justify-content: flex-start;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     margin-bottom: 10px;
-    background-color: rgba(255, 255, 255, 0.05); 
+    background-color: rgba(255, 255, 255, 0.05);
     border-radius: 8px;
-    width: 100%; 
+    width: 100%;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
 }
 
 .event-card:last-child {
@@ -50,6 +70,7 @@
     color: #b1b1b1;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); 
 }
+
 .judul{
     display: block;
     font-size: 30px;
