@@ -79,7 +79,7 @@ $total_pages = ceil($total_records / $limit);
                 echo "<div class='card'>";
                 $image = 'icon/images/' . $idteam . '.jpg';
                 if(file_exists($image)){
-                    echo '<img src="'.$image.'" class="card-image">';
+                    echo '<img src="' . $image . '?time=' . time() . '" class="card-image">';
                 } else{
                     echo '<img src="icon/images/index.png" class="card-image">';
                 }
