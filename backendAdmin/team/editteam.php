@@ -22,7 +22,6 @@
     $team = new Team();
     $game = new Game();
 
-    // Ambil data team dan game
     $result = $team->getTeambyId($idteam);
     while($row = $result->fetch_assoc()){
         $idgame = $row['idgame'];
