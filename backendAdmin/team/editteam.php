@@ -10,17 +10,19 @@
         header("location: ..\..\backendMember\member\dblogin.php?url_asal=".$url);
         exit();
     }
+
     if(isset($_GET['idteam'])){
         $idteam = $_GET['idteam'];
-    }
-    else{
+    } else {
         header("location: ..\dbteam.php");
     }
+
     require_once("../models/team.php");
     require_once("../models/game.php");
     $team = new Team();
     $game = new Game();
 
+    // Ambil data team dan game
     $result = $team->getTeambyId($idteam);
     while($row = $result->fetch_assoc()){
         $idgame = $row['idgame'];
@@ -35,6 +37,7 @@
     $allgame = $game->getGameTeam();
 
     $team_image_path = $team->getTeamImage($idteam);
+    $default_image_path = "../../backendMember/icon/images/index.png";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,9 +65,12 @@
             ?>
         </select> <br><br>
 
-        <?php if ($team_image_path): ?>
+        <?php if ($team_image_path && $team_image_path !== $default_image_path): ?>
             <label>Gambar Team Saat Ini:</label><br>
             <img id="currentImage" src="<?php echo $team_image_path . '?' . time(); ?>" alt="Gambar Tim" width="200px"> <br><br>
+            <button type="button" onclick="deleteImage(<?php echo $idteam; ?>)">Hapus Gambar</button> <br><br>
+        <?php else: ?>
+            <img src="<?php echo $default_image_path; ?>" alt="Default Image" width="200px"> <br><br>
         <?php endif; ?>
 
         <label for="team_image">Upload Gambar Baru (JPG):</label>
@@ -85,17 +91,21 @@
         teamImageInput.addEventListener('change', function(event) {
             if (event.target.files && event.target.files[0]) {
                 const reader = new FileReader();
-
                 reader.onload = function(e) {
                     imagePreview.src = e.target.result;
                     imagePreview.style.display = 'block';
                 };
-                
                 reader.readAsDataURL(event.target.files[0]);
             } else {
                 imagePreview.style.display = 'none';
             }
         });
+
+        function deleteImage(idteam) {
+            if (confirm("Anda yakin ingin menghapus gambar ini?")) {
+                window.location.href = 'delete_image.php?idteam=' + idteam;
+            }
+        }
     </script>
 </body>
 </html>
