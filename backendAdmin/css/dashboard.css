@@ -128,4 +128,15 @@ tr:hover {
 .logout-btn:hover {
     background-color: #d40000;
 }
+.team-foto{
+    width: 100px;
+    height: 150px;
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+}
+.text-foto{
+    text-align: center;
+    margin-top: 5px;
+}
 

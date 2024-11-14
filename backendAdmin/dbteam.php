@@ -47,7 +47,6 @@ $total_pages = ceil($total_records / $limit);
 </head>
 
 <body>
-
     <h1>Team Management</h1>
     <form action="" method="get">
         <input type="text" name="searchTeam" placeholder="input team name">
@@ -64,8 +63,14 @@ $total_pages = ceil($total_records / $limit);
             <th>Aksi</th>";
     while ($row = $result->fetch_assoc()) {
         $idteam = $row['idteam'];
+        $image = "../backendMember/icon/images/".$idteam.".jpg";
+        $image_empty = "../backendMember/icon/images/index.png";
         echo "<tr>";
-        echo "<td>" . $row['team_name'] . "</td>";
+        if(file_exists($image)){
+            echo "<td class='text-foto'><img src='$image' class='team-foto'>" . $row['team_name'] . "</td>";
+        } else{
+            echo "<td class='text-foto'><img src='$image_empty' class='team-foto'>" . $row['team_name'] . "</td>";
+        }
         echo "<td>" . $row['game_name'] . "</td>";
         echo "<td>";
         $res = $team->getEventName($idteam);
