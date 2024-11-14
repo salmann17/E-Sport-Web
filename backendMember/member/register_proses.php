@@ -8,6 +8,12 @@
     $password = $_POST['password'];
 
     $result = $member->Register($fname, $lname, $username, $password);
-    header("Location: dblogin.php");
-    exit();
+
+    if ($result) {
+        header("Location: dblogin.php");
+        exit();
+    } else {    
+        header("Location: dbregister.php?error=username_exists");
+        exit();
+    }
 ?>

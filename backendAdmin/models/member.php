@@ -31,21 +31,33 @@ class Member extends ParentClass
         $statement->bind_param("ss", $username, $password);
         $statement->execute();
         $result = $statement->get_result();
-    
-        if($result->num_rows > 0){
-            $user = $result->fetch_assoc(); 
-            $idmember = $user['idmember'];  
-            return ['status' => true, 'idmember' => $idmember]; 
+
+        if ($result->num_rows > 0) {
+            $user = $result->fetch_assoc();
+            $idmember = $user['idmember'];
+            return ['status' => true, 'idmember' => $idmember];
         } else {
-            return ['status' => false, 'idmember' => null]; 
+            return ['status' => false, 'idmember' => null];
         }
     }
 
     public function Register($fnama, $lname, $username, $password)
     {
+        $checkStmt = $this->mysqli->prepare("SELECT username FROM member WHERE username = ?");
+        $checkStmt->bind_param("s", $username);
+        $checkStmt->execute();
+        $checkStmt->store_result();
+
+        if ($checkStmt->num_rows > 0) {
+            return false;
+        }
+
         $statement = $this->mysqli->prepare("INSERT INTO member (fname, lname, username, password, profile) VALUES (?,?,?,md5(?),'Member')");
-        $statement->bind_param("ssss", $fnama,$lname,$username,$password);
+        $statement->bind_param("ssss", $fnama, $lname, $username, $password);
         $statement->execute();
+
+        return true;
     }
+
 }
 ?>

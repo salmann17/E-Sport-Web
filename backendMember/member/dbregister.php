@@ -11,6 +11,13 @@
 
     <div class="form-container">
         <h1>Register</h1>
+
+        <?php 
+        if (isset($_GET['error']) && $_GET['error'] == 'username_exists') {
+            echo "<p style='color:red;'>Username telah digunakan, silakan gunakan username lain.</p>";
+        }
+        ?>
+
         <form action="register_proses.php" method="POST">
             <input type="text" name="fname" placeholder="First Name" required><br>
             <input type="text" name="lname" placeholder="Last Name" required><br>
