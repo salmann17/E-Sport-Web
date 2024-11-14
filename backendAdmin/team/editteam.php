@@ -67,7 +67,7 @@
         <?php if ($team_image_path && $team_image_path !== $default_image_path): ?>
             <label>Gambar Team Saat Ini:</label><br>
             <img id="currentImage" src="<?php echo $team_image_path . '?' . time(); ?>" alt="Gambar Tim" width="200px"> <br><br>
-            <button type="button" onclick="deleteImage(<?php echo $idteam; ?>)">Hapus Gambar</button> <br><br>
+            <button type="button" onclick="deleteImage(<?php echo $idteam; ?>)" class="btn-add">Hapus Gambar</button> <br><br>
         <?php else: ?>
             <img src="<?php echo $default_image_path; ?>" alt="Default Image" width="200px"> <br><br>
         <?php endif; ?>
