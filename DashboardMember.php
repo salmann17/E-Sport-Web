@@ -46,7 +46,6 @@ while ($row = $result->fetch_assoc()) {
         </div>
         <ul class="nav-links">
             <li><a href="DashboardMember.php">Home</a></li>
-            <li><a href="backendMember/dbevent.php">Event</a></li>
             <li><a href="backendMember/dbjointeam.php">Join Team</a></li>
             <li><a href="backendMember/dbmyteam.php">My Team</a></li>
             <li><a href="backendMember/member/dblogout.php">Logout</a></li>

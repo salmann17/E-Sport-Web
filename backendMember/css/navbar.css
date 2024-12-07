@@ -47,18 +47,28 @@
 }
 
 
-@media screen and (max-width: 768px) {
-    .nav-links {
-        display: none; 
-        flex-direction: column;
+@media screen and (max-width: 1024px) {
+    .nav-links li a {
+        font-size: 16px; 
     }
 
-    .navbar .menu-icon {
-        display: inline-block;
-        cursor: pointer;
-    }
     .logo img {
-        width: 60px;
+        width: 50px; 
     }
 }
+@media screen and (max-width: 768px) {
+    .nav-links li a {
+        font-size: 14px; 
+    }
+
+    .logo img {
+        width: 40px; 
+    }
+
+    .menu-icon {
+        font-size: 22px; 
+    }
+}
+
+
 
