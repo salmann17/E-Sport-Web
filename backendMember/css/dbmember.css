@@ -292,4 +292,152 @@ form input[type="text"] {
     100% { background-position: 0% 50%; }
 }
 
+@media screen and (max-width: 1024px) {
+    body {
+        font-size: 90%; 
+    }
+
+    .main-content {
+        top: 800px; 
+        padding: 8px;
+    }
+
+    .welcome-homepage {
+        font-size: 2.5rem; 
+    }
+
+    .section-title {
+        font-size: 2rem; 
+    }
+
+    .container {
+        max-width: 900px; 
+        padding: 10px;
+    }
+
+    .footer {
+        font-size: 0.9rem; 
+        margin-top: 600px; 
+    }
+
+    .btn-add, .btn-join {
+        font-size: 14px; 
+        padding: 8px 16px;
+    }
+
+    table th, table td {
+        font-size: 14px; 
+        padding: 10px; 
+    }
+
+    .footer-title {
+        font-size: 1.5rem; 
+    }
+}
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 80%; 
+    }
+
+    .main-content {
+        top: 700px; 
+        padding: 5px;
+        width: 95%; 
+    }
+
+    .welcome-homepage {
+        font-size: 2rem; 
+        top: 100px; 
+    }
+
+    .section-title {
+        font-size: 1.8rem; 
+    }
+
+    .container {
+        max-width: 100%; 
+        padding: 8px;
+    }
+
+    .background-2, .background-3 {
+        height: 50vh; 
+    }
+
+    .footer {
+        font-size: 0.8rem; 
+        margin-top: 500px; 
+    }
+
+    .btn-add, .btn-join {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+
+    table th, table td {
+        font-size: 12px; 
+        padding: 8px; 
+    }
+
+    .footer-title {
+        font-size: 1.2rem; 
+    }
+
+    .footer-description {
+        font-size: 0.8rem; 
+    }
+}
+@media screen and (max-width: 480px) {
+    body {
+        font-size: 70%; 
+    }
+
+    .main-content {
+        top: 600px; 
+        padding: 3px;
+        width: 90%; 
+    }
+
+    .welcome-homepage {
+        font-size: 1.5rem; 
+        top: 80px; 
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .container {
+        max-width: 100%; 
+        padding: 5px;
+    }
+
+    .background-2, .background-3 {
+        height: 40vh; 
+    }
+
+    .footer {
+        font-size: 0.7rem; 
+        margin-top: 400px; 
+    }
+
+    .btn-add, .btn-join {
+        font-size: 10px; 
+        padding: 5px 10px;
+    }
+
+    table th, table td {
+        font-size: 10px; 
+        padding: 6px; 
+    }
+
+    .footer-title {
+        font-size: 1rem; 
+    }
+
+    .footer-description {
+        font-size: 0.7rem; 
+    }
+}
+
+
 

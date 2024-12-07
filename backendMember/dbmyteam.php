@@ -49,7 +49,6 @@ $total_pages = ceil($total_records / $limit);
         </div>
         <ul class="nav-links">
             <li><a href="../DashboardMember.php">Home</a></li>
-            <li><a href="dbevent.php">Event</a></li>
             <li><a href="dbjointeam.php?idmember=<?php echo $idmember; ?>">Join Team</a></li>
             <li><a href="dbmyteam.php?idmember=<?php echo $idmember; ?>">My Team</a></li>
             <li><a href="member/dblogout.php">Logout</a></li>
