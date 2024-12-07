@@ -44,3 +44,72 @@ img {
 .horizontal-scroll::-webkit-scrollbar{
     display: none;
 }
+
+@media (min-width: 768px) {
+    .horizontal-scroll {
+        overflow-x: auto; 
+        display: flex; 
+        justify-content: flex-start;
+    }
+
+    .container-img {
+        flex-direction: row; 
+        align-items: center;
+        gap: 0; 
+    }
+
+    .item {
+        width: 245px;
+        margin-left: -20px; 
+    }
+
+    .item figcaption {
+        font-size: 1rem; 
+    }
+}
+
+@media (max-width: 767px) {
+    .horizontal-scroll {
+        overflow-x: auto; 
+        display: flex; 
+        justify-content: flex-start;
+        scrollbar-width: none; 
+    }
+
+    .horizontal-scroll::-webkit-scrollbar {
+        display: none; 
+    }
+
+    .container-img {
+        flex-direction: row;
+        gap: 0; 
+    }
+
+    .item {
+        width: 180px; 
+        margin-left: -15px; 
+    }
+
+    .item figcaption {
+        font-size: 0.8rem; 
+    }
+
+    img {
+        height: auto;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 8px; 
+    }
+}
+
+@media (max-width: 480px) {
+    .item {
+        width: 150px; 
+        margin-left: -10px; 
+    }
+
+    .item figcaption {
+        font-size: 0.7rem; 
+    }
+}
+
