@@ -140,3 +140,51 @@ tr:hover {
     margin-top: 5px;
 }
 
+@media (max-width: 768px) {
+    .menu {
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .menu-item {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    form {
+        flex-direction: column;
+    }
+
+    form input[type="text"] {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    form input[type="submit"] {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5em;
+    }
+
+    .menu-item a {
+        font-size: 16px;
+    }
+
+    .team-foto {
+        width: 80px;
+        height: 120px;
+    }
+
+    .logout-btn {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+}
+
+
