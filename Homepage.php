@@ -1,28 +1,15 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['userid'])) {
-    $domain = $_SERVER['HTTP_HOST'];
-    $path = $_SERVER['SCRIPT_NAME'];
-    $queryString = $_SERVER['QUERY_STRING'];
-    $url = "http://" . $domain . $path . "?" . $queryString;
-
-    header("location: backendMember\member\dblogin.php?url_asal=".$url);
-    exit();
-}
-
-if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
-    header("Location: DashboardAdmin.php");
-    exit();
-}
-
-$idmember = $_SESSION['userid'];
-
-require_once("backendAdmin/models/member.php");
-$member = new Member();
-$result = $member->getMemberbyId($idmember);
-while ($row = $result->fetch_assoc()) {
-    $username = $row['fname'];
+if (isset($_SESSION['userid'])) {
+    if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+        header("Location: DashboardAdmin.php");
+        exit();
+    }
+    else if (isset($_SESSION['role']) && $_SESSION['role'] === 'member') {
+        header("Location: DashboardAdmin.php");
+        exit();
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -45,7 +32,7 @@ while ($row = $result->fetch_assoc()) {
             <img src="backendMember/icon/logo.png" alt="esport-logo">
         </div>
         <ul class="nav-links">
-            <li><a href="DashboardMember.php">Home</a></li>
+            <li><a href="Homepage.php">Home</a></li>
             <li><a href="backendMember/member/dblogin.php">Join Team</a></li>
             <li><a href="backendMember/member/dblogin.php">My Team</a></li>
             <li><a href="backendMember/member/dblogin.php">Login</a></li>
