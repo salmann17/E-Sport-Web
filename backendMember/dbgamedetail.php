@@ -81,10 +81,13 @@ $total_pages = ceil($total_records / $limit);
                 $gameName = $row['name'];
                 
                 $result2 = $game->gameDetail($gameName);
-                while ($row2 = $result2->fetch_assoc()){
-                    echo "<p class='team-info'>" . "<strong>" . $row2['team_name'] . "</strong>" . " <br> " . $row2['event_name'] . " <br> " .  date("d-m-Y", strtotime($row2['date'])) . "</p>"; 
+                if ($result2->num_rows > 0) {
+                    while ($row2 = $result2->fetch_assoc()) {
+                        echo "<p class='team-info'>" . "<strong>" . $row2['team_name'] . "</strong>" . " <br> " . $row2['event_name'] . " <br> " .  date("d-m-Y", strtotime($row2['date'])) . "</p>"; 
+                    }
+                } else {
+                    echo "<p class='no-event' style='color:red;'>This team has no event</p>";
                 }
-                
                 echo "</div>";
             }
             ?>
