@@ -162,5 +162,29 @@
             $result = $stt-> get_result();
             return $result;
         }
+        public function getCurEventByTeam($teamName){
+            $stt = $this->mysqli->prepare("select distinct e.name as event_name
+                                            from team_members as tm
+                                            inner join team as t on tm.idteam = t.idteam
+                                            inner join event_teams as et on t.idteam = et.idteam
+                                            inner join event as e on et.idevent = e.idevent
+                                            where t.name = ? and e.date > curdate()");
+            $stt->bind_param('s', $teamName);
+            $stt-> execute();
+            $result = $stt-> get_result();
+            return $result;
+        }
+        public function getOldEventByTeam($teamName){
+            $stt = $this->mysqli->prepare("select distinct e.name as event_name
+                                            from team_members as tm
+                                            inner join team as t on tm.idteam = t.idteam
+                                            inner join event_teams as et on t.idteam = et.idteam
+                                            inner join event as e on et.idevent = e.idevent
+                                            where t.name = ? and e.date < curdate()");
+            $stt->bind_param('s', $teamName);
+            $stt-> execute();
+            $result = $stt-> get_result();
+            return $result;
+        }
     }
 ?>

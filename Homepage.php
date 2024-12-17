@@ -33,8 +33,8 @@ if (isset($_SESSION['userid'])) {
         </div>
         <ul class="nav-links">
             <li><a href="Homepage.php">Home</a></li>
-            <li><a href="backendMember/member/dblogin.php">Join Team</a></li>
-            <li><a href="backendMember/member/dblogin.php">My Team</a></li>
+            <li><a href="backendMember/dbgamedetail.php">Game Detail</a></li>
+            <li><a href="backendMember/member/dbteamdetail.php">Team Detail</a></li>
             <li><a href="backendMember/member/dblogin.php">Login</a></li>
         </ul>
     </nav>

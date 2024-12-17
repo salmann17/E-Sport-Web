@@ -60,48 +60,17 @@
             $stt->bind_param("i", $idgame);
             $stt->execute();
         }
-        public function gameDetail($cari = "", $limit = 5, $offset = 0){
-            if (!empty($cari)) {
-                $game = "%" . $cari . "%";
-                $statement = $this->mysqli->prepare("select t.name as team_name, g.name as game_name, 
+        public function gameDetail($game){
+            $statement = $this->mysqli->prepare("select t.name as team_name, g.name as game_name, 
                                                     e.name as event_name, e.description, e.date from event_teams as et
                                                     inner join event as e on et.idevent = e.idevent
                                                     inner join team as t on et.idteam = t.idteam
                                                     inner join game as g on t.idgame = g.idgame
-                                                    where g.name LIKE ? LIMIT ? OFFSET ?");
-                $statement->bind_param('sii', $game, $limit, $offset); 
-            } else {
-                $statement = $this->mysqli->prepare("select t.name as team_name, g.name as game_name, 
-                                                    e.name as event_name, e.description, e.date from event_teams as et
-                                                    inner join event as e on et.idevent = e.idevent
-                                                    inner join team as t on et.idteam = t.idteam
-                                                    inner join game as g on t.idgame = g.idgame
-                                                    LIMIT ? OFFSET ?;");
-                $statement->bind_param('ii', $limit, $offset);
-            }
-            $statement->execute();
-            $result = $statement->get_result();
+                                                    where g.name = ?");
+            $statement->bind_param('s', $game);
+            $statement-> execute();
+            $result = $statement-> get_result();
             return $result;
-        }
-        public function gameDetailCount($cari = ""){
-            if (!empty($cari)) {
-                $game = "%" . $cari . "%";
-                $statement = $this->mysqli->prepare("select count(*) as total from event_teams as et
-                                                    inner join event as e on et.idevent = e.idevent
-                                                    inner join team as t on et.idteam = t.idteam
-                                                    inner join game as g on t.idgame = g.idgame
-                                                    WHERE g.name LIKE ?");
-                $statement->bind_param('s', $game);
-            } else {
-                $statement = $this->mysqli->prepare("select count(*) as total from event_teams as et
-                                                    inner join event as e on et.idevent = e.idevent
-                                                    inner join team as t on et.idteam = t.idteam
-                                                    inner join game as g on t.idgame = g.idgame");
-            }
-            $statement->execute();
-            $result = $statement->get_result();
-            $row = $result->fetch_assoc();
-            return $row['total'];
         }
 
     }

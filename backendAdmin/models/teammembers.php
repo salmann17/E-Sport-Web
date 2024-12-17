@@ -120,6 +120,17 @@
             $result = $stt->get_result();
             return $result->fetch_assoc()['count'];
         }
+        public function getMemberByTeam($teamName){
+            $stt = $this->mysqli->prepare("select m.username
+                                            from team_members as tm
+                                            inner join member as m on tm.idmember = m.idmember
+                                            inner join team as t on tm.idteam = t.idteam
+                                            where t.name = ?");
+            $stt->bind_param("s", $teamName);
+            $stt->execute();
+            $result = $stt->get_result();
+            return $result;
+        }
                 
     }
 ?>
