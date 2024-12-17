@@ -75,7 +75,6 @@ $total_pages = ceil($total_records / $limit);
             while ($row = $result->fetch_assoc()) {
 
                 echo "<div class='card'>";
-
                 echo "<h2 class='game-name' style='font-size:25px;'>" . $row['team_name'] . "</h2><br>";
                 $teamName = $row['team_name'];
                 $idteam = $row['idteam'];
