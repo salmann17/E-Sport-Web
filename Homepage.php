@@ -34,7 +34,7 @@ if (isset($_SESSION['userid'])) {
         <ul class="nav-links">
             <li><a href="Homepage.php">Home</a></li>
             <li><a href="backendMember/dbgamedetail.php">Game Detail</a></li>
-            <li><a href="backendMember/member/dbteamdetail.php">Team Detail</a></li>
+            <li><a href="backendMember/dbteamdetail.php">Team Detail</a></li>
             <li><a href="backendMember/member/dblogin.php">Login</a></li>
         </ul>
     </nav>
