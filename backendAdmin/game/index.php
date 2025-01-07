@@ -17,7 +17,7 @@ else{
         exit();
     }
     else if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
-        header("Location: ../../DasboardAdmin.php");
+        header("Location: ../../DashboardAdmin.php");
         exit();
     }
 }
