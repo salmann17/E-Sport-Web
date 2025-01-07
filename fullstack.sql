@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: esport
+-- Host: 127.0.0.1    Database: fullstack
 -- ------------------------------------------------------
 -- Server version	8.0.30
 
@@ -31,7 +31,7 @@ CREATE TABLE `achievement` (
   PRIMARY KEY (`idachievement`),
   KEY `fk_achievement_team1_idx` (`idteam`),
   CONSTRAINT `fk_achievement_team1` FOREIGN KEY (`idteam`) REFERENCES `team` (`idteam`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `achievement` (
 
 LOCK TABLES `achievement` WRITE;
 /*!40000 ALTER TABLE `achievement` DISABLE KEYS */;
-INSERT INTO `achievement` VALUES (2,4,'Juara 3 GEF','2024-11-19','Pabji team berhasil menjadi juara 3 event GEF divisi PUBG di Korea'),(6,19,'Champion\'s Victory','2023-09-15','Virtex memenangkan turnamen besar.'),(7,20,'Nomadic Triumph','2023-09-18','Nomads berhasil mempertahankan posisi teratas.'),(8,21,'Ironclad Domination','2023-09-19','Ironclad memimpin kejuaraan dengan sempurna.'),(9,22,'Phantom Blitz','2023-09-20','Phantom mendominasi dalam turnamen regional.'),(10,23,'Plasma\'s Last Stand','2023-09-22','Plasma Guardians bertahan hingga akhir kompetisi.'),(11,24,'Shadow Supremacy','2023-09-25','Shadow Syndicate memimpin turnamen sepanjang jalan.'),(12,25,'Arcane Victory','2023-09-27','Arcane Raiders memenangkan event utama tahun ini.'),(13,26,'Titans Conquer','2023-09-29','Galactic Titans menaklukkan lawan dengan mudah.'),(14,27,'Vortex Vanquish','2023-09-30','Vortex Vanguard menang dalam kompetisi internasional.'),(15,28,'Crimson Havoc Glory','2023-10-01','Crimson Havoc memenangkan pertandingan epik.'),(16,10,'Gaming Cup','2024-10-15','ininini'),(17,1,'International Cup','2024-10-02','ini international cup');
+INSERT INTO `achievement` VALUES (2,4,'Juara 3 GEF','2024-11-19','Pabji team berhasil menjadi juara 3 event GEF divisi PUBG di Korea'),(6,19,'Champion\'s Victory','2023-09-15','Virtex memenangkan turnamen besar.'),(7,20,'Nomadic Triumph','2023-09-18','Nomads berhasil mempertahankan posisi teratas.'),(8,21,'Ironclad Domination','2023-09-19','Ironclad memimpin kejuaraan dengan sempurna.'),(9,22,'Phantom Blitz','2023-09-20','Phantom mendominasi dalam turnamen regional.'),(10,23,'Plasma\'s Last Stand','2023-09-22','Plasma Guardians bertahan hingga akhir kompetisi.'),(11,24,'Shadow Supremacy','2023-09-25','Shadow Syndicate memimpin turnamen sepanjang jalan.'),(12,25,'Arcane Victory','2023-09-27','Arcane Raiders memenangkan event utama tahun ini.'),(13,26,'Titans Conquer','2023-09-29','Galactic Titans menaklukkan lawan dengan mudah.'),(14,27,'Vortex Vanquish','2023-09-30','Vortex Vanguard menang dalam kompetisi internasional.'),(15,28,'Crimson Havoc Glory','2023-10-01','Crimson Havoc memenangkan pertandingan epik.'),(16,10,'Gaming Cup','2024-10-15','ininini'),(17,1,'International Cup','2024-10-02','ini international cup'),(19,10,'Master Strategist','2024-11-01','Menyelesaikan 50 pertandingan berturut-turut tanpa kalah dalam mode permainan strategi.'),(20,10,'Ultimate Survivor','2024-10-17','Bertahan hidup selama 10 jam dalam mode \"Survival\" tanpa kehilangan nyawa.'),(21,10,'Legendary Sniper','2024-10-10','Melakukan 100 headshots dalam mode kompetitif dengan akurasi di atas 90%.'),(22,10,'Speed Demon','2024-11-01','Menyelesaikan level terakhir dalam mode \"Time Attack\" dalam waktu kurang dari 5 menit.'),(23,1,'Explorer Extraordinaire','2024-09-18','Menemukan semua lokasi tersembunyi di peta dalam mode eksplorasi.'),(24,1,' Gold Hoarder','2024-09-25','Mengumpulkan 1.000.000 koin emas selama satu sesi permainan.'),(25,1,'Team Player','2024-10-30','Mendapatkan 500 assists dalam mode tim, menunjukkan kontribusi yang konsisten dalam membantu rekan tim.');
 /*!40000 ALTER TABLE `achievement` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,7 +57,7 @@ CREATE TABLE `event` (
   `date` date DEFAULT NULL,
   `description` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`idevent`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,7 +94,7 @@ CREATE TABLE `event_teams` (
 
 LOCK TABLES `event_teams` WRITE;
 /*!40000 ALTER TABLE `event_teams` DISABLE KEYS */;
-INSERT INTO `event_teams` VALUES (3,1),(7,1),(2,2),(1,3),(2,3),(3,7),(1,10),(2,10),(1,11),(7,11),(10,11),(7,19),(12,19),(7,20),(12,20),(8,21),(13,21),(8,22),(13,22),(9,23),(14,23),(9,24),(14,24),(10,25),(15,25),(10,26),(15,26),(11,27),(16,27),(11,28),(16,28);
+INSERT INTO `event_teams` VALUES (3,1),(7,1),(11,1),(15,1),(2,2),(8,2),(11,2),(12,2),(15,2),(1,3),(2,3),(3,7),(1,10),(2,10),(3,10),(7,10),(8,10),(13,10),(15,10),(1,11),(7,11),(10,11),(7,19),(12,19),(7,20),(12,20),(8,21),(13,21),(8,22),(13,22),(9,23),(14,23),(9,24),(14,24),(10,25),(15,25),(10,26),(15,26),(11,27),(16,27),(11,28),(16,28);
 /*!40000 ALTER TABLE `event_teams` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,7 +110,7 @@ CREATE TABLE `game` (
   `name` varchar(45) DEFAULT NULL,
   `description` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`idgame`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141,7 +141,7 @@ CREATE TABLE `join_proposal` (
   KEY `fk_join_proposal_team1_idx` (`idteam`),
   CONSTRAINT `fk_join_proposal_member1` FOREIGN KEY (`idmember`) REFERENCES `member` (`idmember`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_join_proposal_team1` FOREIGN KEY (`idteam`) REFERENCES `team` (`idteam`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150,7 +150,7 @@ CREATE TABLE `join_proposal` (
 
 LOCK TABLES `join_proposal` WRITE;
 /*!40000 ALTER TABLE `join_proposal` DISABLE KEYS */;
-INSERT INTO `join_proposal` VALUES (21,3,10,'Ingin bergabung dengan Glitch','approved'),(22,7,12,'Ingin bergabung dengan Inferno','rejected'),(23,2,15,'Ingin bergabung dengan Phantom','approved'),(24,8,20,'Ingin bergabung dengan Stormbringers','rejected'),(25,5,11,'Ingin bergabung dengan Nortex','approved'),(26,6,18,'Ingin bergabung dengan Shadow Syndicate','rejected'),(27,10,13,'Ingin bergabung dengan Stellar','approved'),(28,12,22,'Ingin bergabung dengan Zero Blitz','rejected'),(29,9,24,'Ingin bergabung dengan Plasma Guardians','approved'),(30,1,16,'Ingin bergabung dengan Nebula','approved'),(31,4,17,'Ingin bergabung dengan Plasma Guardians','approved'),(32,11,19,'Ingin bergabung dengan Arcane Raiders','rejected'),(33,13,25,'Ingin bergabung dengan Stormbringers','approved'),(34,14,26,'Ingin bergabung dengan Galactic Titans','rejected'),(35,15,27,'Ingin bergabung dengan Vortex Vanquishers','approved'),(36,16,28,'Ingin bergabung dengan Rogue Strikers','rejected'),(37,17,30,'Ingin bergabung dengan Echo Squad','approved'),(38,18,32,'Ingin bergabung dengan Nebula Enforcers','rejected'),(39,19,33,'Ingin bergabung dengan Toxic Predators','approved'),(40,20,35,'Ingin bergabung dengan Rogue Strikers','rejected'),(41,29,10,'Ingin bergabung dengan Glitch','approved'),(42,30,12,'Ingin bergabung dengan Inferno','rejected'),(43,31,22,'Ingin bergabung dengan Phantom','approved'),(44,32,27,'Ingin bergabung dengan Stormbringers','waiting'),(45,33,15,'Ingin bergabung dengan Nortex','waiting'),(46,34,25,'Ingin bergabung dengan Shadow Syndicate','waiting'),(47,35,17,'Ingin bergabung dengan Stellar','waiting'),(48,36,23,'Ingin bergabung dengan Zero Blitz','waiting'),(49,37,24,'Ingin bergabung dengan Plasma Guardians','waiting'),(50,38,18,'Ingin bergabung dengan Nebula','waiting'),(51,39,24,'Ingin bergabung dengan Plasma Guardians','waiting'),(52,40,26,'Ingin bergabung dengan Arcane Raiders','waiting'),(53,41,25,'Ingin bergabung dengan Stormbringers','rejected'),(54,42,28,'Ingin bergabung dengan Galactic Titans','waiting'),(55,43,29,'Ingin bergabung dengan Vortex Vanquishers','waiting'),(56,44,35,'Ingin bergabung dengan Rogue Strikers','waiting'),(57,45,33,'Ingin bergabung dengan Echo Squad','rejected'),(58,1,1,'halo saya ingin join','approved'),(60,1,10,'halo saya ingin join','approved'),(61,41,1,'saya mau join dong','rejected'),(62,41,11,'saya mau join dong','rejected'),(63,41,10,'halo saya ingin join','approved'),(64,41,12,'halo saya ingin join','waiting'),(65,41,2,'join dong','waiting'),(66,45,25,'i want you','approved'),(67,45,27,'please acc me','waiting'),(68,45,28,'please i want join bro','approved'),(69,45,25,'terima dong','approved');
+INSERT INTO `join_proposal` VALUES (21,3,10,'Ingin bergabung dengan Glitch','approved'),(22,7,12,'Ingin bergabung dengan Inferno','rejected'),(23,2,15,'Ingin bergabung dengan Phantom','approved'),(24,8,20,'Ingin bergabung dengan Stormbringers','rejected'),(25,5,11,'Ingin bergabung dengan Nortex','approved'),(26,6,18,'Ingin bergabung dengan Shadow Syndicate','rejected'),(27,10,13,'Ingin bergabung dengan Stellar','approved'),(28,12,22,'Ingin bergabung dengan Zero Blitz','rejected'),(29,9,24,'Ingin bergabung dengan Plasma Guardians','approved'),(30,1,16,'Ingin bergabung dengan Nebula','approved'),(31,4,17,'Ingin bergabung dengan Plasma Guardians','approved'),(32,11,19,'Ingin bergabung dengan Arcane Raiders','rejected'),(33,13,25,'Ingin bergabung dengan Stormbringers','approved'),(34,14,26,'Ingin bergabung dengan Galactic Titans','rejected'),(35,15,27,'Ingin bergabung dengan Vortex Vanquishers','approved'),(36,16,28,'Ingin bergabung dengan Rogue Strikers','rejected'),(37,17,30,'Ingin bergabung dengan Echo Squad','approved'),(38,18,32,'Ingin bergabung dengan Nebula Enforcers','rejected'),(39,19,33,'Ingin bergabung dengan Toxic Predators','approved'),(40,20,35,'Ingin bergabung dengan Rogue Strikers','rejected'),(41,29,10,'Ingin bergabung dengan Glitch','approved'),(42,30,12,'Ingin bergabung dengan Inferno','rejected'),(43,31,22,'Ingin bergabung dengan Phantom','approved'),(44,32,27,'Ingin bergabung dengan Stormbringers','waiting'),(45,33,15,'Ingin bergabung dengan Nortex','waiting'),(46,34,25,'Ingin bergabung dengan Shadow Syndicate','waiting'),(47,35,17,'Ingin bergabung dengan Stellar','waiting'),(48,36,23,'Ingin bergabung dengan Zero Blitz','waiting'),(49,37,24,'Ingin bergabung dengan Plasma Guardians','waiting'),(50,38,18,'Ingin bergabung dengan Nebula','waiting'),(51,39,24,'Ingin bergabung dengan Plasma Guardians','waiting'),(52,40,26,'Ingin bergabung dengan Arcane Raiders','waiting'),(53,41,25,'Ingin bergabung dengan Stormbringers','rejected'),(54,42,28,'Ingin bergabung dengan Galactic Titans','waiting'),(55,43,29,'Ingin bergabung dengan Vortex Vanquishers','waiting'),(56,44,35,'Ingin bergabung dengan Rogue Strikers','waiting'),(57,45,33,'Ingin bergabung dengan Echo Squad','rejected'),(58,1,1,'halo saya ingin join','approved'),(60,1,10,'halo saya ingin join','approved'),(61,41,1,'saya mau join dong','approved'),(62,41,11,'saya mau join dong','approved'),(63,41,10,'halo saya ingin join','approved'),(64,41,12,'halo saya ingin join','approved'),(65,41,2,'join dong','waiting'),(66,45,25,'i want you','approved'),(67,45,27,'please acc me','approved'),(68,45,28,'please i want join bro','approved'),(69,45,25,'terima dong','approved'),(70,41,11,'join lagi dong bang','approved'),(71,1,27,'i want join','rejected'),(72,41,1,'lagi dong','approved'),(73,41,1,'','approved'),(74,41,1,'','approved'),(75,41,13,'haloo join bgg','approved'),(76,41,13,'halo saya ingin join','approved'),(77,41,17,'halo saya ingin join','rejected'),(78,41,17,'halo saya ingin join','rejected'),(79,41,18,'haloo join bgg','approved');
 /*!40000 ALTER TABLE `join_proposal` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -169,7 +169,7 @@ CREATE TABLE `member` (
   `password` varchar(45) DEFAULT NULL,
   `profile` enum('admin','member') DEFAULT NULL,
   PRIMARY KEY (`idmember`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -178,7 +178,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` VALUES (1,'Salman','Alfarizi','salman','8b6e5dbdcec65258973b02d428cbcecc','member'),(2,'Ferdi','Kusuma','ferdi','8bf4bb0e2efad01abe522bf314504a49','admin'),(3,'Andi','Setiawan','andisetiawan','482c811da5d5b4bc6d497ffa98491e38','member'),(4,'Budi','Suryadi','budisuryadi','482c811da5d5b4bc6d497ffa98491e38','member'),(5,'Citra','Permata','citrapermata','482c811da5d5b4bc6d497ffa98491e38','member'),(6,'Dewi','Anggraini','dewianggraini','482c811da5d5b4bc6d497ffa98491e38','member'),(7,'Eko','Prasetyo','ekoprasetyo','482c811da5d5b4bc6d497ffa98491e38','member'),(8,'Fajar','Santoso','fajarsantoso','482c811da5d5b4bc6d497ffa98491e38','member'),(9,'Gita','Rahmawati','gitarahmawati','482c811da5d5b4bc6d497ffa98491e38','member'),(10,'Hari','Susilo','harisusilo','482c811da5d5b4bc6d497ffa98491e38','member'),(11,'Indah','Putri','indahputri','482c811da5d5b4bc6d497ffa98491e38','member'),(12,'Joko','Wibowo','jokowibowo','482c811da5d5b4bc6d497ffa98491e38','member'),(13,'Kurnia','Sari','kurniasari','482c811da5d5b4bc6d497ffa98491e38','member'),(14,'Lestari','Puspita','lestaripuspita','482c811da5d5b4bc6d497ffa98491e38','member'),(15,'Maya','Wulandari','mayawulandari','482c811da5d5b4bc6d497ffa98491e38','member'),(16,'Andi','Setiawan','andisetiawan','482c811da5d5b4bc6d497ffa98491e38','member'),(17,'Budi','Suryadi','budisuryadi','482c811da5d5b4bc6d497ffa98491e38','member'),(18,'Citra','Permata','citrapermata','482c811da5d5b4bc6d497ffa98491e38','member'),(19,'Dewi','Anggraini','dewianggraini','482c811da5d5b4bc6d497ffa98491e38','member'),(20,'Eko','Prasetyo','ekoprasetyo','482c811da5d5b4bc6d497ffa98491e38','member'),(21,'Fajar','Santoso','fajarsantoso','482c811da5d5b4bc6d497ffa98491e38','member'),(22,'Gita','Rahmawati','gitarahmawati','482c811da5d5b4bc6d497ffa98491e38','member'),(23,'Hari','Susilo','harisusilo','482c811da5d5b4bc6d497ffa98491e38','member'),(24,'Indah','Putri','indahputri','482c811da5d5b4bc6d497ffa98491e38','member'),(25,'Joko','Wibowo','jokowibowo','482c811da5d5b4bc6d497ffa98491e38','member'),(26,'Kurnia','Sari','kurniasari','482c811da5d5b4bc6d497ffa98491e38','member'),(27,'Lestari','Puspita','lestaripuspita','482c811da5d5b4bc6d497ffa98491e38','member'),(28,'Maya','Wulandari','mayawulandari','482c811da5d5b4bc6d497ffa98491e38','member'),(29,'Rizky','Wicaksono','rizkywicaksono','482c811da5d5b4bc6d497ffa98491e38','member'),(30,'Ahmad','Fauzi','ahmadfauzi','482c811da5d5b4bc6d497ffa98491e38','member'),(31,'Siti','Aisyah','sitiaisyah','482c811da5d5b4bc6d497ffa98491e38','member'),(32,'Yusuf','Kurniawan','yusufkurniawan','482c811da5d5b4bc6d497ffa98491e38','member'),(33,'Dian','Saputra','diansaputra','482c811da5d5b4bc6d497ffa98491e38','member'),(34,'Hendra','Wijaya','hendrawijaya','482c811da5d5b4bc6d497ffa98491e38','member'),(35,'Rina','Saraswati','rinasaraswati','482c811da5d5b4bc6d497ffa98491e38','member'),(36,'Bayu','Nugroho','bayunugroho','482c811da5d5b4bc6d497ffa98491e38','member'),(37,'Taufik','Hidayat','taufikhidayat','482c811da5d5b4bc6d497ffa98491e38','member'),(38,'Nina','Kartika','ninakartika','482c811da5d5b4bc6d497ffa98491e38','member'),(39,'Agus','Santoso','agussantoso','482c811da5d5b4bc6d497ffa98491e38','member'),(40,'Wulan','Pertiwi','wulanpertiwi','482c811da5d5b4bc6d497ffa98491e38','member'),(41,'Fikri','Anwar','fikrianwar','482c811da5d5b4bc6d497ffa98491e38','member'),(42,'Lina','Melati','linamelati','482c811da5d5b4bc6d497ffa98491e38','member'),(43,'Irwan','Hidayat','irwanhidayat','482c811da5d5b4bc6d497ffa98491e38','member'),(44,'Samsul','Bahri','samsulbahri','482c811da5d5b4bc6d497ffa98491e38','member'),(45,'Maya','Putri','mayaputri','482c811da5d5b4bc6d497ffa98491e38','member');
+INSERT INTO `member` VALUES (1,'Salman','Alfarizi','salman','8b6e5dbdcec65258973b02d428cbcecc','member'),(2,'Ferdi','Kusuma','ferdi','8bf4bb0e2efad01abe522bf314504a49','admin'),(3,'Andi','Setiawan','andisetiawan','482c811da5d5b4bc6d497ffa98491e38','member'),(4,'Budi','Suryadi','budisuryadi','482c811da5d5b4bc6d497ffa98491e38','member'),(5,'Citra','Permata','citrapermata','482c811da5d5b4bc6d497ffa98491e38','member'),(6,'Dewi','Anggraini','dewianggraini','482c811da5d5b4bc6d497ffa98491e38','member'),(7,'Eko','Prasetyo','ekoprasetyo','482c811da5d5b4bc6d497ffa98491e38','member'),(8,'Fajar','Santoso','fajarsantoso','482c811da5d5b4bc6d497ffa98491e38','member'),(9,'Gita','Rahmawati','gitarahmawati','482c811da5d5b4bc6d497ffa98491e38','member'),(10,'Hari','Susilo','harisusilo','482c811da5d5b4bc6d497ffa98491e38','member'),(11,'Indah','Putri','indahputri','482c811da5d5b4bc6d497ffa98491e38','member'),(12,'Joko','Wibowo','jokowibowo','482c811da5d5b4bc6d497ffa98491e38','member'),(13,'Kurnia','Sari','kurniasari','482c811da5d5b4bc6d497ffa98491e38','member'),(14,'Lestari','Puspita','lestaripuspita','482c811da5d5b4bc6d497ffa98491e38','member'),(15,'Maya','Wulandari','mayawulandari','482c811da5d5b4bc6d497ffa98491e38','member'),(16,'Andi','Setiawan','andisetiawan','482c811da5d5b4bc6d497ffa98491e38','member'),(17,'Budi','Suryadi','budisuryadi','482c811da5d5b4bc6d497ffa98491e38','member'),(18,'Citra','Permata','citrapermata','482c811da5d5b4bc6d497ffa98491e38','member'),(19,'Dewi','Anggraini','dewianggraini','482c811da5d5b4bc6d497ffa98491e38','member'),(20,'Eko','Prasetyo','ekoprasetyo','482c811da5d5b4bc6d497ffa98491e38','member'),(21,'Fajar','Santoso','fajarsantoso','482c811da5d5b4bc6d497ffa98491e38','member'),(22,'Gita','Rahmawati','gitarahmawati','482c811da5d5b4bc6d497ffa98491e38','member'),(23,'Hari','Susilo','harisusilo','482c811da5d5b4bc6d497ffa98491e38','member'),(24,'Indah','Putri','indahputri','482c811da5d5b4bc6d497ffa98491e38','member'),(25,'Joko','Wibowo','jokowibowo2','482c811da5d5b4bc6d497ffa98491e38','member'),(26,'Kurnia','Sari','kurniasari','482c811da5d5b4bc6d497ffa98491e38','member'),(27,'Lestari','Puspita','lestaripuspita','482c811da5d5b4bc6d497ffa98491e38','member'),(28,'Maya','Wulandari','mayawulandari','482c811da5d5b4bc6d497ffa98491e38','member'),(29,'Rizky','Wicaksono','rizkywicaksono','482c811da5d5b4bc6d497ffa98491e38','member'),(30,'Ahmad','Fauzi','ahmadfauzi','482c811da5d5b4bc6d497ffa98491e38','member'),(31,'Siti','Aisyah','sitiaisyah','482c811da5d5b4bc6d497ffa98491e38','member'),(32,'Yusuf','Kurniawan','yusufkurniawan','482c811da5d5b4bc6d497ffa98491e38','member'),(33,'Dian','Saputra','diansaputra','482c811da5d5b4bc6d497ffa98491e38','member'),(34,'Hendra','Wijaya','hendrawijaya','482c811da5d5b4bc6d497ffa98491e38','member'),(35,'Rina','Saraswati','rinasaraswati','482c811da5d5b4bc6d497ffa98491e38','member'),(36,'Bayu','Nugroho','bayunugroho','482c811da5d5b4bc6d497ffa98491e38','member'),(37,'Taufik','Hidayat','taufikhidayat','482c811da5d5b4bc6d497ffa98491e38','member'),(38,'Nina','Kartika','ninakartika','482c811da5d5b4bc6d497ffa98491e38','member'),(39,'Agus','Santoso','agussantoso','482c811da5d5b4bc6d497ffa98491e38','member'),(40,'Wulan','Pertiwi','wulanpertiwi','482c811da5d5b4bc6d497ffa98491e38','member'),(41,'Fikri','Anwar','fikrianwar','482c811da5d5b4bc6d497ffa98491e38','member'),(42,'Lina','Melati','linamelati','482c811da5d5b4bc6d497ffa98491e38','member'),(43,'Irwan','Hidayat','irwanhidayat','482c811da5d5b4bc6d497ffa98491e38','member'),(44,'Samsul','Bahri','samsulbahri','482c811da5d5b4bc6d497ffa98491e38','member'),(45,'Maya','Putri','mayaputri','482c811da5d5b4bc6d497ffa98491e38','member'),(46,'fikri','bahar','fikrianwar','482c811da5d5b4bc6d497ffa98491e38','member');
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -196,7 +196,7 @@ CREATE TABLE `team` (
   PRIMARY KEY (`idteam`),
   KEY `fk_team_game1_idx` (`idgame`),
   CONSTRAINT `fk_team_game1` FOREIGN KEY (`idgame`) REFERENCES `game` (`idgame`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -234,7 +234,7 @@ CREATE TABLE `team_members` (
 
 LOCK TABLES `team_members` WRITE;
 /*!40000 ALTER TABLE `team_members` DISABLE KEYS */;
-INSERT INTO `team_members` VALUES (1,1,'halo saya ingin join'),(10,3,'Ingin bergabung dengan Glitch'),(10,29,'Ingin bergabung dengan Glitch'),(10,41,'halo saya ingin join'),(11,5,'Ingin bergabung dengan Nortex'),(13,10,'Ingin bergabung dengan Stellar'),(15,2,'Ingin bergabung dengan Phantom'),(17,4,'Ingin bergabung dengan Plasma Guardians'),(22,31,'Ingin bergabung dengan Phantom'),(24,9,'Ingin bergabung dengan Plasma Guardians'),(25,13,'Ingin bergabung dengan Stormbringers'),(25,45,'terima dong'),(27,15,'Ingin bergabung dengan Vortex Vanquishers'),(28,45,'please i want join bro'),(30,17,'Ingin bergabung dengan Echo Squad'),(33,19,'Ingin bergabung dengan Toxic Predators');
+INSERT INTO `team_members` VALUES (1,1,'halo saya ingin join'),(1,41,''),(10,3,'Ingin bergabung dengan Glitch'),(10,29,'Ingin bergabung dengan Glitch'),(10,41,'halo saya ingin join'),(11,5,'Ingin bergabung dengan Nortex'),(11,41,'join lagi dong bang'),(12,41,'halo saya ingin join'),(13,10,'Ingin bergabung dengan Stellar'),(13,41,'halo saya ingin join'),(15,2,'Ingin bergabung dengan Phantom'),(17,4,'Ingin bergabung dengan Plasma Guardians'),(18,41,'haloo join bgg'),(22,31,'Ingin bergabung dengan Phantom'),(24,9,'Ingin bergabung dengan Plasma Guardians'),(25,13,'Ingin bergabung dengan Stormbringers'),(25,45,'terima dong'),(27,15,'Ingin bergabung dengan Vortex Vanquishers'),(27,45,'please acc me'),(28,45,'please i want join bro'),(30,17,'Ingin bergabung dengan Echo Squad'),(33,19,'Ingin bergabung dengan Toxic Predators');
 /*!40000 ALTER TABLE `team_members` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -247,4 +247,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-15 23:11:52
+-- Dump completed on 2025-01-07 19:48:32
